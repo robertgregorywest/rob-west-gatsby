@@ -13,35 +13,43 @@ class IndexRoute extends React.Component {
     const introduction = routeData.data.kontentItemHome.elements.introduction.value
     const featuredArticles = routeData.data.kontentItemHome.elements.featured_articles.value
     featuredArticles.forEach(article => {
-      items.push(<FeaturedArticle data={article} key={article.elements.article_url_slug.value} />)
+      items.push(
+        <div className="home-feature-grid__item">
+          <FeaturedArticle data={article} key={article.elements.article_url_slug.value} />
+        </div>
+      )
     })
 
     return (
       <Layout>
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={description} />
-          </Helmet>
-          <div className="bio"
-            /* eslint-disable-next-line react/no-danger */
-            dangerouslySetInnerHTML={{ __html: introduction }}
-          />
-          <div className="featured-articles">
-            {items}
-          </div>
-          <div className="contact-details">
-            <div className="contact-details__column">
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+        </Helmet>
+        <div className="bio"
+          /* eslint-disable-next-line react/no-danger */
+          dangerouslySetInnerHTML={{ __html: introduction }}
+        />
+        <div className="home-feature-grid">
+          {items}
+        </div>
+        <div className="home-feature-grid">
+          <div className="home-feature-grid__item">
+            <div className="contact-details">
               <h2 className="contact-details__title">Contact Details</h2>
               <p>
                 Phone: + 44 (0) 7818 646286<br />
-                E-mail: rob at robwest.info
-              </p>
+                  E-mail: rob at robwest.info
+                </p>
             </div>
-            <div className="contact-details__column">
+          </div>
+          <div className="home-feature-grid__item">
+            <div className="contact-details">
               <h2 className="contact-details__title">Other Platforms</h2>
             </div>
           </div>
-      </Layout>
+        </div>
+      </Layout >
     )
   }
 }
