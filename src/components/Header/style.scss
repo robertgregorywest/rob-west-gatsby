@@ -1,0 +1,25 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+        @include margin-top(.5);
+        @include margin-bottom(.5);
+    }
+    &__nav-list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        @include margin-top(.5);
+        @include margin-bottom(0);
+    }
+    &__nav-list-item {
+        text-transform: uppercase;
+    }
+    &__nav-item-link {
+        color: $color-base;
+    }
+}

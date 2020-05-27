@@ -2,7 +2,7 @@
 @import "../../assets/scss/mixins";
 
 .featured-article {
-    padding: 25px 20px;
+    padding: 15px 0;
     &__title {
         font-size: $typographic-base-font-size * 1.6875;
         @include line-height(1.5);
