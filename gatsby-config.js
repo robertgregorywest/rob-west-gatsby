@@ -26,6 +26,12 @@ module.exports = {
       },
     },
     {
+      resolve: `@rshackleton/gatsby-transformer-kontent-image`,
+      options: {
+        remote: true,
+      },
+    },
+    {
       resolve: 'kontent-used-by-content-items', // local plugin
       options: {
         links: [
