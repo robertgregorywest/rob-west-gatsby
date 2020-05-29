@@ -7,10 +7,9 @@ import { RichTextElement } from '@kentico/gatsby-kontent-components'
 
 class About extends React.Component {
     render() {
-        const routeData = this.props
-        const title = routeData.data.kontentItemSection.system.name
-        const description = routeData.data.kontentItemSection.elements.meta_data__description.value
-        const richTextElement = routeData.data.kontentItemSection.elements.introduction
+        const title = this.props.data.kontentItemSection.system.name
+        const description = this.props.data.kontentItemSection.elements.meta_data__description.value
+        const richTextElement = this.props.data.kontentItemSection.elements.introduction
 
         return (
             <Layout>
@@ -28,7 +27,6 @@ class About extends React.Component {
                         )
                     }}
                 />
-
             </Layout >
         )
     }

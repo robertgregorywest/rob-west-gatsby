@@ -23,6 +23,7 @@ module.exports = {
           ? process.env.KONTENT_PREVIEW_KEY
           : undefined,
         languageCodenames: process.env.KONTENT_LANGUAGE_CODENAMES.split(',').map(lang => lang.trim()),
+        includeTaxonomies: true,
       },
     },
     {
