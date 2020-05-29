@@ -17,9 +17,6 @@ class CodeBlock extends React.Component {
 
   updateCodeSyntaxHighlighting = () => {
     hljs.highlightBlock(findDOMNode(this.refs.code))
-    // document.querySelectorAll("pre code").forEach(block => {
-    //   hljs.highlightBlock(block);
-    //});
   };
 
   render() {
