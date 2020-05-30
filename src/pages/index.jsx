@@ -1,8 +1,8 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import FeaturedArticle from '../components/FeaturedArticle'
+import ArticleSummary from '../components/ArticleSummary'
 
 class IndexRoute extends React.Component {
   render() {
@@ -14,12 +14,11 @@ class IndexRoute extends React.Component {
     const featuredArticles = routeData.data.kontentItemHome.elements.featured_articles.value
     featuredArticles.forEach(article => {
       items.push(
-        <div className="home-feature-grid__item">
-          <FeaturedArticle data={article} key={article.elements.article_url_slug.value} />
+        <div className="home-feature-grid__item" key={article.elements.article_url_slug.value}>
+          <ArticleSummary data={article}/>
         </div>
       )
     })
-
     return (
       <Layout>
         <Helmet>
@@ -71,6 +70,15 @@ export const pageQuery = graphql`
                   value
                 }
                 article_url_slug {
+                  value
+                }
+                article_topics {
+                  value {
+                    name
+                    codename
+                  }
+                }
+                publish_date {
                   value
                 }
               }

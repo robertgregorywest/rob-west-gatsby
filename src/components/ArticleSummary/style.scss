@@ -17,6 +17,9 @@
             }
         }
     }
+    &__date {
+        @include margin-bottom(0);
+    }
     &__summary {
         font-size: $typographic-base-font-size;
         @include line-height(1);
