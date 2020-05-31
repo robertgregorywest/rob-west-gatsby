@@ -41,8 +41,9 @@ const TagListing = () => {
 
   return (
     <div>
-      {tags &&
-        tags.map(tag => (
+      <h2>Tags</h2>
+      {
+        tags && tags.map(tag => (
           <div key={tag.codename}>
             <h3>
               <Link to={`/tag/${tag.codename}`}>
@@ -53,7 +54,8 @@ const TagListing = () => {
             </h3>
             <p>{tag.summary}</p>
           </div>
-        ))}
+        ))
+      }
     </div>
   )
 }
