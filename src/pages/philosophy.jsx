@@ -7,9 +7,23 @@ import { RichTextElement } from '@kentico/gatsby-kontent-components'
 
 class Philosophy extends React.Component {
   render() {
-    const title = this.props.data.kontentItemSection.system.name
-    const description = this.props.data.kontentItemSection.elements.meta_data__description.value
-    const richTextElement = this.props.data.kontentItemSection.elements.introduction
+    const title = this.props.data.kontentItemPhilosophy.system.name
+    const description = this.props.data.kontentItemPhilosophy.elements.meta_data__description.value
+    const richTextElement = this.props.data.kontentItemPhilosophy.elements.introduction
+    const works = this.props.data.kontentItemPhilosophy.elements.featured_work.value
+
+    const worksBlock = (
+      <div>
+        <h2>Selected Papers (PDF)</h2>
+        {works &&
+          works.map(work => (
+            <div key={work.id}>
+              <h3><a href={work.elements.asset.value[0].url}>{work.elements.title.value}</a></h3>
+              <p>{work.elements.summary.value}</p>
+            </div>
+          ))}
+      </div>
+    )
 
     return (
       <Layout>
@@ -27,6 +41,7 @@ class Philosophy extends React.Component {
             )
           }}
         />
+        {worksBlock}
       </Layout >
     )
   }
@@ -36,33 +51,41 @@ export default Philosophy
 
 export const pageQuery = graphql`
   query PhilosophyQuery {
-    kontentItemSection(system: {codename: {eq: "about_me"}}) {
-        elements {
-            introduction {
-                value
-                images {
-                    image_id
-                    fluid(maxWidth: 1000) {
-                        ...KontentAssetFluid
-                    }
-                }
-                links {
-                    codename
-                    link_id
-                    type
-                    url_slug
-                }
-            }
-            meta_data__description {
-                value
-            }
-            meta_data__keywords {
-                value
-            }
+    kontentItemPhilosophy {
+      system {
+        name
+      }
+      elements {
+        introduction {
+          value
         }
-        system {
-            name
+        meta_data__description {
+          value
         }
+        meta_data__keywords {
+          value
+        }
+        featured_work {
+          value {
+            ... on kontent_item_document {
+              id
+              elements {
+                asset {
+                  value {
+                    url
+                  }
+                }
+                summary {
+                  value
+                }
+                title {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `
