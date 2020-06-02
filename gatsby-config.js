@@ -32,19 +32,6 @@ module.exports = {
         remote: true,
       },
     },
-    {
-      resolve: 'kontent-used-by-content-items', // local plugin
-      options: {
-        links: [
-          {
-            parentTypeCodename: 'article',
-            childTypeCodename: 'tag',
-            linkedElementCodename: 'tags',
-            backReferenceName: 'used_by_articles',
-          },
-        ],
-      },
-    },
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-google-analytics',
