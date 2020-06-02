@@ -5,11 +5,13 @@ import Image from 'gatsby-image';
 import Layout from '../components/Layout'
 import { RichTextElement } from '@kentico/gatsby-kontent-components'
 import LinkedItem from '../components/LinkedItem';
+import ArticleTags from '../components/ArticleTags'
 
 const ArticleTemplate = ({ data }) => {
   const title = data.kontentItemArticle.elements.title.value
   const description = data.kontentItemArticle.elements.meta_data__description.value
   const richTextElement = data.kontentItemArticle.elements.body
+  const tags = data.kontentItemArticle.elements.article_topics.value
 
   return (
     <Layout>
@@ -18,6 +20,7 @@ const ArticleTemplate = ({ data }) => {
         <meta name="description" content={description} />
       </Helmet>
       <h1>{title}</h1>
+      <ArticleTags tags={tags} />
       <RichTextElement
         value={richTextElement.value}
         images={richTextElement.images}
