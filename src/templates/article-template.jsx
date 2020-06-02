@@ -6,39 +6,37 @@ import Layout from '../components/Layout'
 import { RichTextElement } from '@kentico/gatsby-kontent-components'
 import LinkedItem from '../components/LinkedItem';
 
-class ArticleTemplate extends React.Component {
-  render() {
-    const title = this.props.data.kontentItemArticle.elements.title.value
-    const description = this.props.data.kontentItemArticle.elements.meta_data__description.value
-    const richTextElement = this.props.data.kontentItemArticle.elements.body
+const ArticleTemplate = ({ data }) => {
+  const title = data.kontentItemArticle.elements.title.value
+  const description = data.kontentItemArticle.elements.meta_data__description.value
+  const richTextElement = data.kontentItemArticle.elements.body
 
-    return (
-      <Layout>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-        </Helmet>
-        <h1>{title}</h1>
-        <RichTextElement
-          value={richTextElement.value}
-          images={richTextElement.images}
-          linkedItems={richTextElement.modular_content}
+  return (
+    <Layout>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <h1>{title}</h1>
+      <RichTextElement
+        value={richTextElement.value}
+        images={richTextElement.images}
+        linkedItems={richTextElement.modular_content}
 
-          resolveImage={image => {
-            return (
-              <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
-            )
-          }}
+        resolveImage={image => {
+          return (
+            <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
+          )
+        }}
 
-          resolveLinkedItem={linkedItem => {
-            return (
-              <LinkedItem linkedItem={linkedItem} />
-            )
-          }}
-        />
-      </Layout >
-    )
-  }
+        resolveLinkedItem={linkedItem => {
+          return (
+            <LinkedItem linkedItem={linkedItem} />
+          )
+        }}
+      />
+    </Layout >
+  )
 }
 
 export default ArticleTemplate
