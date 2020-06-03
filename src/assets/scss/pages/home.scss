@@ -1,0 +1,110 @@
+@import "../variables";
+@import "../mixins";
+
+.bio {
+    padding: 20px 0;
+    & p {
+        font-size: $typographic-base-font-size * 1.6875;
+        @include line-height(1.5);
+        @include margin-top(1);
+        @include margin-bottom(1);
+    }
+}
+
+.contact-details {
+    padding: 20px 0;
+    &__title {
+        font-size: $typographic-base-font-size * 1.6875;
+        @include line-height(1.5);
+        @include margin-top(0);
+        @include margin-bottom(.5);
+
+    }
+}
+
+@include breakpoint-sm {
+    .home-feature-grid {
+        &__item {
+            lost-column: 1/2;
+        }
+    }
+}
+
+.fc-webicon
+{
+    display: inline-block;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    text-indent: -999em;
+    text-align: left;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.fc-webicon:hover
+{
+    margin: -1px 0 1px;
+    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.fc-webicon.small
+{
+    width: 20px;
+    height: 20px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.fc-webicon.large
+{
+    width: 48px;
+    height: 48px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+.fc-webicon.facebook
+{
+    background: url("../../icons/fc-webicon-facebook.svg");
+}
+
+.fc-webicon.github
+{
+    background: url("../../icons/fc-webicon-github.svg");
+}
+
+.fc-webicon.linkedin
+{
+    background: url("../../icons/fc-webicon-linkedin.svg");
+}
+
+.fc-webicon.stackoverflow
+{
+    background: url("../../icons/fc-webicon-stackoverflow.svg");
+}
+
+.fc-webicon.twitter
+{
+    background: url("../../icons/fc-webicon-twitter.svg");
+}
+
+.fc-webicon.strava
+{
+    background: url("../../icons/fc-webicon-strava.svg");
+}
+
+.fc-webicon.instagram
+{
+    background: url("../../icons/fc-webicon-instagram.svg");
+}

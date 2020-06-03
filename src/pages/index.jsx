@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import ArticleSummary from '../components/ArticleSummary'
+import '../assets/scss/pages/home.scss'
 
 const Index = ({ data }) => {
   const title = data.kontentItemHome.system.name
@@ -44,6 +45,13 @@ const Index = ({ data }) => {
         <div className="home-feature-grid__item">
           <div className="contact-details">
             <h2 className="contact-details__title">Other Platforms</h2>
+            <a href="http://uk.linkedin.com/in/robertgregorywest" className="fc-webicon linkedin large">LinkedIn</a>
+            <a href="https://github.com/robertgregorywest" className="fc-webicon github large">GitHub</a>
+            <a href="http://stackoverflow.com/users/79419/rob-west" className="fc-webicon stackoverflow large">Stack Overflow</a>
+            <a href="http://strava.com/athletes/robgwest" className="fc-webicon strava large">Strava</a>
+            <a href="https://www.instagram.com/robertgregorywest/" className="fc-webicon instagram large">Instagram</a>
+            <a href="http://www.facebook.com/robgwest" className="fc-webicon facebook large">Facebook</a>
+            <a href="https://twitter.com/robgwest" className="fc-webicon twitter large">Twitter</a>
           </div>
         </div>
       </div>
