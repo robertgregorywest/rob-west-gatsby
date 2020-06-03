@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import ArticleSummary from '../components/ArticleSummary'
-import '../assets/scss/pages/home.scss'
 
 const Index = ({ data }) => {
   const title = data.kontentItemHome.system.name
