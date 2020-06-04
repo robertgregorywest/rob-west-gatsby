@@ -40,7 +40,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
-        fonts: ['roboto:400,400i,500,700'],
+        fonts: ['roboto:400,400i,500,700', 'IBM Plex Sans:400,400i,500,700'],
       },
     },
     'gatsby-plugin-sitemap',

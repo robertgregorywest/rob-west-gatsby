@@ -4,7 +4,6 @@ html {
 
 body {
     font-family: $typographic-font-family;
-    color: $typographic-base-font-color;
     line-height: $typographic-base-line-height;
     font-size: $typographic-base-font-size;
     -ms-text-size-adjust: 100%;
@@ -12,6 +11,12 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: $color-base;
+    background-color: $color-background;
+    &.dark-theme {
+      color: $color-base-dark;
+      background-color: $color-background-dark;
+    }
 }
 
 h1,
@@ -25,23 +30,23 @@ h6 {
 }
 
 h1 {
-    font-size: $typographic-base-font-size * 2.5;
-    @include line-height(2);
-    @include margin-top(2);
-    @include margin-bottom(1);
+    font-size: $typographic-base-font-size * 2;
+    @include line-height(1.6);
+    @include margin-top(1);
+    @include margin-bottom(0.5);
 }
 
 h2 {
-    font-size: $typographic-base-font-size * 1.6875;
+    font-size: $typographic-base-font-size * 1.375;
     @include line-height(1.5);
-    @include margin-top(2);
+    @include margin-top(1);
     @include margin-bottom(.5);
 }
 
 h3 {
     font-size: $typographic-base-font-size * 1.375;
     @include line-height(1);
-    @include margin-top(2);
+    @include margin-top(1);
     @include margin-bottom(.5);
 }
 
@@ -88,13 +93,14 @@ hr {
 }
 
 a {
-    color: $typographic-link-p-font-color;
+    color: $color-primary;
     text-decoration: none;
     &:hover,
     &:focus,
     &:active {
-        color: $typographic-link-s-font-color;
+        color: $color-secondary;
     }
+    transition: all 0.3s ease-in-out 0s;
 }
 
 b,
@@ -148,6 +154,10 @@ figcaption {
     }
 }
 
+.sidebar {
+    width: 100%;
+}
+
 @include breakpoint-sm {
     figure.float-left,
     figure.float-right {
@@ -166,6 +176,9 @@ figcaption {
             padding: 30px 20px;
         }
     }
+    .sidebar {
+        lost-column: 5/12;
+    }
 }
 
 @include breakpoint-md {
@@ -173,6 +186,12 @@ figcaption {
         lost-column: 2/3;
         &__inner {
             padding: 40px 35px;
+        }
+    }
+    .sidebar {
+        lost-column: 1/3;
+        &__inner {
+            padding: 40px;
         }
     }
 }

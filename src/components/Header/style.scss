@@ -2,24 +2,42 @@
 @import "../../assets/scss/mixins";
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  &__title-link {
+    @include themify($themes) {
+      color: themed("color-base");
+    }
+  }
+  &__title {
+    font-size: $typographic-base-font-size * 2;
+    font-weight: 500;
+    @include margin-top(0);
+    @include margin-bottom(0);
+  }
+  &__nav-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    &__title {
-        @include margin-top(.5);
-        @include margin-bottom(.5);
+    list-style: none;
+    padding: 0;
+    @include margin-top(0);
+    @include margin-bottom(0);
+  }
+  &__nav-list-item {
+    font-size: $typographic-base-font-size * 1;
+    font-weight: 400;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+  &__nav-list-item:first-child {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  &__nav-item-link {
+    @include themify($themes) {
+      color: themed("color-base");
     }
-    &__nav-list {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        @include margin-top(.5);
-        @include margin-bottom(0);
-    }
-    &__nav-list-item {
-        text-transform: uppercase;
-    }
-    &__nav-item-link {
-        color: $color-base;
-    }
+  }
 }

@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Image from 'gatsby-image';
 import Layout from '../components/Layout'
 import { RichTextElement } from '@kentico/gatsby-kontent-components'
+import moment from 'moment'
 import LinkedItem from '../components/LinkedItem';
 import ArticleTags from '../components/ArticleTags'
 
@@ -12,6 +13,7 @@ const ArticleTemplate = ({ data }) => {
   const description = data.kontentItemArticle.elements.meta_data__description.value
   const richTextElement = data.kontentItemArticle.elements.body
   const tags = data.kontentItemArticle.elements.article_topics.value
+  const published = data.kontentItemArticle.elements.publish_date.value
 
   return (
     <Layout>
@@ -20,6 +22,7 @@ const ArticleTemplate = ({ data }) => {
         <meta name="description" content={description} />
       </Helmet>
       <h1>{title}</h1>
+      <p>Published {moment(published).format('D MMM YYYY')}</p>
       <ArticleTags tags={tags} />
       <RichTextElement
         value={richTextElement.value}
