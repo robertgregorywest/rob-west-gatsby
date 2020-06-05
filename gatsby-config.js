@@ -43,6 +43,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-robots-txt',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
