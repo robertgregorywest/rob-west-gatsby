@@ -16,9 +16,9 @@ const JournalTemplate = ({ data, pageContext }) => {
     nextPagePath
   } = pageContext;
 
-  const siteTitle = data.kontentItemSection.system.name
+  const defaultTitle = data.kontentItemSection.system.name
 
-  const title = currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
+  const title = currentPage > 0 ? `${defaultTitle} - Page ${currentPage}` : defaultTitle;
   const description = data.kontentItemSection.elements.meta_data__description.value
 
   const items = []
@@ -28,11 +28,15 @@ const JournalTemplate = ({ data, pageContext }) => {
     )
   })
 
+  const baseUrl = data.site.siteMetadata.siteUrl;
+  const canoncial = currentPage > 0 ? `${baseUrl}articles/page/${currentPage}/` : `${baseUrl}articles/`;
+
   return (
     <Layout>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <link rel="canoncial" href={canoncial} />
       </Helmet>
       <div className="content">
         <h1>Journal</h1>
@@ -42,6 +46,7 @@ const JournalTemplate = ({ data, pageContext }) => {
           nextPagePath={nextPagePath}
           hasPrevPage={hasPrevPage}
           hasNextPage={hasNextPage}
+          baseUrl={baseUrl}
         />
       </div>
       <div className="sidebar">
@@ -87,6 +92,11 @@ export const pageQuery = graphql`
             value
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }

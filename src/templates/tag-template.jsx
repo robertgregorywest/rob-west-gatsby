@@ -16,23 +16,27 @@ const TagTemplate = ({ data, pageContext }) => {
     nextPagePath
   } = pageContext;
 
-  const siteTitle = data.kontentItemTagSummary.system.name
+  const tagName = data.kontentItemTagSummary.system.name;
 
-  const title = currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
-  const description = data.kontentItemTagSummary.elements.summary.value
+  const title = currentPage > 0 ? `${tagName} - Page ${currentPage}` : tagName;
+  const description = data.kontentItemTagSummary.elements.summary.value;
 
-  const items = []
+  const items = [];
   data.allKontentItemArticle.nodes.forEach(article => {
     items.push(
       <ArticleSummary data={article} key={article.elements.article_url_slug.value} />
     )
-  })
+  });
+
+  const baseUrl = data.site.siteMetadata.siteUrl;
+  const canoncial = currentPage > 0 ? `${baseUrl}tag/${pageContext.codename}/page/${currentPage}/` : `${baseUrl}tag/${pageContext.codename}/`;
 
   return (
     <Layout>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <link rel="canoncial" href={canoncial} />
       </Helmet>
       <div className="content">
         <h1>{title}</h1>
@@ -87,6 +91,11 @@ export const pageQuery = graphql`
             value
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }
