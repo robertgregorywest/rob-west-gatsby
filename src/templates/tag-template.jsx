@@ -46,6 +46,7 @@ const TagTemplate = ({ data, pageContext }) => {
           nextPagePath={nextPagePath}
           hasPrevPage={hasPrevPage}
           hasNextPage={hasNextPage}
+          baseUrl={baseUrl}
         />
       </div>
       <div className="sidebar">
