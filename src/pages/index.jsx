@@ -5,7 +5,6 @@ import Layout from '../components/Layout'
 import ArticleSummary from '../components/ArticleSummary'
 
 const Index = ({ data }) => {
-  const title = data.kontentItemHome.system.name
   const description = data.kontentItemHome.elements.meta_data__description.value
   const introduction = data.kontentItemHome.elements.introduction.value
 
@@ -21,7 +20,6 @@ const Index = ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{title}</title>
         <meta name="description" content={description} />
       </Helmet>
       <div className="bio"

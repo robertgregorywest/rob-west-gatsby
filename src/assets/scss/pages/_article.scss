@@ -1,0 +1,7 @@
+@import "../variables";
+@import "../mixins";
+
+.published {
+  @include margin-top(0);
+  @include margin-bottom(0);
+}

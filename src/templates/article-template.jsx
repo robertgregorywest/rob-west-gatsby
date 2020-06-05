@@ -22,7 +22,7 @@ const ArticleTemplate = ({ data }) => {
         <meta name="description" content={description} />
       </Helmet>
       <h1>{title}</h1>
-      <p>Published {moment(published).format('D MMM YYYY')}</p>
+      <p className="published">Published {moment(published).format('D MMM YYYY')}</p>
       <ArticleTags tags={tags} />
       <RichTextElement
         value={richTextElement.value}

@@ -30,9 +30,9 @@ h6 {
 }
 
 h1 {
-    font-size: $typographic-base-font-size * 2;
-    @include line-height(1.6);
-    @include margin-top(1);
+    font-size: $typographic-base-font-size * 1.5;
+    @include line-height(1.2);
+    @include margin-top(0.5);
     @include margin-bottom(0.5);
 }
 
@@ -178,6 +178,12 @@ figcaption {
 @include breakpoint-sm {
     body {
         font-size: $typographic-base-font-size;
+    }
+    h1 {
+        font-size: $typographic-base-font-size * 2;
+        @include line-height(1.6);
+        @include margin-top(1);
+        @include margin-bottom(0.5);
     }
     p {
         @include line-height(1);
