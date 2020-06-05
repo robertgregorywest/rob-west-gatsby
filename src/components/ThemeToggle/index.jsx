@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import './style.scss'
 
@@ -19,6 +19,11 @@ const ThemeToggle = () => {
       setMode('light')
     }
   };
+
+  useEffect(() => {
+    const localTheme = typeof window !== 'undefined' && window.localStorage.getItem('theme');
+    localTheme && setTheme(localTheme);
+  }, []);
 
   return (
     <>
