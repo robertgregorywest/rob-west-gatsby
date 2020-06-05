@@ -11,7 +11,7 @@ $themes: (
     color-background: #fafafa,
   ),
   dark: (
-    color-base: #fff,
+    color-base: rgb(203, 213, 224),
     color-primary: rgb(218, 7, 78),
     color-secondary: rgb(175, 6, 63),
     color-background: hsl(230,25%,18%),
@@ -23,13 +23,8 @@ $color-primary: rgb(218, 7, 78);
 $color-secondary: rgb(175, 6, 63);
 $color-background: #fafafa;
 
-$color-base-dark: #fff;
+$color-base-dark: rgb(203, 213, 224);
 $color-background-dark: hsl(230,25%,18%);
-
-$color-white: lighten($color-base, 100%);
-$color-gray: lighten($color-base, 40%);
-$color-gray-border: lighten($color-base, 77%);
-$color-gray-bg: lighten($color-base, 79%);
 
 // Typographic
 $typographic-font-family: "IBM Plex Sans", "system-ui", "-apple-system", "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
