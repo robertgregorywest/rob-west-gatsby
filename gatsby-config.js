@@ -1,7 +1,7 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://rob-west-gatsby.netlify.com/'
+const url = 'https://robwest.info/'
 
 require('dotenv').config()
 
@@ -16,8 +16,7 @@ module.exports = {
     {
       resolve: '@kentico/gatsby-source-kontent',
       options: {
-        projectId: process.env.KONTENT_PROJECT_ID, // Fill in your Project ID
-        // if false used authorization key for secured API
+        projectId: process.env.KONTENT_PROJECT_ID,
         usePreviewUrl: process.env.KONTENT_PREVIEW_ENABLED && process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true',
         authorizationKey: process.env.KONTENT_PREVIEW_ENABLED && process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true'
           ? process.env.KONTENT_PREVIEW_KEY
