@@ -3,11 +3,12 @@ import { Helmet } from 'react-helmet'
 import './style.scss'
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(window.localStorage.getItem('theme') || 'light');
+  const defaultThemeState = (typeof window !== 'undefined' && window.localStorage.getItem('theme')) ||  'light';
+  const [theme, setTheme] = useState(defaultThemeState);
   const oppositeTheme = theme === 'light' ? 'dark' : 'light';
 
   const setMode = mode => {
-    window.localStorage.setItem('theme', mode)
+    typeof window !== 'undefined' && window.localStorage.setItem('theme', mode)
     setTheme(mode)
   };
 
@@ -18,11 +19,6 @@ const ThemeToggle = () => {
       setMode('light')
     }
   };
-
-  useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
-    localTheme ? setTheme(localTheme) : setMode('light');
-  }, []);
 
   return (
     <>
