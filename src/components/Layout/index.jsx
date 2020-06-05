@@ -11,6 +11,7 @@ class Layout extends React.Component {
     return (
       <div className="layout">
         <Helmet defaultTitle="Rob West's website">
+          <html lang="en" />
           <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         </Helmet>
         <Header />

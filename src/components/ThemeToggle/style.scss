@@ -1,3 +1,6 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins/";
+
 .toggle {
   margin-top: 4px;
 }
@@ -38,14 +41,14 @@
     height: 24px;
     border-radius: 50%;
     border: none;
-    background-color: var(--theme-ui-colors-transparent,transparent);
+    background-color: transparent;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
     -webkit-transition: all 0.45s ease;
     transition: all 0.45s ease;
     overflow: hidden;
-    box-shadow: inset 8px -8px 0px 0px var(--theme-ui-colors-toggleIcon,#2d3748);
+    box-shadow: inset 8px -8px 0px 0px $color-base;
 }
 
 .toggle__icon-dark:before {
@@ -75,7 +78,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    box-shadow: 0 -23px 0 var(--theme-ui-colors-toggleIcon,#2d3748),0 23px 0 var(--theme-ui-colors-toggleIcon,#2d3748),23px 0 0 var(--theme-ui-colors-toggleIcon,#2d3748),-23px 0 0 var(--theme-ui-colors-toggleIcon,#2d3748),15px 15px 0 var(--theme-ui-colors-toggleIcon,#2d3748),-15px 15px 0 var(--theme-ui-colors-toggleIcon,#2d3748),15px -15px 0 var(--theme-ui-colors-toggleIcon,#2d3748),-15px -15px 0 var(--theme-ui-colors-toggleIcon,#2d3748);
+    box-shadow: 0 -23px 0 $color-base,0 23px 0 $color-base,23px 0 0 $color-base,-23px 0 0 $color-base,15px 15px 0 $color-base,-15px 15px 0 $color-base,15px -15px 0 $color-base,-15px -15px 0 $color-base;
     -webkit-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
