@@ -31,17 +31,21 @@ class Philosophy extends React.Component {
           <title>{title}</title>
           <meta name="description" content={description} />
         </Helmet>
-        <h1>{title}</h1>
-        <RichTextElement
-          value={richTextElement.value}
-          images={richTextElement.images}
-          resolveImage={image => {
-            return (
-              <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
-            )
-          }}
-        />
-        {worksBlock}
+        <div className="content">
+          <h1>{title}</h1>
+          <RichTextElement
+            value={richTextElement.value}
+            images={richTextElement.images}
+            resolveImage={image => {
+              return (
+                <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
+              )
+            }}
+          />
+        </div>
+        <div className="sidebar">
+          {worksBlock}
+        </div>
       </Layout >
     )
   }

@@ -1,0 +1,13 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.footer {
+  font-size: $typographic-small-font-size;
+  @include margin-top(1);
+  border-top-style: solid;
+  border-top-width: 1px;
+  @include themify($themes) {
+    border-top-color: themed("color-base");
+  }
+  @include padding(0.5, 0, 1, 0);
+}

@@ -8,8 +8,7 @@
       color: themed("color-base");
       &:hover,
       &:focus {
-        color: themed("color-base");
-        border-bottom: 1px solid themed("color-base");
+        color: themed("color-primary");
       }
     }
   }

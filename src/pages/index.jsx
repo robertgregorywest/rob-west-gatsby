@@ -35,7 +35,7 @@ const Index = ({ data }) => {
         <div className="home-feature-grid__item">
           <div className="contact-details">
             <h2 className="contact-details__title">Contact Details</h2>
-            <p>
+            <p className="contact-details__content">
               Phone: + 44 (0) 7818 646286<br />
               E-mail: rob at robwest.info
             </p>

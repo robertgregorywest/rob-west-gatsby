@@ -9,34 +9,45 @@
   flex-wrap: wrap;
   @include margin-top(0.25);
   @include margin-bottom(0.25);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  @include themify($themes) {
+    border-top-color: themed("color-base");
+  }
+  @include padding-bottom(0.5);
+
   &__title-link {
     @include themify($themes) {
       color: themed("color-base");
     }
   }
+
   &__title {
     font-size: $typographic-base-font-size * 2;
     font-weight: 500;
-    @include margin-top(0);
-    @include margin-bottom(0);
+    @include margin(0.75, 2, 0, 0);
   }
+
   &__nav-list {
     display: flex;
     list-style: none;
     padding: 0;
-    @include margin-top(0);
+    @include margin-top(0.75);
     @include margin-bottom(0);
   }
+
   &__nav-list-item {
     font-size: $typographic-base-font-size * 1;
     font-weight: 400;
     margin-left: 10px;
     margin-bottom: 0;
   }
+
   &__nav-list-item:first-child {
     margin-left: 0;
     padding-left: 0;
   }
+
   &__nav-item-link {
     @include themify($themes) {
       color: themed("color-base");

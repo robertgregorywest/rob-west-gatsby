@@ -46,7 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "gatsby": "^2.20.36",
-    "gatsby-cli": "^2.12.42",
+    "gatsby-cli": "^2.12.43",
     "gatsby-plugin-catch-links": "^2.0.4",
     "gatsby-plugin-google-analytics": "^2.0.6",
     "gatsby-plugin-google-fonts": "latest",

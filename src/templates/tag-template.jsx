@@ -35,21 +35,17 @@ const TagTemplate = ({ data, pageContext }) => {
         <meta name="description" content={description} />
       </Helmet>
       <div className="content">
-        <div className="content__inner">
-          <h1>{title}</h1>
-          {items}
-          <Pagination
-            prevPagePath={prevPagePath}
-            nextPagePath={nextPagePath}
-            hasPrevPage={hasPrevPage}
-            hasNextPage={hasNextPage}
-          />
-        </div>
+        <h1>{title}</h1>
+        {items}
+        <Pagination
+          prevPagePath={prevPagePath}
+          nextPagePath={nextPagePath}
+          hasPrevPage={hasPrevPage}
+          hasNextPage={hasNextPage}
+        />
       </div>
       <div className="sidebar">
-        <div className="sidebar__inner">
-          <TagListing />
-        </div>
+        <TagListing />
       </div>
     </Layout>
   )

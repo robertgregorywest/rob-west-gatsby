@@ -5,7 +5,7 @@ html {
 body {
     font-family: $typographic-font-family;
     line-height: $typographic-base-line-height;
-    font-size: $typographic-base-font-size;
+    font-size: $typographic-small-font-size;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
@@ -14,8 +14,8 @@ body {
     color: $color-base;
     background-color: $color-background;
     &.dark-theme {
-      color: $color-base-dark;
-      background-color: $color-background-dark;
+        color: $color-base-dark;
+        background-color: $color-background-dark;
     }
 }
 
@@ -39,36 +39,36 @@ h1 {
 h2 {
     font-size: $typographic-base-font-size * 1.375;
     @include line-height(1.5);
-    @include margin-top(1);
-    @include margin-bottom(.5);
+    @include margin-top(0.5);
+    @include margin-bottom(0.5);
 }
 
 h3 {
-    font-size: $typographic-base-font-size * 1.375;
+    font-size: $typographic-base-font-size * 1.1;
     @include line-height(1);
-    @include margin-top(1);
-    @include margin-bottom(.5);
+    @include margin-top(0.5);
+    @include margin-bottom(0.25);
 }
 
 h4 {
-    font-size: $typographic-base-font-size * 1.2;
+    font-size: $typographic-base-font-size;
     @include line-height(1);
-    @include margin-top(1.5);
-    @include margin-bottom(.5);
+    @include margin-top(0.5);
+    @include margin-bottom(0.5);
 }
 
 h5 {
     font-size: $typographic-base-font-size;
     @include line-height(1);
-    @include margin-top(2.5);
-    @include margin-bottom(.5);
+    @include margin-top(0.5);
+    @include margin-bottom(0.5);
 }
 
 h6 {
     font-size: $typographic-base-font-size;
     @include line-height(1);
-    @include margin-top(2.5);
-    @include margin-bottom(.5);
+    @include margin-top(0.5);
+    @include margin-bottom(0.5);
 }
 
 img {
@@ -88,13 +88,22 @@ hr {
     margin-right: auto;
     margin-left: auto;
     background-size: 100% 26px;
-    background-image: linear-gradient(to bottom, transparent 1px, transparent 11px, $color-base 11px, $color-base 15px, transparent 15px, transparent 26px);
+    background-image: linear-gradient(
+        to bottom,
+        transparent 1px,
+        transparent 11px,
+        $color-base 11px,
+        $color-base 15px,
+        transparent 15px,
+        transparent 26px
+    );
     width: 100px;
 }
 
 a {
     color: $color-primary;
     text-decoration: none;
+    font-weight: 500;
     &:hover,
     &:focus,
     &:active {
@@ -111,6 +120,7 @@ strong {
 ul {
     list-style: square;
     @include margin-bottom(1);
+    
     & li {
         padding: 0 5px;
         margin-bottom: 10px;
@@ -118,69 +128,69 @@ ul {
 }
 
 p {
-    @include line-height(1);
-    @include margin-bottom(1);
+    @include line-height(0.8);
+    @include margin-bottom(0.5);
 }
 
 pre {
-    @include line-height(0.75);
+    @include line-height(0.6);
 }
 
 blockquote {
-    padding: 0;
-    font-style: italic;
-    text-align: center;
+    @include margin(1, 0);
+    @include padding(0, 1);
+    border-left: 5px solid $color-base;
+    .dark-theme & {
+        border-left: 5px solid $color-base-dark;
+    }
 }
 
 figure {
     display: block;
     height: auto;
+    margin: 0;
 }
 
 figcaption {
-    @include line-height(.75);
-    @include margin-top(.25);
-    color: $color-base;
-    font-size: $typographic-small-font-size;
+    @include line-height(0.75);
+    @include margin(0.25, 0, 0.25, 0);
+    font-size: $typographic-xsmall-font-size;
     font-style: italic;
-    margin-bottom: 0;
-    text-align: center;
 }
 
 .layout {
     lost-center: $layout-width;
-    padding: 25px 20px;
+    @include padding(0, 0.5, 0.5, 0.5);
 }
 
-.content {
-    &__inner {
-        padding: 25px 20px;
-    }
+.container {
+    lost-utility: clearfix;
 }
 
 .sidebar {
     width: 100%;
+    & p {
+        font-size: $typographic-small-font-size;
+        @include line-height(0.8);
+    }
 }
 
 @include breakpoint-sm {
-    figure.float-left,
-    figure.float-right {
-        max-width: 310px;
-        @include padding(0, 1, 0, 1);
+    body {
+        font-size: $typographic-base-font-size;
     }
-    .float-right {
-        float: right;
+    p {
+        @include line-height(1);
+        @include margin-bottom(0.5);
     }
-    .float-left {
-        float: left;
+    figcaption {
+        font-size: $typographic-small-font-size;
     }
     .content {
         lost-column: 7/12;
-        &__inner {
-            padding: 30px 20px;
-        }
     }
     .sidebar {
+        @include margin-top(0.75);
         lost-column: 5/12;
     }
 }
@@ -188,14 +198,8 @@ figcaption {
 @include breakpoint-md {
     .content {
         lost-column: 2/3;
-        &__inner {
-            padding: 40px 35px;
-        }
     }
     .sidebar {
         lost-column: 1/3;
-        &__inner {
-            padding: 40px;
-        }
     }
 }

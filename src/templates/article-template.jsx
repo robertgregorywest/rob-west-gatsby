@@ -31,7 +31,14 @@ const ArticleTemplate = ({ data }) => {
 
         resolveImage={image => {
           return (
-            <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
+            <figure>
+              <Image
+                key={`rt-assets-${image.image_id}`}
+                fluid={image.fluid}
+                title={image.description}
+                alt={image.description} />
+              <figcaption>{image.description}</figcaption>
+            </figure>
           )
         }}
 
@@ -99,6 +106,7 @@ export const pageQuery = graphql`
             fluid(maxWidth: 1000) {
                 ...KontentAssetFluid
             }
+            description
           }
         }
         publish_date {
