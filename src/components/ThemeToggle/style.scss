@@ -3,127 +3,131 @@
 
 .toggle {
   margin-top: 4px;
+  width: 40px;
+  height: 25px;
 }
 
 .toggle__button {
-    opacity: 1;
-    position: relative;
-    border-radius: 5px;
-    width: 40px;
-    height: 25px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-transition: opacity 0.3s ease;
-    transition: opacity 0.3s ease;
-    border: none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    &:hover {
-        opacity: 0.65;
-    }
+  opacity: 1;
+  position: relative;
+  border-radius: 5px;
+  width: 40px;
+  height: 25px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:hover {
+    opacity: 0.65;
+  }
 }
 
 .toggle__icon-dark {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: none;
-    background-color: transparent;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    -webkit-transition: all 0.45s ease;
-    transition: all 0.45s ease;
-    overflow: hidden;
-    box-shadow: inset 8px -8px 0px 0px $color-base;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+  overflow: hidden;
+  box-shadow: inset 8px -8px 0px 0px $color-base;
 }
 
 .toggle__icon-dark:before {
-    content: "";
-    position: absolute;
-    right: -9px;
-    top: -9px;
-    height: 24px;
-    width: 24px;
-    border: none;
-    border-radius: 50%;
-    -webkit-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    transform: translate(0,0);
-    opacity: 1;
-    -webkit-transition: -webkit-transform 0.45s ease;
-    -webkit-transition: transform 0.45s ease;
-    transition: transform 0.45s ease;
+  content: "";
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  height: 24px;
+  width: 24px;
+  border: none;
+  border-radius: 50%;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+  opacity: 1;
+  -webkit-transition: -webkit-transform 0.45s ease;
+  -webkit-transition: transform 0.45s ease;
+  transition: transform 0.45s ease;
 }
 
 .toggle__icon-dark:after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin: -4px 0 0 -4px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    box-shadow: 0 -23px 0 $color-base,0 23px 0 $color-base,23px 0 0 $color-base,-23px 0 0 $color-base,15px 15px 0 $color-base,-15px 15px 0 $color-base,15px -15px 0 $color-base,-15px -15px 0 $color-base;
-    -webkit-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);
-    -webkit-transition: all 0.35s ease;
-    transition: all 0.35s ease;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: -4px 0 0 -4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0 -23px 0 $color-base, 0 23px 0 $color-base, 23px 0 0 $color-base, -23px 0 0 $color-base,
+    15px 15px 0 $color-base, -15px 15px 0 $color-base, 15px -15px 0 $color-base, -15px -15px 0 $color-base;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
 }
 
 .toggle__icon-light {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    background-color: #cbd5e0;
-    transform: scale(0.55);
-    box-shadow: none;
-    border-radius: 50%;
-    transition: all 0.45s ease 0s;
-    overflow: visible;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background-color: #cbd5e0;
+  transform: scale(0.55);
+  box-shadow: none;
+  border-radius: 50%;
+  transition: all 0.45s ease 0s;
+  overflow: visible;
 }
 
 .toggle__icon-light::before {
-    content: "";
-    position: absolute;
-    right: -9px;
-    top: -9px;
-    height: 24px;
-    width: 24px;
-    transform: translate(14px, -14px);
-    opacity: 0;
-    border-radius: 50%;
-    transition: transform 0.45s ease 0s;
+  content: "";
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  height: 24px;
+  width: 24px;
+  transform: translate(14px, -14px);
+  opacity: 0;
+  border-radius: 50%;
+  transition: transform 0.45s ease 0s;
 }
 
 .toggle__icon-light::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    box-shadow: 0 -23px 0 #cbd5e0,0 23px 0 #cbd5e0,23px 0 0 #cbd5e0,-23px 0 0 #cbd5e0,15px 15px 0 #cbd5e0,-15px 15px 0 #cbd5e0,15px -15px 0 #cbd5e0,-15px -15px 0 #cbd5e0;
-    transform: scale(1);
-    border-radius: 50%;
-    margin: -4px 0px 0px -4px;
-    transition: all 0.35s ease 0s;
+  content: "";
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0 -23px 0 #cbd5e0, 0 23px 0 #cbd5e0, 23px 0 0 #cbd5e0, -23px 0 0 #cbd5e0, 15px 15px 0 #cbd5e0,
+    -15px 15px 0 #cbd5e0, 15px -15px 0 #cbd5e0, -15px -15px 0 #cbd5e0;
+  transform: scale(1);
+  border-radius: 50%;
+  margin: -4px 0px 0px -4px;
+  transition: all 0.35s ease 0s;
 }

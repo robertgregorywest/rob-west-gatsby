@@ -8,7 +8,7 @@ const ThemeToggle = () => {
   const oppositeTheme = theme === 'light' ? 'dark' : 'light';
 
   if (!componentMounted) {
-    return <div/>
+    return <div className="toggle"/>
   };
 
   return (
