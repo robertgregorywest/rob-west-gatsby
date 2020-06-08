@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Image from 'gatsby-image';
 import Layout from '../components/Layout'
 import { RichTextElement } from '@kentico/gatsby-kontent-components'
@@ -27,6 +27,7 @@ const ArticleTemplate = ({ data }) => {
       <RichTextElement
         value={richTextElement.value}
         images={richTextElement.images}
+        links={richTextElement.links}
         linkedItems={richTextElement.modular_content}
 
         resolveImage={image => {
@@ -41,7 +42,13 @@ const ArticleTemplate = ({ data }) => {
             </figure>
           )
         }}
-
+        resolveLink={(link, domNode) => {
+          return (
+            <Link to={`/articles/${link.url_slug}`}>
+              {domNode.children[0].data}
+            </Link>
+          )
+        }}
         resolveLinkedItem={linkedItem => {
           return (
             <LinkedItem linkedItem={linkedItem} />
@@ -100,6 +107,11 @@ export const pageQuery = graphql`
                 type
               }
             }
+          }
+          links {
+            url_slug
+            link_id
+            type
           }
           images {
             image_id
