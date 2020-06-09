@@ -45,6 +45,18 @@ module.exports = {
     },
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Rob West's Website`,
+        short_name: `Rob West`,
+        start_url: `/`,
+        background_color: `#fafafa`,
+        theme_color: `#222`,
+        display: `standalone`,
+        icon: `src/assets/icons/icon.png`,
+      },
+    },
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
