@@ -10,7 +10,7 @@ class Layout extends React.Component {
 
     return (
       <div className="layout">
-        <Helmet defaultTitle="Rob West's website">
+        <Helmet defaultTitle="Rob West's Website" titleTemplate="Rob West's Website - %s">
           <html lang="en" />
         </Helmet>
         <Header />
