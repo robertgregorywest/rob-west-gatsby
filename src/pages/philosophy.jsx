@@ -1,29 +1,24 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
-import Layout from '../components/Layout'
-import { RichTextElement } from '@kentico/gatsby-kontent-components'
+import { RichTextElement } from '@kentico/gatsby-kontent-components';
+import Layout from '../components/Layout';
 
 class Philosophy extends React.Component {
   render() {
-    const title = this.props.data.kontentItemPhilosophy.system.name
-    const description = this.props.data.kontentItemPhilosophy.elements.meta_data__description.value
-    const richTextElement = this.props.data.kontentItemPhilosophy.elements.introduction
-    const works = this.props.data.kontentItemPhilosophy.elements.featured_work.value
-
-    const worksBlock = (
-      <div>
-        <h2>Selected Papers (PDF)</h2>
-        {works &&
-          works.map(work => (
-            <div key={work.id}>
-              <h3><a href={work.elements.asset.value[0].url}>{work.elements.title.value}</a></h3>
-              <p>{work.elements.summary.value}</p>
-            </div>
-          ))}
-      </div>
-    )
+    const {
+      data: {
+        kontentItemPhilosophy: {
+          system: { name: title },
+          elements: {
+            meta_data__description: { value: description },
+            introduction: richTextElement,
+            featured_work: { value: works },
+          },
+        },
+      },
+    } = this.props;
 
     return (
       <Layout>
@@ -36,22 +31,32 @@ class Philosophy extends React.Component {
           <RichTextElement
             value={richTextElement.value}
             images={richTextElement.images}
-            resolveImage={image => {
-              return (
-                <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
-              )
-            }}
+            resolveImage={image => (
+              <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
+            )}
           />
         </div>
         <div className="sidebar">
-          {worksBlock}
+          <div>
+            <h2>Selected Papers (PDF)</h2>
+            {works && works.map(work => (
+              <div key={work.id}>
+                <h3>
+                  <a href={work.elements.asset.value[0].url}>
+                    {work.elements.title.value}
+                  </a>
+                </h3>
+                <p>{work.elements.summary.value}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </Layout >
-    )
+      </Layout>
+    );
   }
 }
 
-export default Philosophy
+export default Philosophy;
 
 export const pageQuery = graphql`
   query PhilosophyQuery {
@@ -92,4 +97,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

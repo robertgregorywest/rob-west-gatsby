@@ -1,9 +1,9 @@
-const lost = require('lost')
-const pxtorem = require('postcss-pxtorem')
+const lost = require('lost');
+const pxtorem = require('postcss-pxtorem');
 
-const url = 'https://robwest.info/'
+const url = 'https://robwest.info/';
 
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   // These properties are used by gatsby-plugin-sitemap
@@ -26,7 +26,7 @@ module.exports = {
       },
     },
     {
-      resolve: `@rshackleton/gatsby-transformer-kontent-image`,
+      resolve: '@rshackleton/gatsby-transformer-kontent-image',
       options: {
         remote: true,
       },
@@ -40,21 +40,21 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: ['IBM Plex Sans:400,500'],
-        display: 'swap'
+        display: 'swap',
       },
     },
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `Rob West's Website`,
-        short_name: `Rob West`,
-        start_url: `/`,
-        background_color: `#fafafa`,
-        theme_color: `#222`,
-        display: `standalone`,
-        icon: `src/assets/icons/icon.png`,
+        name: 'Rob West\'s Website',
+        short_name: 'Rob West',
+        start_url: '/',
+        background_color: '#fafafa',
+        theme_color: '#222',
+        display: 'standalone',
+        icon: 'src/assets/icons/icon.png',
       },
     },
     'gatsby-plugin-catch-links',
@@ -95,5 +95,6 @@ module.exports = {
         precision: 8,
       },
     },
+    'gatsby-plugin-eslint',
   ],
-}
+};

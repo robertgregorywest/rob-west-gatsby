@@ -1,19 +1,18 @@
 import React from 'react';
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
-import ArticleSummary from '../components/ArticleSummary'
-import Pagination from '../components/Pagination'
-import TagListing from '../components/TagListing'
+import ArticleSummary from '../components/ArticleSummary';
+import Pagination from '../components/Pagination';
+import TagListing from '../components/TagListing';
 
 const TagTemplate = ({ data, pageContext }) => {
-
   const {
     currentPage,
     hasNextPage,
     hasPrevPage,
     prevPagePath,
-    nextPagePath
+    nextPagePath,
   } = pageContext;
 
   const tagName = data.kontentItemTagSummary.system.name;
@@ -24,12 +23,17 @@ const TagTemplate = ({ data, pageContext }) => {
   const items = [];
   data.allKontentItemArticle.nodes.forEach(article => {
     items.push(
-      <ArticleSummary data={article} key={article.elements.article_url_slug.value} />
-    )
+      <ArticleSummary
+        data={article}
+        key={article.elements.article_url_slug.value}
+      />,
+    );
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;
-  const canoncial = currentPage > 0 ? `${baseUrl}tag/${pageContext.codename}/page/${currentPage}/` : `${baseUrl}tag/${pageContext.codename}/`;
+  const canoncial = currentPage > 0
+    ? `${baseUrl}tag/${pageContext.codename}/page/${currentPage}/`
+    : `${baseUrl}tag/${pageContext.codename}/`;
 
   return (
     <Layout>
@@ -53,14 +57,14 @@ const TagTemplate = ({ data, pageContext }) => {
         <TagListing />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default TagTemplate
+export default TagTemplate;
 
 export const pageQuery = graphql`
   query TagsQuery($codename: String!, $limit: Int!, $skip: Int!) {
-    kontentItemTagSummary(system: {codename: {eq: $codename}}) {
+    kontentItemTagSummary(system: { codename: { eq: $codename } }) {
       elements {
         summary {
           value
@@ -70,7 +74,18 @@ export const pageQuery = graphql`
         name
       }
     }
-    allKontentItemArticle(filter: {elements: {article_topics: {value: {elemMatch: {codename: {eq: $codename}}}}}}, sort: {fields: elements___publish_date___value, order: DESC}, limit: $limit, skip: $skip) {
+    allKontentItemArticle(
+      filter: {
+        elements: {
+          article_topics: {
+            value: { elemMatch: { codename: { eq: $codename } } }
+          }
+        }
+      }
+      sort: { fields: elements___publish_date___value, order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       nodes {
         elements {
           title {
@@ -100,4 +115,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

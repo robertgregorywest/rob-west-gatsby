@@ -1,6 +1,5 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
+import React from 'react';
+import Layout from '../components/Layout';
 
 class NotFoundRoute extends React.Component {
   render() {
@@ -12,17 +11,15 @@ class NotFoundRoute extends React.Component {
               <div className="page">
                 <h1 className="page__title">NOT FOUND</h1>
                 <div className="page__body">
-                  <p>
-                    Page not found
-                  </p>
+                  <p>Page not found</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
-export default NotFoundRoute
+export default NotFoundRoute;

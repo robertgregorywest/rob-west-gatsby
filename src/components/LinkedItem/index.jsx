@@ -1,6 +1,6 @@
-import React from 'react'
-import Blockquote from '../Blockquote'
-import CodeBlock from '../CodeBlock'
+import React from 'react';
+import Blockquote from '../Blockquote';
+import CodeBlock from '../CodeBlock';
 
 const LinkedItem = ({ linkedItem }) => {
   const type = linkedItem.system.type;
@@ -15,8 +15,8 @@ const LinkedItem = ({ linkedItem }) => {
     }
 
     default:
-      return null
+      return null;
   }
-}
+};
 
-export default LinkedItem
+export default LinkedItem;
