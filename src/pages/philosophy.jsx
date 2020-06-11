@@ -10,10 +10,10 @@ class Philosophy extends React.Component {
     const {
       data: {
         kontentItemPhilosophy: {
-          system: { name: title },
+          system: { name },
           elements: {
             meta_data__description: { value: description },
-            introduction: richTextElement,
+            introduction,
             featured_work: { value: works },
           },
         },
@@ -23,14 +23,14 @@ class Philosophy extends React.Component {
     return (
       <Layout>
         <Helmet>
-          <title>{title}</title>
+          <title>{name}</title>
           <meta name="description" content={description} />
         </Helmet>
         <div className="content">
-          <h1>{title}</h1>
+          <h1>{name}</h1>
           <RichTextElement
-            value={richTextElement.value}
-            images={richTextElement.images}
+            value={introduction.value}
+            images={introduction.images}
             resolveImage={image => (
               <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
             )}
@@ -39,16 +39,17 @@ class Philosophy extends React.Component {
         <div className="sidebar">
           <div>
             <h2>Selected Papers (PDF)</h2>
-            {works && works.map(work => (
-              <div key={work.id}>
-                <h3>
-                  <a href={work.elements.asset.value[0].url}>
-                    {work.elements.title.value}
-                  </a>
-                </h3>
-                <p>{work.elements.summary.value}</p>
-              </div>
-            ))}
+            {works
+              && works.map(work => (
+                <div key={work.id}>
+                  <h3>
+                    <a href={work.elements.asset.value[0].url}>
+                      {work.elements.title.value}
+                    </a>
+                  </h3>
+                  <p>{work.elements.summary.value}</p>
+                </div>
+              ))}
           </div>
         </div>
       </Layout>
