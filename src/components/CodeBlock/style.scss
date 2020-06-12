@@ -6,10 +6,6 @@
   color: #bababa;
   border: 0;
   border-radius: 5px;
-  .dark-theme & {
-    background: #e2e8f0;
-    color: #718096;
-  }
 }
 
 .hljs-strong,
@@ -46,9 +42,6 @@
 
 .hljs-params {
   color: #b9b9b9;
-  .dark-theme & {
-    color: #928f8f;
-  }
 }
 
 .hljs-string {
@@ -67,9 +60,6 @@
 .hljs-template-variable,
 .hljs-addition {
   color: #e0c46c;
-  .dark-theme & {
-    color: #b58900;
-  }
 }
 
 .hljs-comment,

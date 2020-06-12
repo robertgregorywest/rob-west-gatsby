@@ -5,7 +5,7 @@ html {
 body {
     font-family: $typographic-font-family;
     line-height: $typographic-base-line-height;
-    font-size: $typographic-small-font-size;
+    font-size: $typographic-base-font-size * 0.8;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
@@ -109,6 +109,10 @@ p {
 
 pre {
     @include line-height(0.6);
+    font-size: $typographic-base-font-size * 0.7;
+    @include breakpoint-sm {
+        font-size: $typographic-base-font-size * 0.8;
+    }
 }
 
 blockquote {
@@ -129,7 +133,7 @@ figure {
 figcaption {
     @include line-height(0.75);
     @include margin(0.25, 0, 0.25, 0);
-    font-size: $typographic-xsmall-font-size;
+    font-size: $typographic-base-font-size * 0.6;
     font-style: italic;
 }
 
@@ -145,7 +149,7 @@ figcaption {
 .sidebar {
     width: 100%;
     & p {
-        font-size: $typographic-small-font-size;
+        font-size: $typographic-base-font-size * 0.8;
         @include line-height(0.8);
     }
 }
@@ -165,7 +169,7 @@ figcaption {
         @include margin-bottom(0.5);
     }
     figcaption {
-        font-size: $typographic-small-font-size;
+        font-size: $typographic-base-font-size * 0.8;
     }
     .content {
         lost-column: 7/12;

@@ -24,6 +24,7 @@ const ArticleTemplate = ({ data }) => {
       <h1>{title}</h1>
       <p className="published">
         Published
+        {' '}
         {moment(published).format('D MMM YYYY')}
       </p>
       <ArticleTags tags={tags} />

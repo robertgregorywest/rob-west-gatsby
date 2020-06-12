@@ -31,6 +31,7 @@ class ArticleSummary extends React.Component {
         </h2>
         <p className="featured-article__date">
           Published
+          {' '}
           {moment(published).format('D MMM YYYY')}
         </p>
         <p className="featured-article__summary">{summary}</p>

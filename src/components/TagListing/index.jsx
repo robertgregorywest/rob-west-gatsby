@@ -45,6 +45,7 @@ const TagListing = () => {
         <div key={tag.codename}>
           <h3>
             <Link to={`/tag/${tag.codename}`}>{tag.name}</Link>
+            {' '}
             (
             {tag.count}
             )

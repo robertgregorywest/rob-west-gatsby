@@ -2,7 +2,7 @@
 @import "../../assets/scss/mixins";
 
 .footer {
-  font-size: $typographic-small-font-size;
+  font-size: $typographic-base-font-size * 0.8;
   @include margin-top(1);
   border-top-style: solid;
   border-top-width: 1px;
