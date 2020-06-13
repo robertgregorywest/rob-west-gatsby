@@ -1,9 +1,6 @@
 import React from 'react';
-import hljs from 'highlight.js';
-import hljsDefineCshtmlRazor from 'highlightjs-cshtml-razor';
+import hljs from './custom-hljs';
 import './style.scss';
-
-hljsDefineCshtmlRazor(hljs);
 
 class CodeBlock extends React.Component {
   constructor(props) {
