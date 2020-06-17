@@ -36,7 +36,6 @@ const ArticleTemplate = ({ data }) => {
         resolveImage={image => (
           <figure>
             <Image
-              key={`rt-assets-${image.image_id}`}
               fluid={image.fluid}
               title={image.description}
               alt={image.description}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
 import { RichTextElement } from '@kentico/gatsby-kontent-components';
 import Layout from '../components/Layout';
 
@@ -28,13 +27,7 @@ class Philosophy extends React.Component {
         </Helmet>
         <div className="content">
           <h1>{name}</h1>
-          <RichTextElement
-            value={introduction.value}
-            images={introduction.images}
-            resolveImage={image => (
-              <Image key={`rt-assets-${image.image_id}`} fluid={image.fluid} />
-            )}
-          />
+          <RichTextElement value={introduction.value} />
         </div>
         <div className="sidebar">
           <div>
