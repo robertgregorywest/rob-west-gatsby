@@ -13,7 +13,7 @@ const LinkedItem = ({ linkedItem }) => {
     case 'code_block': {
       const {
         elements: {
-          class: { value: language },
+          language: { value: language },
           code: { value: code },
         },
       } = linkedItem;

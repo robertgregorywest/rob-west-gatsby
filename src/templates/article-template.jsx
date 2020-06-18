@@ -94,7 +94,7 @@ export const pageQuery = graphql`
             ... on kontent_item_code_block {
               id
               elements {
-                class {
+                language {
                   value
                 }
                 code {
