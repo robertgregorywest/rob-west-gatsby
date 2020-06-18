@@ -110,7 +110,6 @@ export const pageQuery = graphql`
           links {
             url_slug
             link_id
-            type
           }
           images {
             image_id

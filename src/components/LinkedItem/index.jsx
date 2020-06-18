@@ -7,11 +7,17 @@ const LinkedItem = ({ linkedItem }) => {
 
   switch (type) {
     case 'blockquote': {
-      return <Blockquote linkedItem={linkedItem} />;
+      return <Blockquote quote={linkedItem.elements.text.value} />;
     }
 
     case 'code_block': {
-      return <CodeBlock linkedItem={linkedItem} />;
+      const {
+        elements: {
+          class: { value: language },
+          code: { value: code },
+        },
+      } = linkedItem;
+      return <CodeBlock language={language} code={code} />;
     }
 
     default:
