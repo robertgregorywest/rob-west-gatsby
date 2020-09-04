@@ -1,5 +1,6 @@
 import React from 'react';
 import Blockquote from '../Blockquote';
+import RichBlockquote from '../RichBlockquote';
 import CodeBlock from '../CodeBlock';
 
 const LinkedItem = ({ linkedItem }) => {
@@ -9,7 +10,9 @@ const LinkedItem = ({ linkedItem }) => {
     case 'blockquote': {
       return <Blockquote quote={linkedItem.elements.text.value} />;
     }
-
+    case 'rich_blockquote': {
+      return <RichBlockquote quote={linkedItem.elements.text.value} />;
+    }
     case 'code_block': {
       const {
         elements: {
@@ -19,7 +22,6 @@ const LinkedItem = ({ linkedItem }) => {
       } = linkedItem;
       return <CodeBlock language={language} code={code} />;
     }
-
     default:
       return null;
   }

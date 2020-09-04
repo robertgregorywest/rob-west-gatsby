@@ -91,6 +91,18 @@ export const pageQuery = graphql`
                 type
               }
             }
+            ... on kontent_item_rich_blockquote {
+              id
+              elements {
+                text {
+                  value
+                }
+              }
+              system {
+                codename
+                type
+              }
+            }
             ... on kontent_item_code_block {
               id
               elements {
