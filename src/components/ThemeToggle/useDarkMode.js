@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 const useDarkMode = () => {
   const [theme, setTheme] = useState('light');
   const [componentMounted, setComponentMounted] = useState(false);
+
   const isBrowser = () => typeof window !== 'undefined';
 
   const setMode = mode => {
@@ -20,6 +21,8 @@ const useDarkMode = () => {
     }
   };
 
+  const oppositeTheme = theme === 'light' ? 'dark' : 'light';
+
   useEffect(() => {
     const localTheme = isBrowser() && window.localStorage.getItem('theme');
     if (localTheme) {
@@ -30,7 +33,7 @@ const useDarkMode = () => {
     setComponentMounted(true);
   }, []);
 
-  return [theme, toggleTheme, componentMounted];
+  return [theme, oppositeTheme, toggleTheme, componentMounted];
 };
 
 export default useDarkMode;
