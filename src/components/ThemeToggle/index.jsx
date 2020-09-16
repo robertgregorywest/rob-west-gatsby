@@ -4,9 +4,9 @@ import useDarkMode from './useDarkMode';
 import './style.scss';
 
 const ThemeToggle = () => {
-  const [theme, oppositeTheme, toggleTheme, componentMounted] = useDarkMode();
+  const [theme, oppositeTheme, toggleTheme, hasMounted] = useDarkMode();
 
-  if (!componentMounted) {
+  if (!hasMounted) {
     return <div className="toggle" />;
   }
 

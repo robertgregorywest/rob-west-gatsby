@@ -2,38 +2,34 @@ import { useEffect, useState } from 'react';
 
 const useDarkMode = () => {
   const [theme, setTheme] = useState('light');
-  const [componentMounted, setComponentMounted] = useState(false);
+  const [hasMounted, sethasMounted] = useState(false);
 
   const isBrowser = () => typeof window !== 'undefined';
 
-  const setMode = mode => {
+  const oppositeTheme = theme === 'light' ? 'dark' : 'light';
+
+  const setStorageAndTheme = newTheme => {
     if (isBrowser()) {
-      window.localStorage.setItem('theme', mode);
+      window.localStorage.setItem('theme', newTheme);
     }
-    setTheme(mode);
+    setTheme(newTheme);
   };
 
   const toggleTheme = () => {
-    if (theme === 'light') {
-      setMode('dark');
-    } else {
-      setMode('light');
-    }
+    setStorageAndTheme(oppositeTheme);
   };
-
-  const oppositeTheme = theme === 'light' ? 'dark' : 'light';
 
   useEffect(() => {
     const localTheme = isBrowser() && window.localStorage.getItem('theme');
     if (localTheme) {
       setTheme(localTheme);
     } else {
-      setMode('light');
+      setStorageAndTheme('light');
     }
-    setComponentMounted(true);
+    sethasMounted(true);
   }, []);
 
-  return [theme, oppositeTheme, toggleTheme, componentMounted];
+  return [theme, oppositeTheme, toggleTheme, hasMounted];
 };
 
 export default useDarkMode;
