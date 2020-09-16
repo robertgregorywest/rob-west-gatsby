@@ -6,25 +6,19 @@ const useDarkMode = () => {
 
   const isBrowser = () => typeof window !== 'undefined';
 
-  const oppositeTheme = theme === 'light' ? 'dark' : 'light';
-
-  const setStorageAndTheme = newTheme => {
-    if (isBrowser()) {
-      window.localStorage.setItem('theme', newTheme);
-    }
-    setTheme(newTheme);
-  };
+  const oppositeTheme = (theme === 'light') ? 'dark' : 'light';
 
   const toggleTheme = () => {
-    setStorageAndTheme(oppositeTheme);
+    if (isBrowser()) {
+      window.localStorage.setItem('theme', oppositeTheme);
+    }
+    setTheme(oppositeTheme);
   };
 
   useEffect(() => {
     const localTheme = isBrowser() && window.localStorage.getItem('theme');
-    if (localTheme) {
+    if (localTheme && localTheme !== theme) {
       setTheme(localTheme);
-    } else {
-      setStorageAndTheme('light');
     }
     sethasMounted(true);
   }, []);

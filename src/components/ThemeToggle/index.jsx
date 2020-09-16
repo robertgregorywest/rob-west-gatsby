@@ -16,7 +16,12 @@ const ThemeToggle = () => {
         <body className={`${theme}-theme`} />
       </Helmet>
       <div className="toggle">
-        <button type="button" className="toggle__button" onClick={toggleTheme} aria-label={`Activate ${oppositeTheme} mode`} title={`Activate ${oppositeTheme} mode`}>
+        <button
+          type="button"
+          className="toggle__button"
+          onClick={toggleTheme}
+          aria-label={`Activate ${oppositeTheme} mode`}
+          title={`Activate ${oppositeTheme} mode`}>
           <div className={`toggle__icon-${oppositeTheme}`} />
         </button>
       </div>
