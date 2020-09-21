@@ -21,7 +21,8 @@ const ThemeToggle = () => {
           className="toggle__button"
           onClick={toggleTheme}
           aria-label={`Activate ${oppositeTheme} mode`}
-          title={`Activate ${oppositeTheme} mode`}>
+          title={`Activate ${oppositeTheme} mode`}
+        >
           <div className={`toggle__icon-${oppositeTheme}`} />
         </button>
       </div>
