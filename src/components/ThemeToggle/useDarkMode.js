@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 
 const useDarkMode = () => {
-  const [theme, setTheme] = useState('light');
+  const themes = {
+    LIGHT: 'light',
+    DARK: 'dark',
+  };
+  const [theme, setTheme] = useState(themes.LIGHT);
   const [hasMounted, sethasMounted] = useState(false);
 
   const isBrowser = () => typeof window !== 'undefined';
 
-  const oppositeTheme = (theme === 'light') ? 'dark' : 'light';
+  const oppositeTheme = (theme === themes.LIGHT) ? themes.DARK : themes.LIGHT;
 
   const toggleTheme = () => {
     if (isBrowser()) {
