@@ -17,11 +17,17 @@ module.exports = {
       resolve: '@kentico/gatsby-source-kontent',
       options: {
         projectId: process.env.KONTENT_PROJECT_ID,
-        usePreviewUrl: process.env.KONTENT_PREVIEW_ENABLED && process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true',
-        authorizationKey: process.env.KONTENT_PREVIEW_ENABLED && process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true'
-          ? process.env.KONTENT_PREVIEW_KEY
-          : undefined,
-        languageCodenames: process.env.KONTENT_LANGUAGE_CODENAMES.split(',').map(lang => lang.trim()),
+        usePreviewUrl:
+          process.env.KONTENT_PREVIEW_ENABLED &&
+          process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true',
+        authorizationKey:
+          process.env.KONTENT_PREVIEW_ENABLED &&
+          process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true'
+            ? process.env.KONTENT_PREVIEW_KEY
+            : undefined,
+        languageCodenames: process.env.KONTENT_LANGUAGE_CODENAMES.split(
+          ',',
+        ).map((lang) => lang.trim()),
         includeTaxonomies: true,
       },
     },
@@ -33,7 +39,7 @@ module.exports = {
     },
     'gatsby-plugin-sharp',
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-gtag',
       options: { trackingId: 'UA-7143106-1' },
     },
     {
@@ -48,7 +54,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Rob West\'s Website',
+        name: "Rob West's Website",
         short_name: 'Rob West',
         start_url: '/',
         background_color: '#fafafa',
