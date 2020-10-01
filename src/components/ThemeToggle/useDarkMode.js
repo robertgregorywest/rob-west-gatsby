@@ -10,7 +10,7 @@ const useDarkMode = () => {
 
   const isBrowser = () => typeof window !== 'undefined';
 
-  const oppositeTheme = (theme === themes.LIGHT) ? themes.DARK : themes.LIGHT;
+  const oppositeTheme = theme === themes.LIGHT ? themes.DARK : themes.LIGHT;
 
   const toggleTheme = () => {
     if (isBrowser()) {

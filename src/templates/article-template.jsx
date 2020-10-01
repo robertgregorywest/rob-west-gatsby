@@ -10,7 +10,8 @@ import ArticleTags from '../components/ArticleTags';
 
 const ArticleTemplate = ({ data }) => {
   const title = data.kontentItemArticle.elements.title.value;
-  const description = data.kontentItemArticle.elements.meta_data__description.value;
+  const description =
+    data.kontentItemArticle.elements.meta_data__description.value;
   const richTextElement = data.kontentItemArticle.elements.body;
   const tags = data.kontentItemArticle.elements.article_topics.value;
   const published = data.kontentItemArticle.elements.publish_date.value;
@@ -23,9 +24,7 @@ const ArticleTemplate = ({ data }) => {
       </Helmet>
       <h1>{title}</h1>
       <p className="published">
-        Published
-        {' '}
-        {moment(published).format('D MMM YYYY')}
+        Published {moment(published).format('D MMM YYYY')}
       </p>
       <ArticleTags tags={tags} />
       <RichTextElement
@@ -33,7 +32,7 @@ const ArticleTemplate = ({ data }) => {
         images={richTextElement.images}
         links={richTextElement.links}
         linkedItems={richTextElement.modular_content}
-        resolveImage={image => (
+        resolveImage={(image) => (
           <figure>
             <Image
               fluid={image.fluid}
@@ -48,7 +47,7 @@ const ArticleTemplate = ({ data }) => {
             {domNode.children[0].data}
           </Link>
         )}
-        resolveLinkedItem={linkedItem => (
+        resolveLinkedItem={(linkedItem) => (
           <LinkedItem linkedItem={linkedItem} />
         )}
       />

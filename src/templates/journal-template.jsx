@@ -17,28 +17,44 @@ const JournalTemplate = ({ data, pageContext }) => {
 
   const defaultTitle = data.kontentItemSection.system.name;
 
-  const title = currentPage > 0 ? `${defaultTitle} - Page ${currentPage}` : defaultTitle;
-  const description = data.kontentItemSection.elements.meta_data__description.value;
+  const journalTitle =
+    currentPage > 0 ? `${defaultTitle} - Page ${currentPage}` : defaultTitle;
+  const description =
+    data.kontentItemSection.elements.meta_data__description.value;
 
   const items = [];
-  data.allKontentItemArticle.nodes.forEach(article => {
+  data.allKontentItemArticle.nodes.forEach((node) => {
+    const {
+      elements: {
+        title: { value: title },
+        summary: { value: summary },
+        article_url_slug: { value: slug },
+        publish_date: { value: published },
+        article_topics: { value: tags },
+      },
+    } = node;
     items.push(
       <ArticleSummary
-        data={article}
-        key={article.elements.article_url_slug.value}
+        key={slug}
+        title={title}
+        summary={summary}
+        slug={slug}
+        published={published}
+        tags={tags}
       />,
     );
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;
-  const canoncial = currentPage > 0
-    ? `${baseUrl}articles/page/${currentPage}/`
-    : `${baseUrl}articles/`;
+  const canoncial =
+    currentPage > 0
+      ? `${baseUrl}articles/page/${currentPage}/`
+      : `${baseUrl}articles/`;
 
   return (
     <Layout>
       <Helmet>
-        <title>{title}</title>
+        <title>{journalTitle}</title>
         <meta name="description" content={description} />
         <link rel="canoncial" href={canoncial} />
       </Helmet>

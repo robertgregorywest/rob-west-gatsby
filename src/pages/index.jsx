@@ -5,17 +5,30 @@ import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 
 const Index = ({ data }) => {
-  const description = data.kontentItemHome.elements.meta_data__description.value;
+  const description =
+    data.kontentItemHome.elements.meta_data__description.value;
   const introduction = data.kontentItemHome.elements.introduction.value;
 
   const items = [];
-  data.kontentItemHome.elements.featured_articles.value.forEach(article => {
+  data.kontentItemHome.elements.featured_articles.value.forEach((node) => {
+    const {
+      elements: {
+        title: { value: title },
+        summary: { value: summary },
+        article_url_slug: { value: slug },
+        publish_date: { value: published },
+        article_topics: { value: tags },
+      },
+    } = node;
     items.push(
-      <div
-        className="home-feature-grid__item"
-        key={article.elements.article_url_slug.value}
-      >
-        <ArticleSummary data={article} />
+      <div className="home-feature-grid__item" key={slug}>
+        <ArticleSummary
+          title={title}
+          summary={summary}
+          slug={slug}
+          published={published}
+          tags={tags}
+        />
       </div>,
     );
   });

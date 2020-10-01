@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import hljs from './custom-hljs';
 import './style.scss';
 
@@ -13,6 +14,11 @@ const CodeBlock = ({ language, code }) => {
       />
     </pre>
   );
+};
+
+CodeBlock.propTypes = {
+  language: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
 };
 
 export default CodeBlock;

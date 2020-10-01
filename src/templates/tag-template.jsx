@@ -21,7 +21,7 @@ const TagTemplate = ({ data, pageContext }) => {
   const description = data.kontentItemTagSummary.elements.summary.value;
 
   const items = [];
-  data.allKontentItemArticle.nodes.forEach(article => {
+  data.allKontentItemArticle.nodes.forEach((article) => {
     items.push(
       <ArticleSummary
         data={article}
@@ -31,9 +31,10 @@ const TagTemplate = ({ data, pageContext }) => {
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;
-  const canoncial = currentPage > 0
-    ? `${baseUrl}tag/${pageContext.codename}/page/${currentPage}/`
-    : `${baseUrl}tag/${pageContext.codename}/`;
+  const canoncial =
+    currentPage > 0
+      ? `${baseUrl}tag/${pageContext.codename}/page/${currentPage}/`
+      : `${baseUrl}tag/${pageContext.codename}/`;
 
   return (
     <Layout>

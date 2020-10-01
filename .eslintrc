@@ -1,7 +1,12 @@
 {
   "parser": "babel-eslint",
   "plugins": ["prettier", "react", "import", "jsx-a11y"],
-  "extends": ["plugin:prettier/recommended", "prettier/react", "airbnb"],
+  "extends": [
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard",
+    "airbnb"
+  ],
   "globals": {
     "graphql": true,
     "window": true
@@ -16,6 +21,8 @@
     "react/jsx-filename-extension": "off",
     "react/prefer-stateless-function": "off",
     "react/prop-types": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "object-curly-newline": "off"
   }
 }

@@ -26,9 +26,9 @@ const TagListing = () => {
     }
   `);
 
-  const tags = data.allKontentItemArticle.group.map(item => {
+  const tags = data.allKontentItemArticle.group.map((item) => {
     const source = data.allKontentItemTagSummary.nodes.find(
-      summary => summary.system.codename === item.fieldValue,
+      (summary) => summary.system.codename === item.fieldValue,
     );
     return {
       codename: item.fieldValue,
@@ -41,18 +41,15 @@ const TagListing = () => {
   return (
     <div>
       <h2>Tags</h2>
-      {tags && tags.map(tag => (
-        <div key={tag.codename}>
-          <h3>
-            <Link to={`/tag/${tag.codename}`}>{tag.name}</Link>
-            {' '}
-            (
-            {tag.count}
-            )
-          </h3>
-          <p>{tag.summary}</p>
-        </div>
-      ))}
+      {tags &&
+        tags.map((tag) => (
+          <div key={tag.codename}>
+            <h3>
+              <Link to={`/tag/${tag.codename}`}>{tag.name}</Link> ({tag.count})
+            </h3>
+            <p>{tag.summary}</p>
+          </div>
+        ))}
     </div>
   );
 };

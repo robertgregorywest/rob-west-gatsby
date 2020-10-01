@@ -5,45 +5,41 @@ import Image from 'gatsby-image';
 import { RichTextElement } from '@kentico/gatsby-kontent-components';
 import Layout from '../components/Layout';
 
-class About extends React.Component {
-  render() {
-    const {
-      data: {
-        kontentItemSection: {
-          system: { name: title },
-          elements: {
-            meta_data__description: { value: description },
-            introduction: richTextElement,
-          },
-        },
+const About = ({ data }) => {
+  const {
+    kontentItemSection: {
+      system: { name: title },
+      elements: {
+        meta_data__description: { value: description },
+        introduction,
       },
-    } = this.props;
+    },
+  } = data;
 
-    return (
-      <Layout>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-        </Helmet>
-        <h1>{title}</h1>
-        <RichTextElement
-          value={richTextElement.value}
-          images={richTextElement.images}
-          resolveImage={image => (
-            <figure>
-              <Image
-                fluid={image.fluid}
-                title={image.description}
-                alt={image.description}
-              />
-              <figcaption>{image.description}</figcaption>
-            </figure>
-          )}
-        />
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <h1>{title}</h1>
+      <RichTextElement
+        value={introduction.value}
+        images={introduction.images}
+        resolveImage={(image) => (
+          <figure>
+            <Image
+              fluid={image.fluid}
+              title={image.description}
+              alt={image.description}
+            />
+            <figcaption>{image.description}</figcaption>
+          </figure>
+        )}
+      />
+    </Layout>
+  );
+};
 
 export default About;
 

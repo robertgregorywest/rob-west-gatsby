@@ -4,51 +4,47 @@ import { graphql } from 'gatsby';
 import { RichTextElement } from '@kentico/gatsby-kontent-components';
 import Layout from '../components/Layout';
 
-class Philosophy extends React.Component {
-  render() {
-    const {
-      data: {
-        kontentItemPhilosophy: {
-          system: { name },
-          elements: {
-            meta_data__description: { value: description },
-            introduction,
-            featured_work: { value: works },
-          },
-        },
+const Philosophy = ({ data }) => {
+  const {
+    kontentItemPhilosophy: {
+      system: { name },
+      elements: {
+        meta_data__description: { value: description },
+        introduction,
+        featured_work: { value: works },
       },
-    } = this.props;
+    },
+  } = data;
 
-    return (
-      <Layout>
-        <Helmet>
-          <title>{name}</title>
-          <meta name="description" content={description} />
-        </Helmet>
-        <div className="content">
-          <h1>{name}</h1>
-          <RichTextElement value={introduction.value} />
+  return (
+    <Layout>
+      <Helmet>
+        <title>{name}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <div className="content">
+        <h1>{name}</h1>
+        <RichTextElement value={introduction.value} />
+      </div>
+      <div className="sidebar">
+        <div>
+          <h2>Selected Papers (PDF)</h2>
+          {works &&
+            works.map((work) => (
+              <div key={work.id}>
+                <h3>
+                  <a href={work.elements.asset.value[0].url}>
+                    {work.elements.title.value}
+                  </a>
+                </h3>
+                <p>{work.elements.summary.value}</p>
+              </div>
+            ))}
         </div>
-        <div className="sidebar">
-          <div>
-            <h2>Selected Papers (PDF)</h2>
-            {works
-              && works.map(work => (
-                <div key={work.id}>
-                  <h3>
-                    <a href={work.elements.asset.value[0].url}>
-                      {work.elements.title.value}
-                    </a>
-                  </h3>
-                  <p>{work.elements.summary.value}</p>
-                </div>
-              ))}
-          </div>
-        </div>
-      </Layout>
-    );
-  }
-}
+      </div>
+    </Layout>
+  );
+};
 
 export default Philosophy;
 
