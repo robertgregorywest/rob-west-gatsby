@@ -12,7 +12,7 @@ const ArticleTemplate = ({ data }) => {
   const title = data.kontentItemArticle.elements.title.value;
   const description =
     data.kontentItemArticle.elements.meta_data__description.value;
-  const richTextElement = data.kontentItemArticle.elements.body;
+  const body = data.kontentItemArticle.elements.body;
   const tags = data.kontentItemArticle.elements.article_topics.value;
   const published = data.kontentItemArticle.elements.publish_date.value;
 
@@ -28,10 +28,10 @@ const ArticleTemplate = ({ data }) => {
       </p>
       <ArticleTags tags={tags} />
       <RichTextElement
-        value={richTextElement.value}
-        images={richTextElement.images}
-        links={richTextElement.links}
-        linkedItems={richTextElement.modular_content}
+        value={body.value}
+        images={body.images}
+        links={body.links}
+        linkedItems={body.modular_content}
         resolveImage={(image) => (
           <figure>
             <Image
