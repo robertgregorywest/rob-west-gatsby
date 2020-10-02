@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       &copy; {year} Rob West. All Rights Reserved. Built using{' '}
-      <a href="https://kontent.ai/">Kentico Kontent</a> and{' '}
+      <a href="https://kontent.ai/">Kontent</a> and{' '}
       <a href="https://www.gatsbyjs.org/">Gatsby</a>.
     </footer>
   );

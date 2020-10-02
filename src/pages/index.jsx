@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 
@@ -11,24 +12,10 @@ const Index = ({ data }) => {
 
   const items = [];
   data.kontentItemHome.elements.featured_articles.value.forEach((node) => {
-    const {
-      elements: {
-        title: { value: title },
-        summary: { value: summary },
-        article_url_slug: { value: slug },
-        publish_date: { value: published },
-        article_topics: { value: tags },
-      },
-    } = node;
+    const article = parseNodeToArticle(node);
     items.push(
-      <div className="home-feature-grid__item" key={slug}>
-        <ArticleSummary
-          title={title}
-          summary={summary}
-          slug={slug}
-          published={published}
-          tags={tags}
-        />
+      <div className="home-feature-grid__item" key={article.slug}>
+        <ArticleSummary article={article} />
       </div>,
     );
   });

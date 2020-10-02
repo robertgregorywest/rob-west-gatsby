@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 import Pagination from '../components/Pagination';
@@ -24,25 +25,8 @@ const JournalTemplate = ({ data, pageContext }) => {
 
   const items = [];
   data.allKontentItemArticle.nodes.forEach((node) => {
-    const {
-      elements: {
-        title: { value: title },
-        summary: { value: summary },
-        article_url_slug: { value: slug },
-        publish_date: { value: published },
-        article_topics: { value: tags },
-      },
-    } = node;
-    items.push(
-      <ArticleSummary
-        key={slug}
-        title={title}
-        summary={summary}
-        slug={slug}
-        published={published}
-        tags={tags}
-      />,
-    );
+    const article = parseNodeToArticle(node);
+    items.push(<ArticleSummary article={article} />);
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;
