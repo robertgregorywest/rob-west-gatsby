@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 import Pagination from '../components/Pagination';
@@ -21,13 +22,9 @@ const TagTemplate = ({ data, pageContext }) => {
   const description = data.kontentItemTagSummary.elements.summary.value;
 
   const items = [];
-  data.allKontentItemArticle.nodes.forEach((article) => {
-    items.push(
-      <ArticleSummary
-        data={article}
-        key={article.elements.article_url_slug.value}
-      />,
-    );
+  data.allKontentItemArticle.nodes.forEach((node) => {
+    const article = parseNodeToArticle(node);
+    items.push(<ArticleSummary key={article.slug} article={article} />);
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;

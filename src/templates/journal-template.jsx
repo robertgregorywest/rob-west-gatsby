@@ -26,7 +26,7 @@ const JournalTemplate = ({ data, pageContext }) => {
   const items = [];
   data.allKontentItemArticle.nodes.forEach((node) => {
     const article = parseNodeToArticle(node);
-    items.push(<ArticleSummary article={article} />);
+    items.push(<ArticleSummary key={article.slug} article={article} />);
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;
