@@ -7679,20 +7679,20 @@ highlight-words-core@1.2.2:
   resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
   integrity sha512-BXUKIkUuh6cmmxzi5OIbUJxrG8OAk2MqoL1DtO3Wo9D2faJg2ph5ntyuQeLqaHJmzER6H5tllCDA9ZnNe9BVGg==
 
-highlight.js@^10.2.0:
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.2.0.tgz#367151bcf813adebc54822f1cb51d2e1e599619f"
-  integrity sha512-OryzPiqqNCfO/wtFo619W+nPYALM6u7iCQkum4bqRmmlcTikOkmlL06i009QelynBPAlNByTQU6cBB2cOBQtCw==
+highlight.js@^10.3.2:
+  version "10.3.2"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.3.2.tgz#135fd3619a00c3cbb8b4cd6dbc78d56bfcbc46f1"
+  integrity sha512-3jRT7OUYsVsKvukNKZCtnvRcFyCJqSEIuIMsEybAXRiFSwpt65qjPd/Pr+UOdYt7WJlt+lj3+ypUsHiySBp/Jw==
 
 highlight.js@^8.1.0:
   version "8.9.1"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-8.9.1.tgz#b8a9c5493212a9392f0222b649c9611497ebfb88"
   integrity sha1-uKnFSTISqTkvAiK2SclhFJfr+4g=
 
-highlightjs-cshtml-razor@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/highlightjs-cshtml-razor/-/highlightjs-cshtml-razor-1.2.0.tgz#afc816753cae3c083b745c5bd773b6df81c26cfb"
-  integrity sha512-5t5bgQ8GW7t1A4iT8Z9PBDykyjyh0X6uh1+P/cEzxE0yCJAFzd5dM3Mp71SIQBvUPt5G0lwlJhefIVb0S8H6rQ==
+highlightjs-cshtml-razor@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/highlightjs-cshtml-razor/-/highlightjs-cshtml-razor-2.0.0.tgz#666664a5b1ec1a26616ebba28234242526ed3d88"
+  integrity sha512-kYAxD8SoS/xbt+klcPvN8YB5MTYjeYZANaRAPlXQRmf0VmosGAjL1R6x//Bx+hQL841a2LqXM4yg0xU4z3TpDg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
