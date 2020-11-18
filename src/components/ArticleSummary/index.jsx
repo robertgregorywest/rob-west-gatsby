@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import moment from 'moment';
 import ArticleTags from '../ArticleTags';
 import './style.scss';
+
+const formatDate = (date) =>
+  new Date(date).toLocaleDateString('en-gb', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 
 const ArticleSummary = ({ article }) => (
   <div className="featured-article">
@@ -16,7 +22,7 @@ const ArticleSummary = ({ article }) => (
       </Link>
     </h2>
     <p className="featured-article__date">
-      Published {moment(article.published).format('D MMM YYYY')}
+      Published {formatDate(article.published)}
     </p>
     <p className="featured-article__summary">{article.summary}</p>
     <ArticleTags tags={article.tags} />
@@ -33,7 +39,7 @@ ArticleSummary.propTypes = {
       PropTypes.shape({
         codename: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-      }),
+      })
     ).isRequired,
   }).isRequired,
 };
