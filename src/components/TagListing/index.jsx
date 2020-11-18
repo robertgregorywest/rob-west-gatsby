@@ -26,17 +26,20 @@ const TagListing = () => {
     }
   `);
 
-  const tags = data.allKontentItemArticle.group.map((item) => {
+  const tags = data.allKontentItemArticle.group.reduce((result, item) => {
     const source = data.allKontentItemTagSummary.nodes.find(
-      (summary) => summary.system.codename === item.fieldValue,
+      (summary) => summary.system.codename === item.fieldValue
     );
-    return {
-      codename: item.fieldValue,
-      name: source.system.name,
-      summary: source.elements.summary.value,
-      count: item.totalCount,
-    };
-  });
+    if (source !== undefined) {
+      result.push({
+        codename: item.fieldValue,
+        name: source.system.name,
+        summary: source.elements.summary.value,
+        count: item.totalCount,
+      });
+    }
+    return result;
+  }, []);
 
   return (
     <div>
