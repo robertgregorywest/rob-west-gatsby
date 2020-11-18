@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
+import { formatArticleDate } from '../../tools/articles';
 import ArticleTags from '../ArticleTags';
 import './style.scss';
-
-const formatDate = (date) =>
-  new Date(date).toLocaleDateString('en-gb', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
 
 const ArticleSummary = ({ article }) => (
   <div className="featured-article">
@@ -22,7 +16,7 @@ const ArticleSummary = ({ article }) => (
       </Link>
     </h2>
     <p className="featured-article__date">
-      Published {formatDate(article.published)}
+      Published {formatArticleDate(article.published)}
     </p>
     <p className="featured-article__summary">{article.summary}</p>
     <ArticleTags tags={article.tags} />
@@ -43,5 +37,30 @@ ArticleSummary.propTypes = {
     ).isRequired,
   }).isRequired,
 };
+
+export const pageQuery = graphql`
+  fragment ArticleSummaryInfo on kontent_item_article {
+    elements {
+      title {
+        value
+      }
+      summary {
+        value
+      }
+      article_url_slug {
+        value
+      }
+      article_topics {
+        value {
+          name
+          codename
+        }
+      }
+      publish_date {
+        value
+      }
+    }
+  }
+`;
 
 export default ArticleSummary;

@@ -103,26 +103,7 @@ export const pageQuery = graphql`
         featured_articles {
           value {
             ... on kontent_item_article {
-              elements {
-                title {
-                  value
-                }
-                summary {
-                  value
-                }
-                article_url_slug {
-                  value
-                }
-                article_topics {
-                  value {
-                    name
-                    codename
-                  }
-                }
-                publish_date {
-                  value
-                }
-              }
+              ...ArticleSummaryInfo
             }
           }
         }

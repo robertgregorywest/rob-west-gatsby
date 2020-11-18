@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import Image from 'gatsby-image';
 import { RichTextElement } from '@kentico/gatsby-kontent-components';
-import moment from 'moment';
+import { formatArticleDate } from '../tools/articles';
 import Layout from '../components/Layout';
 import LinkedItem from '../components/LinkedItem';
 import ArticleTags from '../components/ArticleTags';
@@ -23,9 +23,7 @@ const ArticleTemplate = ({ data }) => {
         <meta name="description" content={description} />
       </Helmet>
       <h1>{title}</h1>
-      <p className="published">
-        Published {moment(published).format('D MMM YYYY')}
-      </p>
+      <p className="published">Published {formatArticleDate(published)}</p>
       <ArticleTags tags={tags} />
       <RichTextElement
         value={body.value}
@@ -74,6 +72,9 @@ export const pageQuery = graphql`
             name
             codename
           }
+        }
+        publish_date {
+          value
         }
         body {
           value
@@ -129,9 +130,6 @@ export const pageQuery = graphql`
             }
             description
           }
-        }
-        publish_date {
-          value
         }
         meta_data__keywords {
           value

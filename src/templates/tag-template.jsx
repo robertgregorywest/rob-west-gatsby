@@ -85,26 +85,7 @@ export const pageQuery = graphql`
       skip: $skip
     ) {
       nodes {
-        elements {
-          title {
-            value
-          }
-          summary {
-            value
-          }
-          article_url_slug {
-            value
-          }
-          article_topics {
-            value {
-              name
-              codename
-            }
-          }
-          publish_date {
-            value
-          }
-        }
+        ...ArticleSummaryInfo
       }
     }
     site {

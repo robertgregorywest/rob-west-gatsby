@@ -16,3 +16,10 @@ export default function parseNodeToArticle(node) {
     tags,
   };
 }
+
+export const formatArticleDate = (date) =>
+  new Date(date).toLocaleDateString('en-gb', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
