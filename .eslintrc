@@ -1,28 +1,38 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["prettier", "react", "import", "jsx-a11y"],
   "extends": [
-    "plugin:prettier/recommended",
+    "airbnb", 
     "prettier/react",
-    "prettier/standard",
-    "airbnb"
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "prettier"
   ],
   "globals": {
     "graphql": true,
     "window": true
   },
   "rules": {
+    "arrow-body-style": [
+      "error",
+      "as-needed",
+      { "requireReturnForObjectLiteral": true }
+    ],
+    "arrow-parens": "off",
+    "comma-dangle": [ "error", { "arrays": "always-multiline", "objects": "always-multiline", "imports": "always-multiline", "exports": "always-multiline", "functions": "never" } ],
     "function-paren-newline": "off",
     "no-console": "off",
     "prefer-destructuring": "off",
+    "prettier/prettier": "error",
+    "semi": ["error", "always"],
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/jsx-filename-extension": "off",
     "react/prefer-stateless-function": "off",
-    "react/prop-types": "off",
-    "operator-linebreak": "off",
-    "react/jsx-one-expression-per-line": "off",
-    "object-curly-newline": "off"
+    "react/prop-types": "off"
   }
 }
