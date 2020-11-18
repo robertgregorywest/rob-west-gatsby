@@ -23,7 +23,7 @@ ArticleTags.propTypes = {
     PropTypes.shape({
       codename: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
 };
 

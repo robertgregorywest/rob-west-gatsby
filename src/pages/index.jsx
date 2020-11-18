@@ -16,7 +16,7 @@ const Index = ({ data }) => {
     items.push(
       <div className="home-feature-grid__item" key={article.slug}>
         <ArticleSummary article={article} />
-      </div>,
+      </div>
     );
   });
 

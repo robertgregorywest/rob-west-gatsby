@@ -36,13 +36,13 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
       if (result.errors) {
         console.log(result.errors);
         reject(result.errors);
       }
 
-      _.each(result.data.allArticles.nodes, node => {
+      _.each(result.data.allArticles.nodes, (node) => {
         createPage({
           path: `/articles/${node.elements.article_url_slug.value}/`,
           component: slash(articleTemplate),
@@ -72,7 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
       }
 
-      _.each(result.data.allTags.group, tag => {
+      _.each(result.data.allTags.group, (tag) => {
         const numTagPages = Math.ceil(tag.totalCount / postsPerPage);
         const tagSlug = `/tag/${tag.fieldValue}`;
 
