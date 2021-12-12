@@ -4,14 +4,13 @@ import csharp from 'highlight.js/lib/languages/csharp';
 import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
 import yaml from 'highlight.js/lib/languages/yaml';
-import hljsDefineCshtmlRazor from 'highlightjs-cshtml-razor';
+import hljsRazor from 'highlightjs-cshtml-razor';
 
 hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('csharp', csharp);
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('yaml', yaml);
-
-hljsDefineCshtmlRazor(hljs);
+hljs.registerLanguage('cshtml-razor', hljsRazor);
 
 export default hljs;

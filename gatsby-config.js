@@ -31,13 +31,9 @@ module.exports = {
         includeTaxonomies: true,
       },
     },
-    {
-      resolve: '@rshackleton/gatsby-transformer-kontent-image',
-      options: {
-        remote: true,
-      },
-    },
+    `gatsby-plugin-image`,
     'gatsby-plugin-sharp',
+    `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-plugin-gtag',
       options: { trackingId: 'UA-7143106-1' },

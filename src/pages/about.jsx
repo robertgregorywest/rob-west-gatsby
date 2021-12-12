@@ -1,8 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
-import { RichTextElement } from '@kentico/gatsby-kontent-components';
+import {
+  RichTextElement,
+  ImageElement,
+} from '@kentico/gatsby-kontent-components';
 import Layout from '../components/Layout';
 
 const About = ({ data }) => {
@@ -28,11 +30,7 @@ const About = ({ data }) => {
         images={introduction.images}
         resolveImage={(image) => (
           <figure>
-            <Image
-              fluid={image.fluid}
-              title={image.description}
-              alt={image.description}
-            />
+            <ImageElement image={image} alt={image.description} />
             <figcaption>{image.description}</figcaption>
           </figure>
         )}
@@ -51,9 +49,9 @@ export const pageQuery = graphql`
           value
           images {
             image_id
-            fluid(maxWidth: 1000) {
-              ...KontentAssetFluid
-            }
+            url
+            width
+            height
             description
           }
           links {
