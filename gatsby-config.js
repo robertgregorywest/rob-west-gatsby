@@ -26,18 +26,14 @@ module.exports = {
             ? process.env.KONTENT_PREVIEW_KEY
             : undefined,
         languageCodenames: process.env.KONTENT_LANGUAGE_CODENAMES.split(
-          ',',
+          ','
         ).map((lang) => lang.trim()),
         includeTaxonomies: true,
       },
     },
-    {
-      resolve: '@rshackleton/gatsby-transformer-kontent-image',
-      options: {
-        remote: true,
-      },
-    },
+    `gatsby-plugin-image`,
     'gatsby-plugin-sharp',
+    `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-plugin-gtag',
       options: { trackingId: 'UA-7143106-1' },
@@ -98,7 +94,6 @@ module.exports = {
             minPixelValue: 0,
           }),
         ],
-        precision: 8,
       },
     },
     'gatsby-plugin-eslint',

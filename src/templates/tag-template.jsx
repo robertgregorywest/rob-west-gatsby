@@ -8,13 +8,8 @@ import Pagination from '../components/Pagination';
 import TagListing from '../components/TagListing';
 
 const TagTemplate = ({ data, pageContext }) => {
-  const {
-    currentPage,
-    hasNextPage,
-    hasPrevPage,
-    prevPagePath,
-    nextPagePath,
-  } = pageContext;
+  const { currentPage, hasNextPage, hasPrevPage, prevPagePath, nextPagePath } =
+    pageContext;
 
   const tagName = data.kontentItemTagSummary.system.name;
 

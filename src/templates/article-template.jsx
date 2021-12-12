@@ -1,8 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
-import Image from 'gatsby-image';
-import { RichTextElement } from '@kentico/gatsby-kontent-components';
+import {
+  RichTextElement,
+  ImageElement,
+} from '@kentico/gatsby-kontent-components';
 import { formatArticleDate } from '../tools/articles';
 import Layout from '../components/Layout';
 import LinkedItem from '../components/LinkedItem';
@@ -32,11 +34,7 @@ const ArticleTemplate = ({ data }) => {
         linkedItems={body.modular_content}
         resolveImage={(image) => (
           <figure>
-            <Image
-              fluid={image.fluid}
-              title={image.description}
-              alt={image.description}
-            />
+            <ImageElement image={image} alt={image.description} />
             <figcaption>{image.description}</figcaption>
           </figure>
         )}
@@ -125,9 +123,9 @@ export const pageQuery = graphql`
           }
           images {
             image_id
-            fluid(maxWidth: 1000) {
-              ...KontentAssetFluid
-            }
+            url
+            width
+            height
             description
           }
         }

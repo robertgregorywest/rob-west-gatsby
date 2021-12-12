@@ -4,7 +4,7 @@ import hljs from './custom-hljs';
 import './style.scss';
 
 const CodeBlock = ({ language, code }) => {
-  const { value: formattedCode } = hljs.highlight(language, code);
+  const { value: formattedCode } = hljs.highlight(code, { language });
   return (
     <pre>
       <code
