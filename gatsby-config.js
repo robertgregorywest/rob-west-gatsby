@@ -36,7 +36,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-plugin-gtag',
-      options: { trackingId: 'UA-7143106-1' },
+      options: { trackingId: 'G-C2TQZ48CC3' },
     },
     {
       resolve: 'gatsby-plugin-google-fonts',
