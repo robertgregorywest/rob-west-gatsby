@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import { RichTextElement } from '@kentico/gatsby-kontent-components';
+import { RichTextElement } from '@kontent-ai/gatsby-components';
 import Layout from '../components/Layout';
 
 const Philosophy = ({ data }) => {
