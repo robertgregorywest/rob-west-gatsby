@@ -8,3 +8,5 @@ npm-debug.log
 rob-west-gatsby.iml
 .DS_Store
 .env
+# Local Netlify folder
+.netlify

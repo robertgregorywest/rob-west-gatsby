@@ -6,9 +6,6 @@
   "author": "Rob West <robertgregorywest@gmail.com> (https://github.com/robertgregorywest)",
   "license": "MIT",
   "private": false,
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "scripts": {
     "prepare": "node scripts/ncp.js .env.template .env -u",
     "develop": "gatsby develop",
