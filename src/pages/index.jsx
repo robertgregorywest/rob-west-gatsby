@@ -81,12 +81,6 @@ const Index = ({ data }) => {
             >
               Facebook
             </a>
-            <a
-              href="https://twitter.com/robgwest"
-              className="fc-webicon twitter large"
-            >
-              Twitter
-            </a>
           </div>
         </div>
       </div>
