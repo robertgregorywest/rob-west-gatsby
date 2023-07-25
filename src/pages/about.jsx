@@ -1,10 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import {
-  RichTextElement,
-  ImageElement,
-} from '@kentico/gatsby-kontent-components';
+import { RichTextElement, ImageElement } from '@kontent-ai/gatsby-components';
 import Layout from '../components/Layout';
 
 const About = ({ data }) => {

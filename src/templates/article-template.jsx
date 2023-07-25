@@ -1,10 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
-import {
-  RichTextElement,
-  ImageElement,
-} from '@kentico/gatsby-kontent-components';
+import { RichTextElement, ImageElement } from '@kontent-ai/gatsby-components';
 import { formatArticleDate } from '../tools/articles';
 import Layout from '../components/Layout';
 import LinkedItem from '../components/LinkedItem';
