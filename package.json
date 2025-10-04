@@ -17,8 +17,8 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
-    "@kontent-ai/gatsby-components": "^9.0.2",
-    "@kontent-ai/gatsby-source": "^9.0.2",
+    "@kontent-ai/gatsby-components": "^10.0.0",
+    "@kontent-ai/gatsby-source": "^10.0.0",
     "gatsby-image": "^4.0.0",
     "gatsby-plugin-gtag": "^2.0.0",
     "gatsby-plugin-image": "^3.0.0",
@@ -30,7 +30,6 @@
     "highlightjs-cshtml-razor": "^2.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-helmet": "^6.1.0",
     "sass": "^1.45.0"
   },
   "devDependencies": {
@@ -50,7 +49,6 @@
     "gatsby-plugin-catch-links": "^5.0.0",
     "gatsby-plugin-eslint": "^5.0.0",
     "gatsby-plugin-google-fonts": "latest",
-    "gatsby-plugin-react-helmet": "^5.0.0",
     "gatsby-plugin-sass": "^6.0.0",
     "gatsby-plugin-sharp": "^5.0.0",
     "gatsby-plugin-sitemap": "^6.0.0",

@@ -5,7 +5,11 @@ const TagListing = () => {
   const data = useStaticQuery(graphql`
     query ArticleQuery {
       allKontentItemArticle {
-        group(field: elements___article_topics___value___codename) {
+        group(
+          field: {
+            elements: { article_topics: { value: { codename: SELECT } } }
+          }
+        ) {
           fieldValue
           totalCount
         }
