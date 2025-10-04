@@ -1,26 +1,20 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import { RichTextElement, ImageElement } from '@kontent-ai/gatsby-components';
 import { formatArticleDate } from '../tools/articles';
 import Layout from '../components/Layout';
 import LinkedItem from '../components/LinkedItem';
 import ArticleTags from '../components/ArticleTags';
+import SEOHead from '../components/Head';
 
 const ArticleTemplate = ({ data }) => {
   const title = data.kontentItemArticle.elements.title.value;
-  const description =
-    data.kontentItemArticle.elements.meta_data__description.value;
   const body = data.kontentItemArticle.elements.body;
   const tags = data.kontentItemArticle.elements.article_topics.value;
   const published = data.kontentItemArticle.elements.publish_date.value;
 
   return (
     <Layout>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
       <h1>{title}</h1>
       <p className="published">Published {formatArticleDate(published)}</p>
       <ArticleTags tags={tags} />
@@ -47,6 +41,13 @@ const ArticleTemplate = ({ data }) => {
     </Layout>
   );
 };
+
+export function Head({ data }) {
+  const title = data.kontentItemArticle.elements.title.value;
+  const description =
+    data.kontentItemArticle.elements.meta_data__description.value;
+  return <SEOHead title={title} description={description} />;
+}
 
 export default ArticleTemplate;
 

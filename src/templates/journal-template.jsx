@@ -1,22 +1,14 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 import Pagination from '../components/Pagination';
 import TagListing from '../components/TagListing';
+import SEOHead from '../components/Head';
 
 const JournalTemplate = ({ data, pageContext }) => {
-  const { currentPage, hasNextPage, hasPrevPage, prevPagePath, nextPagePath } =
-    pageContext;
-
-  const defaultTitle = data.kontentItemSection.system.name;
-
-  const journalTitle =
-    currentPage > 0 ? `${defaultTitle} - Page ${currentPage}` : defaultTitle;
-  const description =
-    data.kontentItemSection.elements.meta_data__description.value;
+  const { hasNextPage, hasPrevPage, prevPagePath, nextPagePath } = pageContext;
 
   const items = [];
   data.allKontentItemArticle.nodes.forEach((node) => {
@@ -25,18 +17,9 @@ const JournalTemplate = ({ data, pageContext }) => {
   });
 
   const baseUrl = data.site.siteMetadata.siteUrl;
-  const canoncial =
-    currentPage > 0
-      ? `${baseUrl}articles/page/${currentPage}/`
-      : `${baseUrl}articles/`;
 
   return (
     <Layout>
-      <Helmet>
-        <title>{journalTitle}</title>
-        <meta name="description" content={description} />
-        <link rel="canoncial" href={canoncial} />
-      </Helmet>
       <div className="content">
         <h1>Journal</h1>
         {items}
@@ -55,6 +38,28 @@ const JournalTemplate = ({ data, pageContext }) => {
   );
 };
 
+export function Head({ data, pageContext }) {
+  const defaultTitle = data.kontentItemSection.system.name;
+  const journalTitle =
+    pageContext.currentPage > 0
+      ? `${defaultTitle} - Page ${pageContext.currentPage + 1}`
+      : defaultTitle;
+  const description =
+    data.kontentItemSection.elements.meta_data__description.value;
+  const baseUrl = data.site.siteMetadata.siteUrl;
+  const canoncialUrl =
+    pageContext.currentPage > 0
+      ? `${baseUrl}articles/page/${pageContext.currentPage}/`
+      : `${baseUrl}articles/`;
+  return (
+    <SEOHead
+      title={journalTitle}
+      description={description}
+      canonical={canoncialUrl}
+    />
+  );
+}
+
 export default JournalTemplate;
 
 export const pageQuery = graphql`
@@ -70,7 +75,7 @@ export const pageQuery = graphql`
       }
     }
     allKontentItemArticle(
-      sort: { fields: elements___publish_date___value, order: DESC }
+      sort: { elements: { publish_date: { value: DESC } } }
       limit: $limit
       skip: $skip
     ) {

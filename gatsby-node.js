@@ -8,17 +8,17 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const articleTemplate = path.resolve(
-      './src/templates/article-template.jsx',
+      './src/templates/article-template.jsx'
     );
     const journalTemplate = path.resolve(
-      './src/templates/journal-template.jsx',
+      './src/templates/journal-template.jsx'
     );
     const tagTemplate = path.resolve('./src/templates/tag-template.jsx');
 
     graphql(`
       {
         allArticles: allKontentItemArticle(
-          sort: { fields: elements___publish_date___value, order: DESC }
+          sort: { elements: { publish_date: { value: DESC } } }
         ) {
           nodes {
             elements {
@@ -30,7 +30,11 @@ exports.createPages = ({ graphql, actions }) => {
           totalCount
         }
         allTags: allKontentItemArticle {
-          group(field: elements___article_topics___value___codename) {
+          group(
+            field: {
+              elements: { article_topics: { value: { codename: SELECT } } }
+            }
+          ) {
             totalCount
             fieldValue
           }
@@ -53,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
       const postsPerPage = 8;
 
       const numArticlePages = Math.ceil(
-        result.data.allArticles.totalCount / postsPerPage,
+        result.data.allArticles.totalCount / postsPerPage
       );
 
       for (let i = 0; i < numArticlePages; i += 1) {

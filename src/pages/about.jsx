@@ -1,26 +1,19 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { RichTextElement, ImageElement } from '@kontent-ai/gatsby-components';
 import Layout from '../components/Layout';
+import SEOHead from '../components/Head';
 
 const About = ({ data }) => {
   const {
     kontentItemSection: {
       system: { name: title },
-      elements: {
-        meta_data__description: { value: description },
-        introduction,
-      },
+      elements: { introduction },
     },
   } = data;
 
   return (
     <Layout>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
       <h1>{title}</h1>
       <RichTextElement
         value={introduction.value}
@@ -35,6 +28,18 @@ const About = ({ data }) => {
     </Layout>
   );
 };
+
+export function Head({ data }) {
+  const {
+    kontentItemSection: {
+      system: { name: title },
+      elements: {
+        meta_data__description: { value: description },
+      },
+    },
+  } = data;
+  return <SEOHead title={title} description={description} />;
+}
 
 export default About;
 

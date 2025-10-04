@@ -1,13 +1,11 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
+import SEOHead from '../components/Head';
 
 const Index = ({ data }) => {
-  const description =
-    data.kontentItemHome.elements.meta_data__description.value;
   const introduction = data.kontentItemHome.elements.introduction.value;
 
   const items = [];
@@ -22,9 +20,6 @@ const Index = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet>
-        <meta name="description" content={description} />
-      </Helmet>
       <div
         className="bio"
         /* eslint-disable-next-line react/no-danger */
@@ -87,6 +82,12 @@ const Index = ({ data }) => {
     </Layout>
   );
 };
+
+export function Head({ data }) {
+  const description =
+    data.kontentItemHome.elements.meta_data__description.value;
+  return <SEOHead description={description} />;
+}
 
 export default Index;
 
