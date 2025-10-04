@@ -19,7 +19,6 @@
   "dependencies": {
     "@kontent-ai/gatsby-components": "^10.0.0",
     "@kontent-ai/gatsby-source": "^10.0.0",
-    "gatsby-image": "^4.0.0",
     "gatsby-plugin-gtag": "^2.0.0",
     "gatsby-plugin-image": "^3.0.0",
     "gatsby-plugin-manifest": "^5.0.0",
