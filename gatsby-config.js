@@ -63,6 +63,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
+        sassOptions: {
+          silenceDeprecations: ['legacy-js-api'],
+        },
         postCssPlugins: [
           lost(),
           pxtorem({
