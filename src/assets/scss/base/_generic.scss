@@ -1,21 +1,24 @@
+@use "../variables";
+@use "../mixins";
+
 html {
-  font-size: $typographic-root-font-size;
+  font-size: variables.$typographic-root-font-size;
 }
 
 body {
-  font-family: $typographic-font-family;
-  line-height: $typographic-base-line-height;
-  font-size: $typographic-base-font-size * 0.8;
+  font-family: variables.$typographic-font-family;
+  line-height: variables.$typographic-base-line-height;
+  font-size: variables.$typographic-base-font-size * 0.8;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color-base;
-  background-color: $color-background;
+  color: variables.$color-base;
+  background-color: variables.$color-background;
   &.dark-theme {
-    color: $color-base-dark;
-    background-color: $color-background-dark;
+    color: variables.$color-base-dark;
+    background-color: variables.$color-background-dark;
   }
 }
 
@@ -25,38 +28,38 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $typographic-font-family;
+  font-family: variables.$typographic-font-family;
   font-weight: 500;
 }
 
 h1 {
-  font-size: $typographic-base-font-size * 1.5;
-  @include line-height(1.2);
-  @include margin-top(0.5);
-  @include margin-bottom(0.5);
+  font-size: variables.$typographic-base-font-size * 1.5;
+  @include mixins.line-height(1.2);
+  @include mixins.margin-top(0.5);
+  @include mixins.margin-bottom(0.5);
 }
 
 h2 {
-  font-size: $typographic-base-font-size * 1.375;
-  @include line-height(1.5);
-  @include margin-top(0.5);
-  @include margin-bottom(0.5);
+  font-size: variables.$typographic-base-font-size * 1.375;
+  @include mixins.line-height(1.5);
+  @include mixins.margin-top(0.5);
+  @include mixins.margin-bottom(0.5);
 }
 
 h3 {
-    font-size: $typographic-base-font-size * 1.1;
-    @include line-height(1);
-    @include margin-top(0.5);
-    @include margin-bottom(0.25);
+    font-size: variables.$typographic-base-font-size * 1.1;
+    @include mixins.line-height(1);
+    @include mixins.margin-top(0.5);
+    @include mixins.margin-bottom(0.25);
 }
 
 h4,
 h5,
 h6 {
-  font-size: $typographic-base-font-size;
-  @include line-height(1);
-  @include margin-top(0.5);
-  @include margin-bottom(0.5);
+  font-size: variables.$typographic-base-font-size;
+  @include mixins.line-height(1);
+  @include mixins.margin-top(0.5);
+  @include mixins.margin-bottom(0.5);
 }
 
 img {
@@ -68,7 +71,7 @@ img {
 
 hr {
   border: 0;
-  color: $color-base;
+  color: variables.$color-base;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -76,13 +79,13 @@ hr {
 }
 
 a {
-  color: $color-primary;
+  color: variables.$color-primary;
   text-decoration: none;
   font-weight: 500;
   &:hover,
   &:focus,
   &:active {
-    color: $color-secondary;
+    color: variables.$color-secondary;
   }
   transition: all 0.3s ease-in-out 0s;
 }
@@ -94,8 +97,8 @@ strong {
 
 ul {
   list-style: square;
-  @include margin-bottom(1);
-  
+  @include mixins.margin-bottom(1);
+
   & li {
     padding: 0 5px;
     margin-bottom: 10px;
@@ -103,15 +106,15 @@ ul {
 }
 
 p {
-  @include line-height(0.8);
-  @include margin-bottom(0.5);
+  @include mixins.line-height(0.8);
+  @include mixins.margin-bottom(0.5);
 }
 
 pre {
-  @include line-height(0.6);
-    font-size: $typographic-base-font-size * 0.7;
-  @include breakpoint-sm {
-    font-size: $typographic-base-font-size * 0.8;
+  @include mixins.line-height(0.6);
+    font-size: variables.$typographic-base-font-size * 0.7;
+  @include mixins.breakpoint-sm {
+    font-size: variables.$typographic-base-font-size * 0.8;
   }
 }
 
@@ -122,7 +125,7 @@ code {
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   .dark-theme & {
-    color: $color-base-dark;
+    color: variables.$color-base-dark;
     background-color: #282c34;
   }
 }
@@ -130,7 +133,7 @@ code {
 code:before,
 code:after {
     letter-spacing: -0.2em;
-    content: " ";
+    content: " ";
 }
 
 pre code:before,
@@ -139,11 +142,11 @@ pre code:after {
 }
 
 blockquote {
-  @include margin(1, 0);
-  @include padding(0, 1);
-  border-left: 5px solid $color-base;
+  @include mixins.margin(1, 0);
+  @include mixins.padding(0, 1);
+  border-left: 5px solid variables.$color-base;
   .dark-theme & {
-    border-left: 5px solid $color-base-dark;
+    border-left: 5px solid variables.$color-base-dark;
   }
 }
 
@@ -154,15 +157,15 @@ figure {
 }
 
 figcaption {
-  @include line-height(0.75);
-  @include margin(0.25, 0, 0.25, 0);
-  font-size: $typographic-base-font-size * 0.6;
+  @include mixins.line-height(0.75);
+  @include mixins.margin(0.25, 0, 0.25, 0);
+  font-size: variables.$typographic-base-font-size * 0.6;
   font-style: italic;
 }
 
 .layout {
-  lost-center: $layout-width;
-  @include padding(0, 0.5, 0.5, 0.5);
+  lost-center: variables.$layout-width;
+  @include mixins.padding(0, 0.5, 0.5, 0.5);
 }
 
 .container {
@@ -172,38 +175,38 @@ figcaption {
 .sidebar {
   width: 100%;
   & p {
-    font-size: $typographic-base-font-size * 0.8;
-    @include line-height(0.8);
+    font-size: variables.$typographic-base-font-size * 0.8;
+    @include mixins.line-height(0.8);
   }
 }
 
-@include breakpoint-sm {
+@include mixins.breakpoint-sm {
   body {
-      font-size: $typographic-base-font-size;
+      font-size: variables.$typographic-base-font-size;
   }
   h1 {
-    font-size: $typographic-base-font-size * 2;
-    @include line-height(1.6);
-    @include margin-top(1);
-    @include margin-bottom(0.5);
+    font-size: variables.$typographic-base-font-size * 2;
+    @include mixins.line-height(1.6);
+    @include mixins.margin-top(1);
+    @include mixins.margin-bottom(0.5);
   }
   p {
-    @include line-height(1);
-    @include margin-bottom(0.5);
+    @include mixins.line-height(1);
+    @include mixins.margin-bottom(0.5);
   }
   figcaption {
-    font-size: $typographic-base-font-size * 0.8;
+    font-size: variables.$typographic-base-font-size * 0.8;
   }
   .content {
     lost-column: 7/12;
   }
   .sidebar {
-    @include margin-top(0.75);
+    @include mixins.margin-top(0.75);
     lost-column: 5/12;
   }
 }
 
-@include breakpoint-md {
+@include mixins.breakpoint-md {
   .content {
     lost-column: 2/3;
   }

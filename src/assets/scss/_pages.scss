@@ -1,4 +1,4 @@
 @charset "UTF-8";
 
-@import "pages/home";
-@import "pages/article";
+@forward "pages/home";
+@forward "pages/article";

@@ -1,22 +1,22 @@
-@import "../variables";
-@import "../mixins";
+@use "../variables";
+@use "../mixins";
 
 .bio {
     padding: 20px 0;
     & p {
-        font-size: $typographic-base-font-size;
-        @include line-height(1);
-        @include margin-top(0.5);
-        @include margin-bottom(0);
+        font-size: variables.$typographic-base-font-size;
+        @include mixins.line-height(1);
+        @include mixins.margin-top(0.5);
+        @include mixins.margin-bottom(0);
     }
 }
 
-@include breakpoint-sm {
+@include mixins.breakpoint-sm {
     .bio {
         padding: 20px 0;
         & p {
-            font-size: $typographic-base-font-size * 1.2;
-            @include line-height(1.2);
+            font-size: variables.$typographic-base-font-size * 1.2;
+            @include mixins.line-height(1.2);
         }
     }
 }
@@ -24,18 +24,18 @@
 .contact-details {
     padding: 20px 0;
     &__title {
-        font-size: $typographic-base-font-size * 1.6875;
-        @include line-height(1.5);
-        @include margin-top(0);
-        @include margin-bottom(0.5);
+        font-size: variables.$typographic-base-font-size * 1.6875;
+        @include mixins.line-height(1.5);
+        @include mixins.margin-top(0);
+        @include mixins.margin-bottom(0.5);
     }
     &__content {
-        @include margin-top(-0.25);
-        @include margin-bottom(0);
+        @include mixins.margin-top(-0.25);
+        @include mixins.margin-bottom(0);
     }
 }
 
-@include breakpoint-sm {
+@include mixins.breakpoint-sm {
     .home-feature-grid {
         &__item {
             lost-column: 1/2;

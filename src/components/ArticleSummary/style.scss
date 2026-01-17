@@ -1,29 +1,29 @@
-@import "../../assets/scss/variables";
-@import "../../assets/scss/mixins";
+@use "../../assets/scss/variables";
+@use "../../assets/scss/mixins";
 
 .featured-article {
   padding: 15px 0;
   &__title-link {
-    @include themify($themes) {
-      color: themed("color-base");
+    @include mixins.themify(variables.$themes) {
+      color: mixins.themed("color-base");
       &:hover,
       &:focus {
-        color: themed("color-primary");
+        color: mixins.themed("color-primary");
       }
     }
   }
   &__title {
-    @include line-height(1.1);
-    @include margin-top(0);
-    @include margin-bottom(0);
+    @include mixins.line-height(1.1);
+    @include mixins.margin-top(0);
+    @include mixins.margin-bottom(0);
   }
   &__date {
-    font-size: $typographic-base-font-size * 0.75;
-    @include margin-top(0.25);
-    @include margin-bottom(0);
+    font-size: variables.$typographic-base-font-size * 0.75;
+    @include mixins.margin-top(0.25);
+    @include mixins.margin-bottom(0);
   }
   &__summary {
-    @include margin-top(0.25);
-    @include margin-bottom(0);
+    @include mixins.margin-top(0.25);
+    @include mixins.margin-bottom(0);
   }
 }

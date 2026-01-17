@@ -1,5 +1,4 @@
-@import "../../assets/scss/variables";
-@import "../../assets/scss/mixins/";
+@use "../../assets/scss/variables";
 
 .toggle {
   margin-top: 4px;
@@ -53,7 +52,7 @@
   -webkit-transition: all 0.45s ease;
   transition: all 0.45s ease;
   overflow: hidden;
-  box-shadow: inset 8px -8px 0px 0px $color-base;
+  box-shadow: inset 8px -8px 0px 0px variables.$color-base;
 }
 
 .toggle__icon-dark:before {
@@ -83,8 +82,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  box-shadow: 0 -23px 0 $color-base, 0 23px 0 $color-base, 23px 0 0 $color-base, -23px 0 0 $color-base,
-    15px 15px 0 $color-base, -15px 15px 0 $color-base, 15px -15px 0 $color-base, -15px -15px 0 $color-base;
+  box-shadow: 0 -23px 0 variables.$color-base, 0 23px 0 variables.$color-base, 23px 0 0 variables.$color-base, -23px 0 0 variables.$color-base,
+    15px 15px 0 variables.$color-base, -15px 15px 0 variables.$color-base, 15px -15px 0 variables.$color-base, -15px -15px 0 variables.$color-base;
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
