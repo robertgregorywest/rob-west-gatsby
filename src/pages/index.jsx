@@ -64,18 +64,6 @@ const Index = ({ data }) => {
             >
               Strava
             </a>
-            <a
-              href="https://www.instagram.com/robertgregorywest/"
-              className="fc-webicon instagram large"
-            >
-              Instagram
-            </a>
-            <a
-              href="http://www.facebook.com/robgwest"
-              className="fc-webicon facebook large"
-            >
-              Facebook
-            </a>
           </div>
         </div>
       </div>
