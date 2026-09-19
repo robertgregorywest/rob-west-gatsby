@@ -32,8 +32,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-image`,
-    'gatsby-plugin-sharp',
-    `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-plugin-gtag',
       options: { trackingId: 'G-C2TQZ48CC3' },
