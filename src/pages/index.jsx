@@ -22,7 +22,7 @@ const Index = ({ data }) => {
     <Layout>
       <div
         className="bio"
-        /* eslint-disable-next-line react/no-danger */
+
         dangerouslySetInnerHTML={{ __html: introduction }}
       />
       <div className="home-feature-grid">{items}</div>

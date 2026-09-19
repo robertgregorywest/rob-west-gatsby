@@ -89,6 +89,5 @@ module.exports = {
         ],
       },
     },
-    'gatsby-plugin-eslint',
   ],
 };

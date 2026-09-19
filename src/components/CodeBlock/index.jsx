@@ -9,7 +9,7 @@ const CodeBlock = ({ language, code }) => {
     <pre>
       <code
         className={`${language} hljs`}
-        // eslint-disable-next-line react/no-danger
+
         dangerouslySetInnerHTML={{ __html: formattedCode }}
       />
     </pre>

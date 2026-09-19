@@ -1,0 +1,46 @@
+const js = require('@eslint/js');
+const globals = require('globals');
+const babelParser = require('@babel/eslint-parser');
+const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
+const jsxA11y = require('eslint-plugin-jsx-a11y');
+const importX = require('eslint-plugin-import-x');
+const prettier = require('eslint-config-prettier');
+
+module.exports = [
+  { ignores: ['public/', '.cache/', 'node_modules/'] },
+  js.configs.recommended,
+  react.configs.flat.recommended,
+  jsxA11y.flatConfigs.recommended,
+  importX.flatConfigs.recommended,
+  reactHooks.configs.flat.recommended,
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      parser: babelParser,
+      parserOptions: {
+        requireConfigFile: false,
+        babelOptions: { presets: ['babel-preset-gatsby'] },
+      },
+      globals: { ...globals.browser, ...globals.node, graphql: 'readonly' },
+    },
+    settings: {
+      react: { version: 'detect' },
+      'import-x/extensions': ['.js', '.jsx'],
+      'import-x/resolver': { node: { extensions: ['.js', '.jsx'] } },
+    },
+    rules: {
+      'arrow-body-style': [
+        'error',
+        'as-needed',
+        { requireReturnForObjectLiteral: true },
+      ],
+      'no-console': 'off',
+      'jsx-a11y/anchor-is-valid': 'off',
+      'react/prop-types': 'off',
+      // Reading localStorage after mount is intentional to avoid SSR mismatch
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+  prettier,
+];
