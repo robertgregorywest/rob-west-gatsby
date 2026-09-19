@@ -13,8 +13,7 @@
     "clean": "gatsby clean",
     "lint": "./node_modules/.bin/eslint --cache --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'"
   },
   "overrides": {
     "svgo": "^2.8.4",
