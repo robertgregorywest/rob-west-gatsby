@@ -57,10 +57,11 @@ The published-content defaults in `.env.template` work as they are, so you only 
 | `npm run build` | Production build into `public/`. |
 | `npx gatsby serve` | Serve the production build locally at <http://localhost:9000>. |
 | `npm run clean` | Delete Gatsby's `.cache/` and `public/`. Try this first when a build behaves strangely. |
-| `npm run lint` | ESLint (Airbnb config + Prettier) over all `.js`/`.jsx` files. |
+| `npm run lint` | ESLint (flat config in `eslint.config.js`) over all `.js`/`.jsx` files. |
 | `npm run format` | Prettier-format the config files and `src/`. |
+| `npm run format:check` | Check formatting without writing changes. |
 
-ESLint also runs during `develop` and `build` via `gatsby-plugin-eslint`.
+Linting no longer runs inside `develop` or `build`; run `npm run lint` and `npm run format:check` separately.
 
 ## Project structure
 
@@ -95,5 +96,5 @@ Publishing content in Kontent.ai doesn't change the repo, so new or edited artic
 - **Security pins.** The `overrides` block in `package.json` forces transitive dependencies to patched versions that Gatsby hasn't picked up yet. Nested entries (for example `"postcss-modules-scope": { "postcss-selector-parser": ... }`) only apply beneath that package. When Gatsby updates a dependency past a pin, remove the pin.
 - **Checking pins.** After changing overrides, run `npm ls <package>` to confirm the resolved versions, then `npm audit`. `npm ls` can print spurious `invalid` warnings for versions that satisfy their range; that's a known npm quirk when overrides are in use.
 - **Install scripts.** npm 11 blocks dependency install scripts by default. `allowScripts` in `package.json` records them as denied: the native modules (`lmdb`, `msgpackr-extract`, `@parcel/watcher`) use prebuilt binaries, and the rest only print banners or warm caches. If a newly added package needs its install script, run `npm install-scripts approve <package>`.
-- **ESLint 7.** The lint toolchain is pinned to ESLint 7. `eslint-webpack-plugin` is held at `^2.7.0` so it matches `gatsby-plugin-eslint`'s peer dependency without needing `legacy-peer-deps`. Modernising this is tracked in [#63](https://github.com/robertgregorywest/rob-west-gatsby/issues/63).
+- **ESLint 9.** ESLint is held at 9 because `eslint-plugin-jsx-a11y` doesn't yet declare support for ESLint 10. Gatsby bundles its own older ESLint for its internal use, which is separate from the one used by `npm run lint`.
 - **Accepted alerts.** Dependabot alerts for `file-type` and `@parcel/reporter-dev-server` are dismissed. Gatsby 5 can't take the fixed versions, and neither vulnerable path is used when building a static site.

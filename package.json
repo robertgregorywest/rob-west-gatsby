@@ -11,9 +11,10 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "lint": "./node_modules/.bin/eslint --cache --ext .js,.jsx --ignore-pattern public .",
+    "lint": "eslint --cache --cache-location node_modules/.cache/eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'"
+    "format": "prettier --write '*.js' 'src/**/*.{js,jsx}'",
+    "format:check": "prettier --check '*.js' 'src/**/*.{js,jsx}'"
   },
   "overrides": {
     "svgo": "^2.8.4",
@@ -69,25 +70,27 @@
     "sass": "^1.45.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/core": "^7.29.7",
+    "@babel/eslint-parser": "^7.29.9",
+    "@eslint/js": "^9.39.5",
+    "babel-preset-gatsby": "^3.16.0",
     "dotenv": "^18.0.1",
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.21.1",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.21.2",
-    "eslint-webpack-plugin": "^2.7.0",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "gatsby": "^5.16.1",
     "gatsby-cli": "^5.15.0",
     "gatsby-plugin-catch-links": "^5.0.0",
-    "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-sass": "^6.0.0",
     "gatsby-plugin-sitemap": "^6.0.0",
+    "globals": "^17.12.0",
     "lost": "^9.0.2",
     "postcss-pxtorem": "^6.1.0",
-    "prettier": "^2.1.2"
+    "prettier": "^3.9.8"
   },
   "allowScripts": {
     "lmdb": false,

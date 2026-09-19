@@ -7,7 +7,6 @@ const ThemeToggle = () => {
 
   useEffect(() => {
     if (hasMounted && typeof document !== 'undefined') {
-      // eslint-disable-next-line no-undef
       document.body.className = `${theme}-theme`;
     }
   }, [theme, hasMounted]);
