@@ -71,7 +71,7 @@ src/pages/          Static pages (home, about, philosophy, 404)
 src/templates/      Article, article list ("journal") and tag page templates
 src/components/     React components, most with a co-located style.scss
 src/assets/         Icons and global Sass
-scripts/ncp.js      Copies .env.template to .env on install
+scripts/copy-env.js Copies .env.template to .env on install
 ```
 
 ## Deployment
@@ -95,5 +95,5 @@ Publishing content in Kontent.ai doesn't change the repo, so new or edited artic
 - **Security pins.** The `overrides` block in `package.json` forces transitive dependencies to patched versions that Gatsby hasn't picked up yet. Nested entries (for example `"postcss-modules-scope": { "postcss-selector-parser": ... }`) only apply beneath that package. When Gatsby updates a dependency past a pin, remove the pin.
 - **Checking pins.** After changing overrides, run `npm ls <package>` to confirm the resolved versions, then `npm audit`. `npm ls` can print spurious `invalid` warnings for versions that satisfy their range; that's a known npm quirk when overrides are in use.
 - **Install scripts.** npm 11 blocks dependency install scripts by default. `allowScripts` in `package.json` records them as denied: the native modules (`lmdb`, `msgpackr-extract`, `@parcel/watcher`) use prebuilt binaries, and the rest only print banners or warm caches. If a newly added package needs its install script, run `npm install-scripts approve <package>`.
-- **ESLint 7.** The lint toolchain is pinned to ESLint 7. `eslint-webpack-plugin` is held at `^2.7.0` so it matches `gatsby-plugin-eslint`'s peer dependency without needing `legacy-peer-deps`.
+- **ESLint 7.** The lint toolchain is pinned to ESLint 7. `eslint-webpack-plugin` is held at `^2.7.0` so it matches `gatsby-plugin-eslint`'s peer dependency without needing `legacy-peer-deps`. Modernising this is tracked in [#63](https://github.com/robertgregorywest/rob-west-gatsby/issues/63).
 - **Accepted alerts.** Dependabot alerts for `file-type` and `@parcel/reporter-dev-server` are dismissed. Gatsby 5 can't take the fixed versions, and neither vulnerable path is used when building a static site.

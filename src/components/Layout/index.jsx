@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
 import '../../assets/scss/init.scss';
 
 const Layout = (props) => {

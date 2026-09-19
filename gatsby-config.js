@@ -3,7 +3,7 @@ const pxtorem = require('postcss-pxtorem');
 
 const url = 'https://robwest.info/';
 
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 
 module.exports = {
   // These properties are used by gatsby-plugin-sitemap
@@ -35,13 +35,6 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-gtag',
       options: { trackingId: 'G-C2TQZ48CC3' },
-    },
-    {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: ['IBM Plex Sans:400,500'],
-        display: 'swap',
-      },
     },
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
