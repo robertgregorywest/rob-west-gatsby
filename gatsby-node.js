@@ -1,20 +1,16 @@
-import path from 'path';
-import type { GatsbyNode } from 'gatsby';
+const path = require('path');
 
-const slash = (filePath: string) => filePath.replace(/\\/g, '/');
+const slash = (filePath) => filePath.replace(/\\/g, '/');
 
-export const createPages: GatsbyNode['createPages'] = async ({
-  graphql,
-  actions,
-  reporter,
-}) => {
+/** @type {import('gatsby').GatsbyNode['createPages']} */
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
   const articleTemplate = path.resolve('./src/templates/article-template.tsx');
   const journalTemplate = path.resolve('./src/templates/journal-template.tsx');
   const tagTemplate = path.resolve('./src/templates/tag-template.tsx');
 
-  const result = await graphql<Queries.CreatePagesQuery>(`
+  const result = await graphql(`
     query CreatePages {
       allArticles: allKontentItemArticle(
         sort: { elements: { publish_date: { value: DESC } } }

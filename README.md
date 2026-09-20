@@ -70,7 +70,7 @@ Type checking and linting don't run inside `develop` or `build`; run `npm run ty
 
 ```
 gatsby-config.js    Plugins, Kontent source, Sass/PostCSS setup, site metadata
-gatsby-node.ts      Creates article, paginated article list and tag pages from Kontent data
+gatsby-node.js      Creates article, paginated article list and tag pages from Kontent data
 gatsby-ssr.tsx      Injects the theme script before the body to avoid a flash of the wrong theme
 src/pages/          Static pages (home, about, philosophy, 404)
 src/templates/      Article, article list ("journal") and tag page templates
