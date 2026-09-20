@@ -35,7 +35,7 @@ jobs:
       # alongside it. `wait` fails the step if the install failed.
       - name: Build (generates GraphQL types) and install Playwright browser
         run: |
-          npx playwright install --with-deps chromium &
+          npx playwright install chromium &
           install=$!
           npm run build
           wait "$install"
