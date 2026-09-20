@@ -1,19 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useDarkMode from './useDarkMode';
 import './style.scss';
 
 const ThemeToggle = () => {
-  const [theme, oppositeTheme, toggleTheme, hasMounted] = useDarkMode();
-
-  useEffect(() => {
-    if (hasMounted && typeof document !== 'undefined') {
-      document.body.className = `${theme}-theme`;
-    }
-  }, [theme, hasMounted]);
-
-  if (!hasMounted) {
-    return <div className="toggle" />;
-  }
+  const [, oppositeTheme, toggleTheme] = useDarkMode();
 
   return (
     <div className="toggle">

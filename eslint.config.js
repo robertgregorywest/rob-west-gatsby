@@ -38,8 +38,6 @@ module.exports = [
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
       'react/prop-types': 'off',
-      // Reading localStorage after mount is intentional to avoid SSR mismatch
-      'react-hooks/set-state-in-effect': 'off',
     },
   },
   prettier,
