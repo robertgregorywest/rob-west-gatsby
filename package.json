@@ -14,8 +14,8 @@
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write '*.{js,ts}' 'src/**/*.{js,jsx,ts,tsx}'",
-    "format:check": "prettier --check '*.{js,ts}' 'src/**/*.{js,jsx,ts,tsx}'"
+    "format": "prettier --write '*.{js,ts,tsx}' 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:check": "prettier --check '*.{js,ts,tsx}' 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "overrides": {
     "svgo": "^2.8.4",
