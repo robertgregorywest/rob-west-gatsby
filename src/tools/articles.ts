@@ -37,6 +37,8 @@ export default function parseNodeToArticle({ elements }: ArticleNode): Article {
 
 export const formatArticleDate = (date: string) =>
   new Date(date).toLocaleDateString('en-gb', {
+    // Kontent dates are UTC midnight; don't shift them into the viewer's zone.
+    timeZone: 'UTC',
     year: 'numeric',
     month: 'short',
     day: 'numeric',

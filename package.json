@@ -12,12 +12,14 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint .",
-    "test": "playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write '*.{js,ts,tsx}' 'src/**/*.{ts,tsx}' 'e2e/**/*.ts'",
-    "format:check": "prettier --check '*.{js,ts,tsx}' 'src/**/*.{ts,tsx}' 'e2e/**/*.ts'",
+    "format": "prettier --write '*.{js,ts,tsx,mts}' 'src/**/*.{ts,tsx}' 'e2e/**/*.ts'",
+    "format:check": "prettier --check '*.{js,ts,tsx,mts}' 'src/**/*.{ts,tsx}' 'e2e/**/*.ts'",
     "check": "npm run typecheck && npm run lint && npm run format:check",
-    "verify:build": "node scripts/verify-build.js"
+    "verify:build": "node scripts/verify-build.js",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test"
   },
   "overrides": {
     "svgo": "^2.8.4",
@@ -98,7 +100,8 @@
     "postcss-pxtorem": "^6.1.0",
     "prettier": "^3.9.8",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.0"
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.1"
   },
   "allowScripts": {
     "lmdb": false,
