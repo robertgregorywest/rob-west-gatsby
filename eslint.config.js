@@ -42,13 +42,17 @@ module.exports = [
       'jsx-a11y/anchor-is-valid': 'off',
     },
   },
-  ...tseslint.configs.recommended.map((config) => {
+  ...tseslint.configs.recommendedTypeChecked.map((config) => {
     return { ...config, files: ['**/*.{ts,tsx}'] };
   }),
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parser: tseslint.parser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: __dirname,
+      },
       globals: { ...globals.browser, ...globals.node, graphql: 'readonly' },
     },
     settings: {
@@ -66,6 +70,10 @@ module.exports = [
       ],
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { fixStyle: 'inline-type-imports' },
+      ],
     },
   },
   prettier,

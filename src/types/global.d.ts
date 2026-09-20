@@ -4,6 +4,7 @@ declare module '*.svg';
 declare module '*.png';
 
 declare module 'highlightjs-cshtml-razor' {
-  const language: import('highlight.js').LanguageFn;
+  import type { LanguageFn } from 'highlight.js';
+  const language: LanguageFn;
   export default language;
 }
