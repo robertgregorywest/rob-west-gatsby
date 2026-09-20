@@ -1,29 +1,51 @@
-@use "../variables";
+@use '../variables';
 
 /**
  * Padding
  */
 
-@mixin padding($top, $right, $bottom:null, $left:null) {
-    @if $left==null and $bottom==null {
-        padding: #{ $top * variables.$typographic-leading + "px"} #{ $right * variables.$typographic-leading + "px"};
-    }
-    @else if $left==null or $left==$right {
-        padding: #{ $top * variables.$typographic-leading + "px"} #{ $right * variables.$typographic-leading + "px"} #{ $bottom * variables.$typographic-leading + "px"};
-    }
-    @else {
-        padding: #{ $top * variables.$typographic-leading + "px"} #{ $right * variables.$typographic-leading + "px"} #{ $bottom * variables.$typographic-leading + "px"} #{ $left * variables.$typographic-leading + "px"};
-    }
+@mixin padding($top, $right, $bottom: null, $left: null) {
+  @if $left==null and $bottom==null {
+    padding: #{$top *
+      variables.$typographic-leading +
+      'px'}
+      #{$right *
+      variables.$typographic-leading +
+      'px'};
+  } @else if $left==null or $left==$right {
+    padding: #{$top *
+      variables.$typographic-leading +
+      'px'}
+      #{$right *
+      variables.$typographic-leading +
+      'px'}
+      #{$bottom *
+      variables.$typographic-leading +
+      'px'};
+  } @else {
+    padding: #{$top *
+      variables.$typographic-leading +
+      'px'}
+      #{$right *
+      variables.$typographic-leading +
+      'px'}
+      #{$bottom *
+      variables.$typographic-leading +
+      'px'}
+      #{$left *
+      variables.$typographic-leading +
+      'px'};
+  }
 }
 
 @mixin padding-equal($number) {
-    padding: #{ $number * variables.$typographic-leading + "px"};
+  padding: #{$number * variables.$typographic-leading + 'px'};
 }
 
 @mixin padding-top($number) {
-    padding-top: #{ $number * variables.$typographic-leading + "px"};
+  padding-top: #{$number * variables.$typographic-leading + 'px'};
 }
 
 @mixin padding-bottom($number) {
-    padding-bottom: #{ $number * variables.$typographic-leading + "px"};
+  padding-bottom: #{$number * variables.$typographic-leading + 'px'};
 }

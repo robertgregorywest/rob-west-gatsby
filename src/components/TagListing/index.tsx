@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
+type TagSummary = {
+  codename: string;
+  name: string;
+  summary: string;
+  count: number;
+};
+
 const TagListing = () => {
-  const data = useStaticQuery(graphql`
+  const data = useStaticQuery<Queries.ArticleQueryQuery>(graphql`
     query ArticleQuery {
       allKontentItemArticle {
         group(
@@ -30,20 +37,23 @@ const TagListing = () => {
     }
   `);
 
-  const tags = data.allKontentItemArticle.group.reduce((result, item) => {
-    const source = data.allKontentItemTagSummary.nodes.find(
-      (summary) => summary.system.codename === item.fieldValue
-    );
-    if (source !== undefined) {
-      result.push({
-        codename: item.fieldValue,
-        name: source.system.name,
-        summary: source.elements.summary.value,
-        count: item.totalCount,
-      });
-    }
-    return result;
-  }, []);
+  const tags = data.allKontentItemArticle.group.reduce<TagSummary[]>(
+    (result, item) => {
+      const source = data.allKontentItemTagSummary.nodes.find(
+        (summary) => summary.system.codename === item.fieldValue
+      );
+      if (source !== undefined && item.fieldValue !== null) {
+        result.push({
+          codename: item.fieldValue,
+          name: source.system.name,
+          summary: source.elements?.summary?.value ?? '',
+          count: item.totalCount,
+        });
+      }
+      return result;
+    },
+    []
+  );
 
   return (
     <div>

@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const RichBlockquote = ({ quote }) => (
+type RichBlockquoteProps = {
+  quote: string;
+};
+
+const RichBlockquote = ({ quote }: RichBlockquoteProps) => (
   <blockquote dangerouslySetInnerHTML={{ __html: quote }} />
 );
-
-RichBlockquote.propTypes = {
-  quote: PropTypes.string.isRequired,
-};
 
 export default RichBlockquote;

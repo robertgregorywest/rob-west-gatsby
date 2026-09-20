@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import type { Tag } from '../../tools/articles';
 import './style.scss';
 
-const ArticleTags = ({ tags }) => (
+type ArticleTagsProps = {
+  tags: Tag[];
+};
+
+const ArticleTags = ({ tags }: ArticleTagsProps) => (
   <div className="tags">
     <ul className="tags__list">
       {tags &&
@@ -17,14 +21,5 @@ const ArticleTags = ({ tags }) => (
     </ul>
   </div>
 );
-
-ArticleTags.propTypes = {
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      codename: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
 
 export default ArticleTags;

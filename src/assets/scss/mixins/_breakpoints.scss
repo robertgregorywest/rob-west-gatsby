@@ -1,27 +1,27 @@
-@use "../variables";
+@use '../variables';
 
 /**
  * Breakpoints
  */
 
 @mixin breakpoint-xs {
-    @content;
+  @content;
 }
 
 @mixin breakpoint-sm {
-    @media screen and (min-width: variables.$layout-breakpoint-sm) {
-        @content;
-    }
+  @media screen and (min-width: variables.$layout-breakpoint-sm) {
+    @content;
+  }
 }
 
 @mixin breakpoint-md {
-    @media screen and (min-width: variables.$layout-breakpoint-md) {
-        @content;
-    }
+  @media screen and (min-width: variables.$layout-breakpoint-md) {
+    @content;
+  }
 }
 
 @mixin breakpoint-lg {
-    @media screen and (min-width: variables.$layout-breakpoint-lg) {
-        @content
-    }
+  @media screen and (min-width: variables.$layout-breakpoint-lg) {
+    @content;
+  }
 }

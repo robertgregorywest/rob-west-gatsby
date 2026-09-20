@@ -1,5 +1,5 @@
-@use "../../assets/scss/variables";
-@use "../../assets/scss/mixins";
+@use '../../assets/scss/variables';
+@use '../../assets/scss/mixins';
 
 .footer {
   font-size: variables.$typographic-base-font-size * 0.8;
@@ -7,7 +7,7 @@
   border-top-style: solid;
   border-top-width: 1px;
   @include mixins.themify(variables.$themes) {
-    border-top-color: mixins.themed("color-base");
+    border-top-color: mixins.themed('color-base');
   }
   @include mixins.padding(0.5, 0, 1, 0);
 }

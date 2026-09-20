@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-export default function Head({ title, description, canonical }) {
+type HeadProps = {
+  title?: string;
+  description?: string;
+  canonical?: string;
+};
+
+export default function Head({ title, description, canonical }: HeadProps) {
   const defaultTitle = "Rob West's Website";
   return (
     <>

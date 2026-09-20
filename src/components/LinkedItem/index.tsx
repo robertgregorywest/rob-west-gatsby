@@ -3,7 +3,16 @@ import Blockquote from '../Blockquote';
 import RichBlockquote from '../RichBlockquote';
 import CodeBlock from '../CodeBlock';
 
-const LinkedItem = ({ linkedItem }) => {
+type LinkedItemData = {
+  system: { type: string };
+  elements: Record<string, { value: string }>;
+};
+
+type LinkedItemProps = {
+  linkedItem: LinkedItemData;
+};
+
+const LinkedItem = ({ linkedItem }: LinkedItemProps) => {
   const type = linkedItem.system.type;
 
   switch (type) {

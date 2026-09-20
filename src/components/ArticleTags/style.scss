@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "../../assets/scss/variables";
-@use "../../assets/scss/mixins";
+@use 'sass:color';
+@use '../../assets/scss/variables';
+@use '../../assets/scss/mixins';
 
 .tags {
   @include mixins.margin-bottom(0);

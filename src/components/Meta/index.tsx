@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Meta = ({ title }) => {
+type MetaProps = {
+  title: string;
+};
+
+const Meta = ({ title }: MetaProps) => {
   <html lang="en" />;
   <title>{title}</title>;
 };
