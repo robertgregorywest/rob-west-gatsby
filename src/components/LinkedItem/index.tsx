@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ComponentType } from 'react';
 import Blockquote from '../Blockquote';
 import RichBlockquote from '../RichBlockquote';
 import CodeBlock from '../CodeBlock';
@@ -11,6 +11,14 @@ type QuoteItem = {
 type CodeItem = {
   system: { type: 'code_block' };
   elements: { language: { value: string }; code: { value: string } };
+};
+
+const QUOTE_COMPONENTS: Record<
+  QuoteItem['system']['type'],
+  ComponentType<{ quote: string }>
+> = {
+  blockquote: Blockquote,
+  rich_blockquote: RichBlockquote,
 };
 
 export type LinkedItemData = QuoteItem | CodeItem;
@@ -28,12 +36,8 @@ const isCode = (item: LinkedItemData): item is CodeItem =>
 
 const LinkedItem = ({ linkedItem }: LinkedItemProps) => {
   if (isQuote(linkedItem)) {
-    const quote = linkedItem.elements.text.value;
-    return linkedItem.system.type === 'blockquote' ? (
-      <Blockquote quote={quote} />
-    ) : (
-      <RichBlockquote quote={quote} />
-    );
+    const QuoteComponent = QUOTE_COMPONENTS[linkedItem.system.type];
+    return <QuoteComponent quote={linkedItem.elements.text.value} />;
   }
   if (isCode(linkedItem)) {
     const {

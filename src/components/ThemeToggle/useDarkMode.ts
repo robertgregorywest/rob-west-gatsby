@@ -4,7 +4,13 @@ const STORAGE_KEY = 'theme';
 const CHANGE_EVENT = 'themechange';
 const DARK_QUERY = '(prefers-color-scheme: dark)';
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
+
+const OPPOSITE_THEME: Record<Theme, Theme> = { light: 'dark', dark: 'light' };
+const THEME_CLASS: Record<Theme, string> = {
+  light: 'light-theme',
+  dark: 'dark-theme',
+};
 
 const readStoredTheme = (): Theme | null => {
   try {
@@ -23,8 +29,8 @@ const getServerSnapshot = (): Theme => 'light';
 
 const applyTheme = () => {
   const theme = getSnapshot();
-  document.body.classList.remove('light-theme', 'dark-theme');
-  document.body.classList.add(`${theme}-theme`);
+  document.body.classList.remove(...Object.values(THEME_CLASS));
+  document.body.classList.add(THEME_CLASS[theme]);
 };
 
 const subscribe = (callback: () => void) => {
@@ -46,7 +52,7 @@ const subscribe = (callback: () => void) => {
 
 const useDarkMode = () => {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const oppositeTheme: Theme = theme === 'light' ? 'dark' : 'light';
+  const oppositeTheme = OPPOSITE_THEME[theme];
 
   const toggleTheme = () => {
     try {
