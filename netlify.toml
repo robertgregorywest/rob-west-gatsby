@@ -1,0 +1,9 @@
+# Netlify settings. These override the build settings in the Netlify UI.
+# KONTENT_* variables and the Node version (.node-version) are set elsewhere,
+# as are the response headers production already sends.
+
+[build]
+  # verify:build fails the deploy if createPages produced no article, journal
+  # or tag pages, which otherwise still "succeeds" (see AGENTS.md).
+  command = "npm run build && npm run verify:build"
+  publish = "public"
