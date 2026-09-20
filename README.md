@@ -86,7 +86,7 @@ src/assets/         Icons and global Sass
 scripts/copy-env.js Copies .env.template to .env on install
 scripts/verify-build.js Checks public/ has every article, journal and tag page after a build
 e2e/                Playwright smoke tests (unit tests live next to the code as *.test.ts(x))
-netlify.toml        Netlify build command and security headers
+netlify.toml        Netlify build command and publish directory
 ```
 
 ## Deployment
