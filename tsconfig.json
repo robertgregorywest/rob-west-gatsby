@@ -7,13 +7,11 @@
     "jsx": "react-jsx",
     "strict": true,
     "noEmit": true,
-    "allowJs": true,
-    "checkJs": false,
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "gatsby-*.js", "gatsby-*.ts", "gatsby-*.tsx", "tools"],
+  "include": ["src", "gatsby-*.ts", "gatsby-*.tsx"],
   "exclude": ["node_modules", "public", ".cache"]
 }

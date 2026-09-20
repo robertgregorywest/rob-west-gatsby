@@ -40,7 +40,6 @@ module.exports = [
       ],
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
-      'react/prop-types': 'off',
     },
   },
   ...tseslint.configs.recommended.map((config) => {
@@ -67,7 +66,6 @@ module.exports = [
       ],
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
-      'react/prop-types': 'off',
     },
   },
   prettier,
