@@ -13,8 +13,9 @@
     "clean": "gatsby clean",
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '*.js' 'src/**/*.{js,jsx}'",
-    "format:check": "prettier --check '*.js' 'src/**/*.{js,jsx}'"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write '*.{js,ts}' 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:check": "prettier --check '*.{js,ts}' 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "overrides": {
     "svgo": "^2.8.4",
@@ -73,6 +74,8 @@
     "@babel/core": "^7.29.7",
     "@babel/eslint-parser": "^7.29.9",
     "@eslint/js": "^9.39.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "babel-preset-gatsby": "^3.16.0",
     "dotenv": "^18.0.1",
     "eslint": "^9.39.5",
@@ -90,7 +93,9 @@
     "globals": "^17.12.0",
     "lost": "^9.0.2",
     "postcss-pxtorem": "^6.1.0",
-    "prettier": "^3.9.8"
+    "prettier": "^3.9.8",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.0"
   },
   "allowScripts": {
     "lmdb": false,

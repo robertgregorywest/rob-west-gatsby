@@ -6,6 +6,7 @@ const url = 'https://robwest.info/';
 require('dotenv').config({ quiet: true });
 
 module.exports = {
+  graphqlTypegen: { generateOnBuild: true },
   // These properties are used by gatsby-plugin-sitemap
   // https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/#how-to-use
   siteMetadata: {
