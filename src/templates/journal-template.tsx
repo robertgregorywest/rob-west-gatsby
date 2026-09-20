@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import parseNodeToArticle from '../tools/articles';
+import { canonicalUrl, pageTitle, type PageContext } from '../tools/pagination';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
-import Pagination, { type PaginationProps } from '../components/Pagination';
+import Pagination from '../components/Pagination';
 import TagListing from '../components/TagListing';
 import SEOHead from '../components/Head';
 
-type JournalContext = PaginationProps & { currentPage: number };
+type JournalContext = PageContext;
 
 const JournalTemplate = ({
   data,
@@ -44,22 +45,17 @@ export function Head({
   pageContext,
 }: HeadProps<Queries.ArticlesQueryQuery, JournalContext>) {
   const defaultTitle = data.kontentItemSection?.system.name ?? 'Journal';
-  const journalTitle =
-    pageContext.currentPage > 0
-      ? `${defaultTitle} - Page ${pageContext.currentPage + 1}`
-      : defaultTitle;
   const description =
     data.kontentItemSection?.elements.meta_data__description.value;
-  const baseUrl = (data.site?.siteMetadata?.siteUrl ?? '').replace(/\/$/, '');
-  const canoncialUrl =
-    pageContext.currentPage > 0
-      ? `${baseUrl}/articles/page/${pageContext.currentPage}/`
-      : `${baseUrl}/articles/`;
   return (
     <SEOHead
-      title={journalTitle}
+      title={pageTitle(defaultTitle, pageContext.currentPage)}
       description={description ?? undefined}
-      canonical={canoncialUrl}
+      canonical={canonicalUrl(
+        data.site?.siteMetadata?.siteUrl,
+        pageContext.basePath,
+        pageContext.currentPage
+      )}
     />
   );
 }

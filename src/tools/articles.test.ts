@@ -1,6 +1,8 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import parseNodeToArticle, {
   formatArticleDate,
+  toTagSummaries,
+  toTags,
   type ArticleNode,
 } from './articles';
 
@@ -59,6 +61,70 @@ describe('parseNodeToArticle', () => {
       })
     );
     expect(tags).toEqual([{ codename: 'ai', name: 'AI' }]);
+  });
+});
+
+describe('toTags', () => {
+  it('treats a missing topics list as no tags', () => {
+    expect(toTags(null)).toEqual([]);
+    expect(toTags(undefined)).toEqual([]);
+  });
+
+  it('drops null entries and keeps order', () => {
+    expect(
+      toTags([{ codename: 'b', name: 'B' }, null, { codename: 'a', name: 'A' }])
+    ).toEqual([
+      { codename: 'b', name: 'B' },
+      { codename: 'a', name: 'A' },
+    ]);
+  });
+});
+
+describe('toTagSummaries', () => {
+  const summary = (codename: string, name: string, text: string | null) => {
+    return {
+      system: { codename, name },
+      elements: { summary: { value: text } },
+    };
+  };
+
+  it('joins counts with summaries in group order', () => {
+    expect(
+      toTagSummaries(
+        [
+          { fieldValue: 'ai', totalCount: 3 },
+          { fieldValue: 'dotnet', totalCount: 5 },
+        ],
+        [
+          summary('dotnet', '.NET', 'About .NET'),
+          summary('ai', 'AI', 'About AI'),
+        ]
+      )
+    ).toEqual([
+      { codename: 'ai', name: 'AI', summary: 'About AI', count: 3 },
+      { codename: 'dotnet', name: '.NET', summary: 'About .NET', count: 5 },
+    ]);
+  });
+
+  it('skips tags with no summary entry or no codename', () => {
+    expect(
+      toTagSummaries(
+        [
+          { fieldValue: 'orphan', totalCount: 1 },
+          { fieldValue: null, totalCount: 2 },
+        ],
+        [summary('ai', 'AI', 'About AI')]
+      )
+    ).toEqual([]);
+  });
+
+  it('defaults a null summary to an empty string', () => {
+    expect(
+      toTagSummaries(
+        [{ fieldValue: 'ai', totalCount: 1 }],
+        [summary('ai', 'AI', null)]
+      )
+    ).toEqual([{ codename: 'ai', name: 'AI', summary: '', count: 1 }]);
   });
 });
 

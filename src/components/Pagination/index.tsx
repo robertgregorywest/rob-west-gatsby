@@ -40,27 +40,4 @@ const Pagination = ({
   );
 };
 
-type PaginationHeadProps = PaginationProps & {
-  baseUrl: string;
-};
-
-export function Head({
-  hasPrevPage,
-  hasNextPage,
-  baseUrl,
-  prevPagePath,
-  nextPagePath,
-}: PaginationHeadProps) {
-  return (
-    <>
-      {hasPrevPage && (
-        <link rel="prev" href={baseUrl + prevPagePath.slice(1)} />
-      )}
-      {hasNextPage && (
-        <link rel="next" href={baseUrl + nextPagePath.slice(1)} />
-      )}
-    </>
-  );
-}
-
 export default Pagination;
