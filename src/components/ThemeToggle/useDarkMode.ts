@@ -4,7 +4,9 @@ const STORAGE_KEY = 'theme';
 const CHANGE_EVENT = 'themechange';
 const DARK_QUERY = '(prefers-color-scheme: dark)';
 
-const readStoredTheme = () => {
+type Theme = 'light' | 'dark';
+
+const readStoredTheme = (): Theme | null => {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     return stored === 'dark' || stored === 'light' ? stored : null;
@@ -13,11 +15,11 @@ const readStoredTheme = () => {
   }
 };
 
-const getSnapshot = () =>
+const getSnapshot = (): Theme =>
   readStoredTheme() ??
   (window.matchMedia(DARK_QUERY).matches ? 'dark' : 'light');
 
-const getServerSnapshot = () => 'light';
+const getServerSnapshot = (): Theme => 'light';
 
 const applyTheme = () => {
   const theme = getSnapshot();
@@ -25,7 +27,7 @@ const applyTheme = () => {
   document.body.classList.add(`${theme}-theme`);
 };
 
-const subscribe = (callback) => {
+const subscribe = (callback: () => void) => {
   const mediaQuery = window.matchMedia(DARK_QUERY);
   const onChange = () => {
     applyTheme();
@@ -44,7 +46,7 @@ const subscribe = (callback) => {
 
 const useDarkMode = () => {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const oppositeTheme = theme === 'light' ? 'dark' : 'light';
+  const oppositeTheme: Theme = theme === 'light' ? 'dark' : 'light';
 
   const toggleTheme = () => {
     try {
@@ -55,7 +57,7 @@ const useDarkMode = () => {
     window.dispatchEvent(new Event(CHANGE_EVENT));
   };
 
-  return [theme, oppositeTheme, toggleTheme];
+  return [theme, oppositeTheme, toggleTheme] as const;
 };
 
 export default useDarkMode;
