@@ -7,7 +7,7 @@ import SEOHead from '../components/Head';
 
 const About = ({ data }: PageProps<Queries.AboutQueryQuery>) => {
   const title = data.kontentItemSection?.system.name;
-  const introduction = data.kontentItemSection?.elements?.introduction;
+  const introduction = data.kontentItemSection?.elements.introduction;
 
   return (
     <Layout>
@@ -24,7 +24,7 @@ const About = ({ data }: PageProps<Queries.AboutQueryQuery>) => {
 export function Head({ data }: HeadProps<Queries.AboutQueryQuery>) {
   const title = data.kontentItemSection?.system.name;
   const description =
-    data.kontentItemSection?.elements?.meta_data__description?.value;
+    data.kontentItemSection?.elements.meta_data__description.value;
   return <SEOHead title={title} description={description ?? undefined} />;
 }
 

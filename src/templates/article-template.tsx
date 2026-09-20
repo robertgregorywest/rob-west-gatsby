@@ -10,12 +10,12 @@ import SEOHead from '../components/Head';
 
 const ArticleTemplate = ({ data }: PageProps<Queries.ArticleBySlugQuery>) => {
   const elements = data.kontentItemArticle?.elements;
-  const title = elements?.title?.value;
+  const title = elements?.title.value;
   const body = elements?.body;
-  const tags = (elements?.article_topics?.value ?? []).filter(
+  const tags = (elements?.article_topics.value ?? []).filter(
     (tag): tag is Tag => tag !== null
   );
-  const published = elements?.publish_date?.value;
+  const published = elements?.publish_date.value;
 
   return (
     <Layout>
@@ -45,9 +45,9 @@ const ArticleTemplate = ({ data }: PageProps<Queries.ArticleBySlugQuery>) => {
 };
 
 export function Head({ data }: HeadProps<Queries.ArticleBySlugQuery>) {
-  const title = data.kontentItemArticle?.elements?.title?.value;
+  const title = data.kontentItemArticle?.elements?.title.value;
   const description =
-    data.kontentItemArticle?.elements?.meta_data__description?.value;
+    data.kontentItemArticle?.elements?.meta_data__description.value;
   return (
     <SEOHead
       title={title ?? undefined}
