@@ -1,56 +1,58 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import * as React from 'react';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import { RichTextElement } from '@kontent-ai/gatsby-components';
 import Layout from '../components/Layout';
 import SEOHead from '../components/Head';
 
-const Philosophy = ({ data }) => {
-  const {
-    kontentItemPhilosophy: {
-      system: { name },
-      elements: {
-        introduction,
-        featured_work: { value: works },
-      },
-    },
-  } = data;
+type Work = {
+  readonly id: string;
+  readonly elements: {
+    readonly asset: {
+      readonly value: ReadonlyArray<{ readonly url: string } | null> | null;
+    } | null;
+    readonly summary: { readonly value: string | null } | null;
+    readonly title: { readonly value: string | null } | null;
+  } | null;
+};
+
+const isWork = (work: object | null): work is Work =>
+  work !== null && 'id' in work;
+
+const Philosophy = ({ data }: PageProps<Queries.PhilosophyQueryQuery>) => {
+  const name = data.kontentItemPhilosophy?.system.name;
+  const elements = data.kontentItemPhilosophy?.elements;
+  const works = (elements?.featured_work?.value ?? []).filter(isWork);
 
   return (
     <Layout>
       <div className="content">
         <h1>{name}</h1>
-        <RichTextElement value={introduction.value} />
+        <RichTextElement value={elements?.introduction?.value ?? ''} />
       </div>
       <div className="sidebar">
         <div>
           <h2>Selected Papers (PDF)</h2>
-          {works &&
-            works.map((work) => (
-              <div key={work.id}>
-                <h3>
-                  <a href={work.elements.asset.value[0].url}>
-                    {work.elements.title.value}
-                  </a>
-                </h3>
-                <p>{work.elements.summary.value}</p>
-              </div>
-            ))}
+          {works.map((work) => (
+            <div key={work.id}>
+              <h3>
+                <a href={work.elements?.asset?.value?.[0]?.url}>
+                  {work.elements?.title?.value}
+                </a>
+              </h3>
+              <p>{work.elements?.summary?.value}</p>
+            </div>
+          ))}
         </div>
       </div>
     </Layout>
   );
 };
 
-export function Head({ data }) {
-  const {
-    kontentItemPhilosophy: {
-      system: { name },
-      elements: {
-        meta_data__description: { value: description },
-      },
-    },
-  } = data;
-  return <SEOHead title={name} description={description} />;
+export function Head({ data }: HeadProps<Queries.PhilosophyQueryQuery>) {
+  const name = data.kontentItemPhilosophy?.system.name;
+  const description =
+    data.kontentItemPhilosophy?.elements?.meta_data__description?.value;
+  return <SEOHead title={name} description={description ?? undefined} />;
 }
 
 export default Philosophy;

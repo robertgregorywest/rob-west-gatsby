@@ -1,44 +1,31 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { RichTextElement, ImageElement } from '@kontent-ai/gatsby-components';
+import * as React from 'react';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
+import { RichTextElement } from '@kontent-ai/gatsby-components';
+import { resolveImage, toImageItems } from '../tools/richText';
 import Layout from '../components/Layout';
 import SEOHead from '../components/Head';
 
-const About = ({ data }) => {
-  const {
-    kontentItemSection: {
-      system: { name: title },
-      elements: { introduction },
-    },
-  } = data;
+const About = ({ data }: PageProps<Queries.AboutQueryQuery>) => {
+  const title = data.kontentItemSection?.system.name;
+  const introduction = data.kontentItemSection?.elements?.introduction;
 
   return (
     <Layout>
       <h1>{title}</h1>
       <RichTextElement
-        value={introduction.value}
-        images={introduction.images}
-        resolveImage={(image) => (
-          <figure>
-            <ImageElement image={image} alt={image.description} />
-            <figcaption>{image.description}</figcaption>
-          </figure>
-        )}
+        value={introduction?.value ?? ''}
+        images={toImageItems(introduction?.images)}
+        resolveImage={resolveImage}
       />
     </Layout>
   );
 };
 
-export function Head({ data }) {
-  const {
-    kontentItemSection: {
-      system: { name: title },
-      elements: {
-        meta_data__description: { value: description },
-      },
-    },
-  } = data;
-  return <SEOHead title={title} description={description} />;
+export function Head({ data }: HeadProps<Queries.AboutQueryQuery>) {
+  const title = data.kontentItemSection?.system.name;
+  const description =
+    data.kontentItemSection?.elements?.meta_data__description?.value;
+  return <SEOHead title={title} description={description ?? undefined} />;
 }
 
 export default About;

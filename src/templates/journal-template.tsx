@@ -1,22 +1,24 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import * as React from 'react';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
-import Pagination from '../components/Pagination';
+import Pagination, { type PaginationProps } from '../components/Pagination';
 import TagListing from '../components/TagListing';
 import SEOHead from '../components/Head';
 
-const JournalTemplate = ({ data, pageContext }) => {
+type JournalContext = PaginationProps & { currentPage: number };
+
+const JournalTemplate = ({
+  data,
+  pageContext,
+}: PageProps<Queries.ArticlesQueryQuery, JournalContext>) => {
   const { hasNextPage, hasPrevPage, prevPagePath, nextPagePath } = pageContext;
 
-  const items = [];
-  data.allKontentItemArticle.nodes.forEach((node) => {
+  const items = data.allKontentItemArticle.nodes.map((node) => {
     const article = parseNodeToArticle(node);
-    items.push(<ArticleSummary key={article.slug} article={article} />);
+    return <ArticleSummary key={article.slug} article={article} />;
   });
-
-  const baseUrl = data.site.siteMetadata.siteUrl;
 
   return (
     <Layout>
@@ -28,7 +30,6 @@ const JournalTemplate = ({ data, pageContext }) => {
           nextPagePath={nextPagePath}
           hasPrevPage={hasPrevPage}
           hasNextPage={hasNextPage}
-          baseUrl={baseUrl}
         />
       </div>
       <div className="sidebar">
@@ -38,15 +39,18 @@ const JournalTemplate = ({ data, pageContext }) => {
   );
 };
 
-export function Head({ data, pageContext }) {
-  const defaultTitle = data.kontentItemSection.system.name;
+export function Head({
+  data,
+  pageContext,
+}: HeadProps<Queries.ArticlesQueryQuery, JournalContext>) {
+  const defaultTitle = data.kontentItemSection?.system.name ?? 'Journal';
   const journalTitle =
     pageContext.currentPage > 0
       ? `${defaultTitle} - Page ${pageContext.currentPage + 1}`
       : defaultTitle;
   const description =
-    data.kontentItemSection.elements.meta_data__description.value;
-  const baseUrl = data.site.siteMetadata.siteUrl;
+    data.kontentItemSection?.elements?.meta_data__description?.value;
+  const baseUrl = data.site?.siteMetadata?.siteUrl ?? '';
   const canoncialUrl =
     pageContext.currentPage > 0
       ? `${baseUrl}articles/page/${pageContext.currentPage}/`
@@ -54,7 +58,7 @@ export function Head({ data, pageContext }) {
   return (
     <SEOHead
       title={journalTitle}
-      description={description}
+      description={description ?? undefined}
       canonical={canoncialUrl}
     />
   );

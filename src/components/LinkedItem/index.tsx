@@ -3,7 +3,7 @@ import Blockquote from '../Blockquote';
 import RichBlockquote from '../RichBlockquote';
 import CodeBlock from '../CodeBlock';
 
-type LinkedItemData = {
+export type LinkedItemData = {
   system: { type: string };
   elements: Record<string, { value: string }>;
 };

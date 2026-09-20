@@ -1,27 +1,29 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import * as React from 'react';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
 import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
-import Pagination from '../components/Pagination';
+import Pagination, { type PaginationProps } from '../components/Pagination';
 import TagListing from '../components/TagListing';
 import SEOHead from '../components/Head';
 
-const TagTemplate = ({ data, pageContext }) => {
+type TagContext = PaginationProps & { currentPage: number; codename: string };
+
+const TagTemplate = ({
+  data,
+  pageContext,
+}: PageProps<Queries.TagsQueryQuery, TagContext>) => {
   const { currentPage, hasNextPage, hasPrevPage, prevPagePath, nextPagePath } =
     pageContext;
 
-  const tagName = data.kontentItemTagSummary.system.name;
+  const tagName = data.kontentItemTagSummary?.system.name ?? '';
 
   const title = currentPage > 0 ? `${tagName} - Page ${currentPage}` : tagName;
 
-  const items = [];
-  data.allKontentItemArticle.nodes.forEach((node) => {
+  const items = data.allKontentItemArticle.nodes.map((node) => {
     const article = parseNodeToArticle(node);
-    items.push(<ArticleSummary key={article.slug} article={article} />);
+    return <ArticleSummary key={article.slug} article={article} />;
   });
-
-  const baseUrl = data.site.siteMetadata.siteUrl;
 
   return (
     <Layout>
@@ -33,7 +35,6 @@ const TagTemplate = ({ data, pageContext }) => {
           nextPagePath={nextPagePath}
           hasPrevPage={hasPrevPage}
           hasNextPage={hasNextPage}
-          baseUrl={baseUrl}
         />
       </div>
       <div className="sidebar">
@@ -43,20 +44,27 @@ const TagTemplate = ({ data, pageContext }) => {
   );
 };
 
-export function Head({ data, pageContext }) {
-  const tagName = data.kontentItemTagSummary.system.name;
+export function Head({
+  data,
+  pageContext,
+}: HeadProps<Queries.TagsQueryQuery, TagContext>) {
+  const tagName = data.kontentItemTagSummary?.system.name ?? '';
   const title =
     pageContext.currentPage > 0
       ? `${tagName} - Page ${pageContext.currentPage + 1}`
       : tagName;
-  const description = data.kontentItemTagSummary.elements.summary.value;
-  const baseUrl = data.site.siteMetadata.siteUrl;
+  const description = data.kontentItemTagSummary?.elements?.summary?.value;
+  const baseUrl = data.site?.siteMetadata?.siteUrl ?? '';
   const canoncialUrl =
     pageContext.currentPage > 0
       ? `${baseUrl}tag/${pageContext.codename}/page/${pageContext.currentPage}/`
       : `${baseUrl}tag/${pageContext.codename}/`;
   return (
-    <SEOHead title={title} description={description} canonical={canoncialUrl} />
+    <SEOHead
+      title={title}
+      description={description ?? undefined}
+      canonical={canoncialUrl}
+    />
   );
 }
 

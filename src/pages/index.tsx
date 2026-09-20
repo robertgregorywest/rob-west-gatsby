@@ -1,15 +1,19 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import parseNodeToArticle from '../tools/articles';
+import * as React from 'react';
+import { graphql, type PageProps, type HeadProps } from 'gatsby';
+import parseNodeToArticle, { isArticleNode } from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 import SEOHead from '../components/Head';
 
-const Index = ({ data }) => {
-  const introduction = data.kontentItemHome.elements.introduction.value;
+const Index = ({ data }: PageProps<Queries.IndexQueryQuery>) => {
+  const elements = data.kontentItemHome?.elements;
+  const introduction = elements?.introduction?.value ?? '';
 
-  const items = [];
-  data.kontentItemHome.elements.featured_articles.value.forEach((node) => {
+  const items: React.ReactNode[] = [];
+  elements?.featured_articles?.value?.forEach((node) => {
+    if (!node || !isArticleNode(node)) {
+      return;
+    }
     const article = parseNodeToArticle(node);
     items.push(
       <div className="home-feature-grid__item" key={article.slug}>
@@ -20,11 +24,7 @@ const Index = ({ data }) => {
 
   return (
     <Layout>
-      <div
-        className="bio"
-
-        dangerouslySetInnerHTML={{ __html: introduction }}
-      />
+      <div className="bio" dangerouslySetInnerHTML={{ __html: introduction }} />
       <div className="home-feature-grid">{items}</div>
       <div className="home-feature-grid">
         <div className="home-feature-grid__item">
@@ -71,10 +71,10 @@ const Index = ({ data }) => {
   );
 };
 
-export function Head({ data }) {
+export function Head({ data }: HeadProps<Queries.IndexQueryQuery>) {
   const description =
-    data.kontentItemHome.elements.meta_data__description.value;
-  return <SEOHead description={description} />;
+    data.kontentItemHome?.elements?.meta_data__description?.value;
+  return <SEOHead description={description ?? undefined} />;
 }
 
 export default Index;

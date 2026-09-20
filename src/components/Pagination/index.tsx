@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import './style.scss';
 
-type PaginationProps = {
+export type PaginationProps = {
   prevPagePath: string;
   nextPagePath: string;
   hasNextPage: boolean;

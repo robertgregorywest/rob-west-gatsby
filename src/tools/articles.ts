@@ -11,7 +11,7 @@ export type Article = {
   tags: Tag[];
 };
 
-type ArticleNode = {
+export type ArticleNode = {
   readonly elements: {
     readonly title: { readonly value: string | null } | null;
     readonly summary: { readonly value: string | null } | null;
@@ -22,6 +22,9 @@ type ArticleNode = {
     } | null;
   } | null;
 };
+
+export const isArticleNode = (node: object | null): node is ArticleNode =>
+  node !== null && 'elements' in node;
 
 export default function parseNodeToArticle(node: ArticleNode): Article {
   const elements = node.elements;
