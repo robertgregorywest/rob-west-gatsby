@@ -66,6 +66,10 @@ module.exports = [
       ],
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { fixStyle: 'inline-type-imports' },
+      ],
     },
   },
   prettier,
