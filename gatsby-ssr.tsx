@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import type { GatsbySSR } from 'gatsby';
 
 const ThemeScriptTag = () => {
   const codeToRunOnClient = `
@@ -11,6 +12,8 @@ const ThemeScriptTag = () => {
   } catch (e) {} })();`;
   return <script dangerouslySetInnerHTML={{ __html: codeToRunOnClient }} />;
 };
-export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents(<ThemeScriptTag key="themeScript" />);
+export const onRenderBody: GatsbySSR['onRenderBody'] = ({
+  setPreBodyComponents,
+}) => {
+  setPreBodyComponents([<ThemeScriptTag key="themeScript" />]);
 };

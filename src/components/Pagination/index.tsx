@@ -2,12 +2,19 @@ import React from 'react';
 import { Link } from 'gatsby';
 import './style.scss';
 
+export type PaginationProps = {
+  prevPagePath: string;
+  nextPagePath: string;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+};
+
 const Pagination = ({
   prevPagePath,
   nextPagePath,
   hasNextPage,
   hasPrevPage,
-}) => {
+}: PaginationProps) => {
   const paginationText = {
     Previous: '← PREV',
     Next: '→ NEXT',
@@ -33,13 +40,17 @@ const Pagination = ({
   );
 };
 
+type PaginationHeadProps = PaginationProps & {
+  baseUrl: string;
+};
+
 export function Head({
   hasPrevPage,
   hasNextPage,
   baseUrl,
   prevPagePath,
   nextPagePath,
-}) {
+}: PaginationHeadProps) {
   return (
     <>
       {hasPrevPage && (

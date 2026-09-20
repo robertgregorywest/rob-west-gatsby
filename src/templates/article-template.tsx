@@ -1,40 +1,42 @@
-import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { RichTextElement, ImageElement } from '@kontent-ai/gatsby-components';
-import { formatArticleDate } from '../tools/articles';
+import * as React from 'react';
+import { graphql, Link, type PageProps, type HeadProps } from 'gatsby';
+import { RichTextElement } from '@kontent-ai/gatsby-components';
+import { formatArticleDate, type Tag } from '../tools/articles';
+import { getLinkText, resolveImage, toImageItems } from '../tools/richText';
 import Layout from '../components/Layout';
-import LinkedItem from '../components/LinkedItem';
+import LinkedItem, { type LinkedItemData } from '../components/LinkedItem';
 import ArticleTags from '../components/ArticleTags';
 import SEOHead from '../components/Head';
 
-const ArticleTemplate = ({ data }) => {
-  const title = data.kontentItemArticle.elements.title.value;
-  const body = data.kontentItemArticle.elements.body;
-  const tags = data.kontentItemArticle.elements.article_topics.value;
-  const published = data.kontentItemArticle.elements.publish_date.value;
+const ArticleTemplate = ({ data }: PageProps<Queries.ArticleBySlugQuery>) => {
+  const elements = data.kontentItemArticle?.elements;
+  const title = elements?.title?.value;
+  const body = elements?.body;
+  const tags = (elements?.article_topics?.value ?? []).filter(
+    (tag): tag is Tag => tag !== null
+  );
+  const published = elements?.publish_date?.value;
 
   return (
     <Layout>
       <h1>{title}</h1>
-      <p className="published">Published {formatArticleDate(published)}</p>
+      {published && (
+        <p className="published">Published {formatArticleDate(published)}</p>
+      )}
       <ArticleTags tags={tags} />
       <RichTextElement
-        value={body.value}
-        images={body.images}
-        links={body.links}
-        linkedItems={body.modular_content}
-        resolveImage={(image) => (
-          <figure>
-            <ImageElement image={image} alt={image.description} />
-            <figcaption>{image.description}</figcaption>
-          </figure>
+        value={body?.value ?? ''}
+        images={toImageItems(body?.images)}
+        links={[...(body?.links ?? [])]}
+        linkedItems={[...(body?.modular_content ?? [])]}
+        resolveImage={resolveImage}
+        resolveLink={(
+          link: { url_slug: string },
+          domNode: { children?: unknown[] }
+        ) => (
+          <Link to={`/articles/${link.url_slug}`}>{getLinkText(domNode)}</Link>
         )}
-        resolveLink={(link, domNode) => (
-          <Link to={`/articles/${link.url_slug}`}>
-            {domNode.children[0].data}
-          </Link>
-        )}
-        resolveLinkedItem={(linkedItem) => (
+        resolveLinkedItem={(linkedItem: LinkedItemData) => (
           <LinkedItem linkedItem={linkedItem} />
         )}
       />
@@ -42,11 +44,16 @@ const ArticleTemplate = ({ data }) => {
   );
 };
 
-export function Head({ data }) {
-  const title = data.kontentItemArticle.elements.title.value;
+export function Head({ data }: HeadProps<Queries.ArticleBySlugQuery>) {
+  const title = data.kontentItemArticle?.elements?.title?.value;
   const description =
-    data.kontentItemArticle.elements.meta_data__description.value;
-  return <SEOHead title={title} description={description} />;
+    data.kontentItemArticle?.elements?.meta_data__description?.value;
+  return (
+    <SEOHead
+      title={title ?? undefined}
+      description={description ?? undefined}
+    />
+  );
 }
 
 export default ArticleTemplate;

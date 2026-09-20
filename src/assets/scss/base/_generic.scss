@@ -1,5 +1,5 @@
-@use "../variables";
-@use "../mixins";
+@use '../variables';
+@use '../mixins';
 
 html {
   font-size: variables.$typographic-root-font-size;
@@ -47,10 +47,10 @@ h2 {
 }
 
 h3 {
-    font-size: variables.$typographic-base-font-size * 1.1;
-    @include mixins.line-height(1);
-    @include mixins.margin-top(0.5);
-    @include mixins.margin-bottom(0.25);
+  font-size: variables.$typographic-base-font-size * 1.1;
+  @include mixins.line-height(1);
+  @include mixins.margin-top(0.5);
+  @include mixins.margin-bottom(0.25);
 }
 
 h4,
@@ -112,7 +112,7 @@ p {
 
 pre {
   @include mixins.line-height(0.6);
-    font-size: variables.$typographic-base-font-size * 0.7;
+  font-size: variables.$typographic-base-font-size * 0.7;
   @include mixins.breakpoint-sm {
     font-size: variables.$typographic-base-font-size * 0.8;
   }
@@ -132,13 +132,13 @@ code {
 
 code:before,
 code:after {
-    letter-spacing: -0.2em;
-    content: " ";
+  letter-spacing: -0.2em;
+  content: ' ';
 }
 
 pre code:before,
 pre code:after {
-    content: none;
+  content: none;
 }
 
 blockquote {
@@ -182,7 +182,7 @@ figcaption {
 
 @include mixins.breakpoint-sm {
   body {
-      font-size: variables.$typographic-base-font-size;
+    font-size: variables.$typographic-base-font-size;
   }
   h1 {
     font-size: variables.$typographic-base-font-size * 2;

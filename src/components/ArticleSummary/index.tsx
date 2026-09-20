@@ -1,11 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { graphql, Link } from 'gatsby';
-import { formatArticleDate } from '../../tools/articles';
+import { formatArticleDate, type Article } from '../../tools/articles';
 import ArticleTags from '../ArticleTags';
 import './style.scss';
 
-const ArticleSummary = ({ article }) => (
+type ArticleSummaryProps = {
+  article: Article;
+};
+
+const ArticleSummary = ({ article }: ArticleSummaryProps) => (
   <div className="featured-article">
     <h2 className="featured-article__title">
       <Link
@@ -22,21 +25,6 @@ const ArticleSummary = ({ article }) => (
     <ArticleTags tags={article.tags} />
   </div>
 );
-
-ArticleSummary.propTypes = {
-  article: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    published: PropTypes.string.isRequired,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        codename: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-};
 
 export const pageQuery = graphql`
   fragment ArticleSummaryInfo on kontent_item_article {

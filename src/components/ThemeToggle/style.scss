@@ -1,4 +1,4 @@
-@use "../../assets/scss/variables";
+@use '../../assets/scss/variables';
 
 .toggle {
   margin-top: 4px;
@@ -56,7 +56,7 @@
 }
 
 .toggle__icon-dark:before {
-  content: "";
+  content: '';
   position: absolute;
   right: -9px;
   top: -9px;
@@ -74,7 +74,7 @@
 }
 
 .toggle__icon-dark:after {
-  content: "";
+  content: '';
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -82,8 +82,15 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  box-shadow: 0 -23px 0 variables.$color-base, 0 23px 0 variables.$color-base, 23px 0 0 variables.$color-base, -23px 0 0 variables.$color-base,
-    15px 15px 0 variables.$color-base, -15px 15px 0 variables.$color-base, 15px -15px 0 variables.$color-base, -15px -15px 0 variables.$color-base;
+  box-shadow:
+    0 -23px 0 variables.$color-base,
+    0 23px 0 variables.$color-base,
+    23px 0 0 variables.$color-base,
+    -23px 0 0 variables.$color-base,
+    15px 15px 0 variables.$color-base,
+    -15px 15px 0 variables.$color-base,
+    15px -15px 0 variables.$color-base,
+    -15px -15px 0 variables.$color-base;
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
@@ -104,7 +111,7 @@
 }
 
 .toggle__icon-light::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -9px;
   top: -9px;
@@ -117,14 +124,21 @@
 }
 
 .toggle__icon-light::after {
-  content: "";
+  content: '';
   width: 8px;
   height: 8px;
   position: absolute;
   top: 50%;
   left: 50%;
-  box-shadow: 0 -23px 0 #cbd5e0, 0 23px 0 #cbd5e0, 23px 0 0 #cbd5e0, -23px 0 0 #cbd5e0, 15px 15px 0 #cbd5e0,
-    -15px 15px 0 #cbd5e0, 15px -15px 0 #cbd5e0, -15px -15px 0 #cbd5e0;
+  box-shadow:
+    0 -23px 0 #cbd5e0,
+    0 23px 0 #cbd5e0,
+    23px 0 0 #cbd5e0,
+    -23px 0 0 #cbd5e0,
+    15px 15px 0 #cbd5e0,
+    -15px 15px 0 #cbd5e0,
+    15px -15px 0 #cbd5e0,
+    -15px -15px 0 #cbd5e0;
   transform: scale(1);
   border-radius: 50%;
   margin: -4px 0px 0px -4px;

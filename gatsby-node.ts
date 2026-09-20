@@ -1,15 +1,21 @@
-const path = require('path');
-const slash = require('slash');
+import path from 'path';
+import type { GatsbyNode } from 'gatsby';
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+const slash = (filePath: string) => filePath.replace(/\\/g, '/');
+
+export const createPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions;
 
-  const articleTemplate = path.resolve('./src/templates/article-template.jsx');
-  const journalTemplate = path.resolve('./src/templates/journal-template.jsx');
-  const tagTemplate = path.resolve('./src/templates/tag-template.jsx');
+  const articleTemplate = path.resolve('./src/templates/article-template.tsx');
+  const journalTemplate = path.resolve('./src/templates/journal-template.tsx');
+  const tagTemplate = path.resolve('./src/templates/tag-template.tsx');
 
-  const result = await graphql(`
-    {
+  const result = await graphql<Queries.CreatePagesQuery>(`
+    query CreatePages {
       allArticles: allKontentItemArticle(
         sort: { elements: { publish_date: { value: DESC } } }
       ) {
@@ -35,16 +41,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (result.errors) {
+  if (result.errors || !result.data) {
     reporter.panicOnBuild('Error loading articles from Kontent', result.errors);
     return;
   }
 
   result.data.allArticles.nodes.forEach((node) => {
+    const slug = node.elements?.article_url_slug?.value;
+    if (!slug) {
+      return;
+    }
     createPage({
-      path: `/articles/${node.elements.article_url_slug.value}/`,
+      path: `/articles/${slug}/`,
       component: slash(articleTemplate),
-      context: { slug: `${node.elements.article_url_slug.value}` },
+      context: { slug },
     });
   });
 
@@ -71,6 +81,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   result.data.allTags.group.forEach((tag) => {
+    if (tag.fieldValue === null) {
+      return;
+    }
     const numTagPages = Math.ceil(tag.totalCount / postsPerPage);
     const tagSlug = `/tag/${tag.fieldValue}`;
 

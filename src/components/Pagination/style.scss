@@ -1,5 +1,5 @@
-@use "../../assets/scss/variables";
-@use "../../assets/scss/mixins";
+@use '../../assets/scss/variables';
+@use '../../assets/scss/mixins';
 
 .pagination {
   @include mixins.margin-top(0.5);

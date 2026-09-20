@@ -1,14 +1,14 @@
-@use "../../assets/scss/variables";
-@use "../../assets/scss/mixins";
+@use '../../assets/scss/variables';
+@use '../../assets/scss/mixins';
 
 .featured-article {
   padding: 15px 0;
   &__title-link {
     @include mixins.themify(variables.$themes) {
-      color: mixins.themed("color-base");
+      color: mixins.themed('color-base');
       &:hover,
       &:focus {
-        color: mixins.themed("color-primary");
+        color: mixins.themed('color-primary');
       }
     }
   }

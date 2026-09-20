@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import hljs from './custom-hljs';
 import './style.scss';
 
-const CodeBlock = ({ language, code }) => {
+type CodeBlockProps = {
+  language: string;
+  code: string;
+};
+
+const CodeBlock = ({ language, code }: CodeBlockProps) => {
   const { value: formattedCode } = hljs.highlight(code, { language });
   return (
     <pre>
@@ -14,11 +18,6 @@ const CodeBlock = ({ language, code }) => {
       />
     </pre>
   );
-};
-
-CodeBlock.propTypes = {
-  language: PropTypes.string.isRequired,
-  code: PropTypes.string.isRequired,
 };
 
 export default CodeBlock;

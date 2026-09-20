@@ -5,10 +5,11 @@ const react = require('eslint-plugin-react');
 const reactHooks = require('eslint-plugin-react-hooks');
 const jsxA11y = require('eslint-plugin-jsx-a11y');
 const importX = require('eslint-plugin-import-x');
+const tseslint = require('typescript-eslint');
 const prettier = require('eslint-config-prettier');
 
 module.exports = [
-  { ignores: ['public/', '.cache/', 'node_modules/'] },
+  { ignores: ['public/', '.cache/', 'node_modules/', 'src/gatsby-types.d.ts'] },
   js.configs.recommended,
   react.configs.flat.recommended,
   jsxA11y.flatConfigs.recommended,
@@ -26,8 +27,10 @@ module.exports = [
     },
     settings: {
       react: { version: 'detect' },
-      'import-x/extensions': ['.js', '.jsx'],
-      'import-x/resolver': { node: { extensions: ['.js', '.jsx'] } },
+      'import-x/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+      'import-x/resolver': {
+        node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      },
     },
     rules: {
       'arrow-body-style': [
@@ -37,7 +40,32 @@ module.exports = [
       ],
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
-      'react/prop-types': 'off',
+    },
+  },
+  ...tseslint.configs.recommended.map((config) => {
+    return { ...config, files: ['**/*.{ts,tsx}'] };
+  }),
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tseslint.parser,
+      globals: { ...globals.browser, ...globals.node, graphql: 'readonly' },
+    },
+    settings: {
+      react: { version: 'detect' },
+      'import-x/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+      'import-x/resolver': {
+        node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      },
+    },
+    rules: {
+      'arrow-body-style': [
+        'error',
+        'as-needed',
+        { requireReturnForObjectLiteral: true },
+      ],
+      'no-console': 'off',
+      'jsx-a11y/anchor-is-valid': 'off',
     },
   },
   prettier,

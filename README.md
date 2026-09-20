@@ -4,7 +4,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e45b41a6-9bf1-4096-814f-c5904995bb8c/deploy-status)](https://app.netlify.com/sites/rob-west/deploys)
 
-- **Framework:** [Gatsby 5](https://www.gatsbyjs.com/) with React 19 and Sass
+- **Framework:** [Gatsby 5](https://www.gatsbyjs.com/) with React 19, TypeScript and Sass
 - **Content:** [Kontent.ai](https://kontent.ai/) headless CMS, via `@kontent-ai/gatsby-source`
 - **Hosting:** [Netlify](https://app.netlify.com/sites/rob-west), deployed from `main`
 - **Package manager:** npm (the project moved off Yarn Classic in 2026; don't reintroduce a `yarn.lock`)
@@ -57,20 +57,26 @@ The published-content defaults in `.env.template` work as they are, so you only 
 | `npm run build` | Production build into `public/`. |
 | `npx gatsby serve` | Serve the production build locally at <http://localhost:9000>. |
 | `npm run clean` | Delete Gatsby's `.cache/` and `public/`. Try this first when a build behaves strangely. |
-| `npm run lint` | ESLint (flat config in `eslint.config.js`) over all `.js`/`.jsx` files. |
+| `npm run typecheck` | Type-check the project with `tsc --noEmit`. Needs `src/gatsby-types.d.ts`, so run `develop` or `build` once on a fresh checkout. |
+| `npm run lint` | ESLint (flat config in `eslint.config.js`) over all `.js`, `.ts` and `.tsx` files. |
 | `npm run format` | Prettier-format the config files and `src/`. |
 | `npm run format:check` | Check formatting without writing changes. |
 
-Linting no longer runs inside `develop` or `build`; run `npm run lint` and `npm run format:check` separately.
+Type checking and linting don't run inside `develop` or `build`; run `npm run typecheck`, `npm run lint` and `npm run format:check` separately.
+
+`src/gatsby-types.d.ts` holds the types generated from the site's GraphQL queries (the `Queries` namespace). Gatsby writes it on `develop` and `build` (`graphqlTypegen` in `gatsby-config.js`), and it's git-ignored.
 
 ## Project structure
 
 ```
 gatsby-config.js    Plugins, Kontent source, Sass/PostCSS setup, site metadata
-gatsby-node.js      Creates article, paginated article list and tag pages from Kontent data
+gatsby-node.ts      Creates article, paginated article list and tag pages from Kontent data
+gatsby-ssr.tsx      Injects the theme script before the body to avoid a flash of the wrong theme
 src/pages/          Static pages (home, about, philosophy, 404)
 src/templates/      Article, article list ("journal") and tag page templates
 src/components/     React components, most with a co-located style.scss
+src/tools/          Helpers for parsing Kontent article data and rich text
+src/types/          Ambient declarations for Sass, image and untyped modules
 src/assets/         Icons and global Sass
 scripts/copy-env.js Copies .env.template to .env on install
 ```

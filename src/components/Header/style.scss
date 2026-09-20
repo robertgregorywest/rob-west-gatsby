@@ -1,5 +1,5 @@
-@use "../../assets/scss/variables";
-@use "../../assets/scss/mixins";
+@use '../../assets/scss/variables';
+@use '../../assets/scss/mixins';
 
 .header {
   display: flex;
@@ -12,13 +12,13 @@
   border-bottom-style: solid;
   border-bottom-width: 1px;
   @include mixins.themify(variables.$themes) {
-    border-top-color: mixins.themed("color-base");
+    border-top-color: mixins.themed('color-base');
   }
   @include mixins.padding-bottom(0.5);
 
   &__title-link {
     @include mixins.themify(variables.$themes) {
-      color: mixins.themed("color-base");
+      color: mixins.themed('color-base');
     }
   }
 
@@ -50,7 +50,7 @@
 
   &__nav-item-link {
     @include mixins.themify(variables.$themes) {
-      color: mixins.themed("color-base");
+      color: mixins.themed('color-base');
     }
   }
 }
