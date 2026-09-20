@@ -45,9 +45,9 @@ const ArticleTemplate = ({ data }: PageProps<Queries.ArticleBySlugQuery>) => {
 };
 
 export function Head({ data }: HeadProps<Queries.ArticleBySlugQuery>) {
-  const title = data.kontentItemArticle?.elements?.title.value;
+  const title = data.kontentItemArticle?.elements.title.value;
   const description =
-    data.kontentItemArticle?.elements?.meta_data__description.value;
+    data.kontentItemArticle?.elements.meta_data__description.value;
   return (
     <SEOHead
       title={title ?? undefined}

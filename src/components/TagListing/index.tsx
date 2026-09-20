@@ -46,7 +46,7 @@ const TagListing = () => {
         result.push({
           codename: item.fieldValue,
           name: source.system.name,
-          summary: source.elements?.summary?.value ?? '',
+          summary: source.elements.summary.value ?? '',
           count: item.totalCount,
         });
       }
@@ -58,15 +58,14 @@ const TagListing = () => {
   return (
     <div>
       <h2>Tags</h2>
-      {tags &&
-        tags.map((tag) => (
-          <div key={tag.codename}>
-            <h3>
-              <Link to={`/tag/${tag.codename}`}>{tag.name}</Link> ({tag.count})
-            </h3>
-            <p>{tag.summary}</p>
-          </div>
-        ))}
+      {tags.map((tag) => (
+        <div key={tag.codename}>
+          <h3>
+            <Link to={`/tag/${tag.codename}`}>{tag.name}</Link> ({tag.count})
+          </h3>
+          <p>{tag.summary}</p>
+        </div>
+      ))}
     </div>
   );
 };

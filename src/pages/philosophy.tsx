@@ -37,7 +37,7 @@ const Philosophy = ({ data }: PageProps<Queries.PhilosophyQueryQuery>) => {
 export function Head({ data }: HeadProps<Queries.PhilosophyQueryQuery>) {
   const name = data.kontentItemPhilosophy?.system.name;
   const description =
-    data.kontentItemPhilosophy?.elements?.meta_data__description.value;
+    data.kontentItemPhilosophy?.elements.meta_data__description.value;
   return <SEOHead title={name} description={description ?? undefined} />;
 }
 

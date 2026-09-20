@@ -49,7 +49,7 @@ export function Head({
       ? `${defaultTitle} - Page ${pageContext.currentPage + 1}`
       : defaultTitle;
   const description =
-    data.kontentItemSection?.elements?.meta_data__description?.value;
+    data.kontentItemSection?.elements.meta_data__description.value;
   const baseUrl = (data.site?.siteMetadata?.siteUrl ?? '').replace(/\/$/, '');
   const canoncialUrl =
     pageContext.currentPage > 0
