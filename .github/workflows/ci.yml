@@ -23,6 +23,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Unit tests
+        run: npm run test:unit
+
       # Generates src/gatsby-types.d.ts, which typecheck depends on. Sourcing
       # needs the real Kontent project (the .env.template demo project 404s).
       # The project ID is not a secret, so these are repository variables
@@ -48,7 +51,7 @@ jobs:
 
       # Serves the production build from the step above.
       - name: Smoke tests
-        run: npm test
+        run: npm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: failure()
