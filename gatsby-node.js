@@ -1,4 +1,5 @@
 const path = require('path');
+const { paginate } = require('./src/tools/pagination');
 
 const slash = (filePath) => filePath.replace(/\\/g, '/');
 
@@ -195,48 +196,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const postsPerPage = 8;
 
-  const numArticlePages = Math.ceil(
-    result.data.allArticles.totalCount / postsPerPage
-  );
-
-  for (let i = 0; i < numArticlePages; i += 1) {
+  paginate(
+    '/articles',
+    result.data.allArticles.totalCount,
+    postsPerPage
+  ).forEach(({ path: pagePath, context }) => {
     createPage({
-      path: i === 0 ? '/articles' : `/articles/page/${i}`,
+      path: pagePath,
       component: slash(journalTemplate),
-      context: {
-        currentPage: i,
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        prevPagePath: i <= 1 ? '/articles' : `/articles/page/${i - 1}`,
-        nextPagePath: `/articles/page/${i + 1}`,
-        hasPrevPage: i !== 0,
-        hasNextPage: i !== numArticlePages - 1,
-      },
+      context,
     });
-  }
+  });
 
   result.data.allTags.group.forEach((tag) => {
     if (tag.fieldValue === null) {
       return;
     }
-    const numTagPages = Math.ceil(tag.totalCount / postsPerPage);
-    const tagSlug = `/tag/${tag.fieldValue}`;
-
-    for (let i = 0; i < numTagPages; i += 1) {
-      createPage({
-        path: i === 0 ? tagSlug : `${tagSlug}/page/${i}`,
-        component: slash(tagTemplate),
-        context: {
-          codename: tag.fieldValue,
-          currentPage: i,
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          prevPagePath: i <= 1 ? tagSlug : `${tagSlug}/page/${i - 1}`,
-          nextPagePath: `${tagSlug}/page/${i + 1}`,
-          hasPrevPage: i !== 0,
-          hasNextPage: i !== numTagPages - 1,
-        },
-      });
-    }
+    paginate(`/tag/${tag.fieldValue}`, tag.totalCount, postsPerPage).forEach(
+      ({ path: pagePath, context }) => {
+        createPage({
+          path: pagePath,
+          component: slash(tagTemplate),
+          context: { ...context, codename: tag.fieldValue },
+        });
+      }
+    );
   });
 };
