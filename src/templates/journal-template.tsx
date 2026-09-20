@@ -50,11 +50,11 @@ export function Head({
       : defaultTitle;
   const description =
     data.kontentItemSection?.elements?.meta_data__description?.value;
-  const baseUrl = data.site?.siteMetadata?.siteUrl ?? '';
+  const baseUrl = (data.site?.siteMetadata?.siteUrl ?? '').replace(/\/$/, '');
   const canoncialUrl =
     pageContext.currentPage > 0
-      ? `${baseUrl}articles/page/${pageContext.currentPage}/`
-      : `${baseUrl}articles/`;
+      ? `${baseUrl}/articles/page/${pageContext.currentPage}/`
+      : `${baseUrl}/articles/`;
   return (
     <SEOHead
       title={journalTitle}
