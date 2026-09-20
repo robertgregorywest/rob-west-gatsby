@@ -33,6 +33,13 @@ jobs:
           KONTENT_PROJECT_ID: ${{ vars.KONTENT_PROJECT_ID }}
           KONTENT_LANGUAGE_CODENAMES: ${{ vars.KONTENT_LANGUAGE_CODENAMES }}
 
+      # Catches createPages silently producing nothing (see AGENTS.md).
+      - name: Verify built pages
+        run: npm run verify:build
+        env:
+          KONTENT_PROJECT_ID: ${{ vars.KONTENT_PROJECT_ID }}
+          KONTENT_LANGUAGE_CODENAMES: ${{ vars.KONTENT_LANGUAGE_CODENAMES }}
+
       - name: Typecheck, lint and format
         run: npm run check
 
