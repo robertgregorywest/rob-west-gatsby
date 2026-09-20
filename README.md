@@ -4,7 +4,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e45b41a6-9bf1-4096-814f-c5904995bb8c/deploy-status)](https://app.netlify.com/sites/rob-west/deploys)
 
-- **Framework:** [Gatsby 5](https://www.gatsbyjs.com/) with React 18 and Sass
+- **Framework:** [Gatsby 5](https://www.gatsbyjs.com/) with React 19 and Sass
 - **Content:** [Kontent.ai](https://kontent.ai/) headless CMS, via `@kontent-ai/gatsby-source`
 - **Hosting:** [Netlify](https://app.netlify.com/sites/rob-west), deployed from `main`
 - **Package manager:** npm (the project moved off Yarn Classic in 2026; don't reintroduce a `yarn.lock`)

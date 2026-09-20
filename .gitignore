@@ -10,3 +10,6 @@ rob-west-gatsby.iml
 .env
 # Local Netlify folder
 .netlify
+
+# playwright-cli output
+.playwright-cli/
