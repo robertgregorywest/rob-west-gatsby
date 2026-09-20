@@ -53,7 +53,7 @@ export function Head({
     pageContext.currentPage > 0
       ? `${tagName} - Page ${pageContext.currentPage + 1}`
       : tagName;
-  const description = data.kontentItemTagSummary?.elements?.summary?.value;
+  const description = data.kontentItemTagSummary?.elements.summary.value;
   const baseUrl = (data.site?.siteMetadata?.siteUrl ?? '').replace(/\/$/, '');
   const canoncialUrl =
     pageContext.currentPage > 0

@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 type HeadProps = {
   title?: string;
   description?: string;

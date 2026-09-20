@@ -1,5 +1,4 @@
 import React from 'react';
-
 type RichBlockquoteProps = {
   quote: string;
 };

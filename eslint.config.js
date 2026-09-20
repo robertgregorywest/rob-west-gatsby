@@ -42,7 +42,10 @@ module.exports = [
       'jsx-a11y/anchor-is-valid': 'off',
     },
   },
-  ...tseslint.configs.recommendedTypeChecked.map((config) => {
+  ...[
+    ...tseslint.configs.strictTypeChecked,
+    ...tseslint.configs.stylisticTypeChecked,
+  ].map((config) => {
     return { ...config, files: ['**/*.{ts,tsx}'] };
   }),
   {
@@ -70,6 +73,13 @@ module.exports = [
       ],
       'no-console': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
+      // The codebase uses `type` aliases throughout, not interfaces.
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
+        { allowNumber: true },
+      ],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { fixStyle: 'inline-type-imports' },

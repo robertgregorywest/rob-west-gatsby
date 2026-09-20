@@ -54,10 +54,10 @@ export function Head({
   return (
     <>
       {hasPrevPage && (
-        <link rel="prev" href={baseUrl + prevPagePath.substr(1)} />
+        <link rel="prev" href={baseUrl + prevPagePath.slice(1)} />
       )}
       {hasNextPage && (
-        <link rel="next" href={baseUrl + nextPagePath.substr(1)} />
+        <link rel="next" href={baseUrl + nextPagePath.slice(1)} />
       )}
     </>
   );

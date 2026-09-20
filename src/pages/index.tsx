@@ -69,7 +69,7 @@ const Index = ({ data }: PageProps<Queries.IndexQueryQuery>) => {
 
 export function Head({ data }: HeadProps<Queries.IndexQueryQuery>) {
   const description =
-    data.kontentItemHome?.elements?.meta_data__description?.value;
+    data.kontentItemHome?.elements.meta_data__description.value;
   return <SEOHead description={description ?? undefined} />;
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-
 type MetaProps = {
   title: string;
 };

@@ -14,11 +14,15 @@ type QueryImage = {
 export const toImageItems = (
   images: ReadonlyArray<QueryImage | null> | null | undefined
 ): ImageItem[] =>
-  (images ?? []).flatMap((image) =>
-    image && image.width !== null && image.height !== null
-      ? [{ ...image, width: image.width, height: image.height }]
-      : []
-  );
+  (images ?? []).flatMap((image) => {
+    if (image === null) {
+      return [];
+    }
+    if (image.width === null || image.height === null) {
+      return [];
+    }
+    return [{ ...image, width: image.width, height: image.height }];
+  });
 
 export const resolveImage = (image?: ImageItem) =>
   image ? (
