@@ -15,6 +15,12 @@ Any change that affects what the site renders or how it behaves (components, tem
 
 Follow the [playwright-cli skill](.agents/skills/playwright-cli/SKILL.md) for the command reference.
 
+`playwright-cli` is installed globally, not as a project dependency. If it fails with `Executable doesn't exist`, its browser build hasn't been downloaded. Install it once with the CLI's own bundled Playwright, so the version matches:
+
+```sh
+node "$(npm root -g)/@playwright/cli/node_modules/playwright-core/cli.js" install chromium chromium-headless-shell
+```
+
 ### Workflow
 
 1. Build and serve the **production build**. It's what ships, and hydration problems show up there and not in `develop`.

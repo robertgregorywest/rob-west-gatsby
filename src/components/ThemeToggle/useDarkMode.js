@@ -1,33 +1,61 @@
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
+
+const STORAGE_KEY = 'theme';
+const CHANGE_EVENT = 'themechange';
+const DARK_QUERY = '(prefers-color-scheme: dark)';
+
+const readStoredTheme = () => {
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored === 'dark' || stored === 'light' ? stored : null;
+  } catch {
+    return null;
+  }
+};
+
+const getSnapshot = () =>
+  readStoredTheme() ??
+  (window.matchMedia(DARK_QUERY).matches ? 'dark' : 'light');
+
+const getServerSnapshot = () => 'light';
+
+const applyTheme = () => {
+  const theme = getSnapshot();
+  document.body.classList.remove('light-theme', 'dark-theme');
+  document.body.classList.add(`${theme}-theme`);
+};
+
+const subscribe = (callback) => {
+  const mediaQuery = window.matchMedia(DARK_QUERY);
+  const onChange = () => {
+    applyTheme();
+    callback();
+  };
+  applyTheme();
+  window.addEventListener('storage', onChange);
+  window.addEventListener(CHANGE_EVENT, onChange);
+  mediaQuery.addEventListener('change', onChange);
+  return () => {
+    window.removeEventListener('storage', onChange);
+    window.removeEventListener(CHANGE_EVENT, onChange);
+    mediaQuery.removeEventListener('change', onChange);
+  };
+};
 
 const useDarkMode = () => {
-  const themes = {
-    LIGHT: 'light',
-    DARK: 'dark',
-  };
-  const [theme, setTheme] = useState(themes.LIGHT);
-  const [hasMounted, sethasMounted] = useState(false);
-
-  const isBrowser = () => typeof window !== 'undefined';
-
-  const oppositeTheme = theme === themes.LIGHT ? themes.DARK : themes.LIGHT;
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const oppositeTheme = theme === 'light' ? 'dark' : 'light';
 
   const toggleTheme = () => {
-    if (isBrowser()) {
-      window.localStorage.setItem('theme', oppositeTheme);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, oppositeTheme);
+    } catch {
+      // Storage unavailable; the theme still changes for this session below
     }
-    setTheme(oppositeTheme);
+    window.dispatchEvent(new Event(CHANGE_EVENT));
   };
 
-  useEffect(() => {
-    const localTheme = isBrowser() && window.localStorage.getItem('theme');
-    if (localTheme && localTheme !== theme) {
-      setTheme(localTheme);
-    }
-    sethasMounted(true);
-  }, []);
-
-  return [theme, oppositeTheme, toggleTheme, hasMounted];
+  return [theme, oppositeTheme, toggleTheme];
 };
 
 export default useDarkMode;
