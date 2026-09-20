@@ -5,6 +5,9 @@ const url = 'https://robwest.info/';
 
 require('dotenv').config({ quiet: true });
 
+const previewEnabled =
+  process.env.KONTENT_PREVIEW_ENABLED?.toLowerCase() === 'true';
+
 module.exports = {
   graphqlTypegen: { generateOnBuild: true },
   // These properties are used by gatsby-plugin-sitemap
@@ -18,14 +21,10 @@ module.exports = {
       resolve: '@kontent-ai/gatsby-source',
       options: {
         projectId: process.env.KONTENT_PROJECT_ID,
-        usePreviewUrl:
-          process.env.KONTENT_PREVIEW_ENABLED &&
-          process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true',
-        authorizationKey:
-          process.env.KONTENT_PREVIEW_ENABLED &&
-          process.env.KONTENT_PREVIEW_ENABLED.toLowerCase() === 'true'
-            ? process.env.KONTENT_PREVIEW_KEY
-            : undefined,
+        usePreviewUrl: previewEnabled,
+        authorizationKey: previewEnabled
+          ? process.env.KONTENT_PREVIEW_KEY
+          : undefined,
         languageCodenames: process.env.KONTENT_LANGUAGE_CODENAMES.split(
           ','
         ).map((lang) => lang.trim()),
