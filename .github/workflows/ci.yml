@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+
+      # Generates src/gatsby-types.d.ts, which typecheck depends on. Sourcing
+      # needs the real Kontent project (the .env.template demo project 404s).
+      # The project ID is not a secret, so these are repository variables
+      # (Settings > Secrets and variables > Actions > Variables).
+      - name: Build (generates GraphQL types)
+        run: npm run build
+        env:
+          KONTENT_PROJECT_ID: ${{ vars.KONTENT_PROJECT_ID }}
+          KONTENT_LANGUAGE_CODENAMES: ${{ vars.KONTENT_LANGUAGE_CODENAMES }}
+
+      - name: Typecheck, lint and format
+        run: npm run check
