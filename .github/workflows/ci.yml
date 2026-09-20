@@ -30,8 +30,15 @@ jobs:
       # needs the real Kontent project (the .env.template demo project 404s).
       # The project ID is not a secret, so these are repository variables
       # (Settings > Secrets and variables > Actions > Variables).
-      - name: Build (generates GraphQL types)
-        run: npm run build
+      #
+      # The Playwright browser install doesn't depend on the build, so it runs
+      # alongside it. `wait` fails the step if the install failed.
+      - name: Build (generates GraphQL types) and install Playwright browser
+        run: |
+          npx playwright install --with-deps chromium &
+          install=$!
+          npm run build
+          wait "$install"
         env:
           KONTENT_PROJECT_ID: ${{ vars.KONTENT_PROJECT_ID }}
           KONTENT_LANGUAGE_CODENAMES: ${{ vars.KONTENT_LANGUAGE_CODENAMES }}
@@ -45,9 +52,6 @@ jobs:
 
       - name: Typecheck, lint and format
         run: npm run check
-
-      - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
 
       # Serves the production build from the step above.
       - name: Smoke tests
