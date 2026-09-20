@@ -4,30 +4,16 @@ import { RichTextElement } from '@kontent-ai/gatsby-components';
 import Layout from '../components/Layout';
 import SEOHead from '../components/Head';
 
-type Work = {
-  readonly id: string;
-  readonly elements: {
-    readonly asset: {
-      readonly value: ReadonlyArray<{ readonly url: string } | null> | null;
-    } | null;
-    readonly summary: { readonly value: string | null } | null;
-    readonly title: { readonly value: string | null } | null;
-  } | null;
-};
-
-const isWork = (work: object | null): work is Work =>
-  work !== null && 'id' in work;
-
 const Philosophy = ({ data }: PageProps<Queries.PhilosophyQueryQuery>) => {
   const name = data.kontentItemPhilosophy?.system.name;
   const elements = data.kontentItemPhilosophy?.elements;
-  const works = (elements?.featured_work?.value ?? []).filter(isWork);
+  const works = elements?.featured_work.value ?? [];
 
   return (
     <Layout>
       <div className="content">
         <h1>{name}</h1>
-        <RichTextElement value={elements?.introduction?.value ?? ''} />
+        <RichTextElement value={elements?.introduction.value ?? ''} />
       </div>
       <div className="sidebar">
         <div>
@@ -35,11 +21,11 @@ const Philosophy = ({ data }: PageProps<Queries.PhilosophyQueryQuery>) => {
           {works.map((work) => (
             <div key={work.id}>
               <h3>
-                <a href={work.elements?.asset?.value?.[0]?.url}>
-                  {work.elements?.title?.value}
+                <a href={work.elements.asset.value?.[0]?.url}>
+                  {work.elements.title.value}
                 </a>
               </h3>
-              <p>{work.elements?.summary?.value}</p>
+              <p>{work.elements.summary.value}</p>
             </div>
           ))}
         </div>
@@ -51,7 +37,7 @@ const Philosophy = ({ data }: PageProps<Queries.PhilosophyQueryQuery>) => {
 export function Head({ data }: HeadProps<Queries.PhilosophyQueryQuery>) {
   const name = data.kontentItemPhilosophy?.system.name;
   const description =
-    data.kontentItemPhilosophy?.elements?.meta_data__description?.value;
+    data.kontentItemPhilosophy?.elements?.meta_data__description.value;
   return <SEOHead title={name} description={description ?? undefined} />;
 }
 

@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { graphql, type PageProps, type HeadProps } from 'gatsby';
-import parseNodeToArticle, { isArticleNode } from '../tools/articles';
+import parseNodeToArticle from '../tools/articles';
 import Layout from '../components/Layout';
 import ArticleSummary from '../components/ArticleSummary';
 import SEOHead from '../components/Head';
 
 const Index = ({ data }: PageProps<Queries.IndexQueryQuery>) => {
   const elements = data.kontentItemHome?.elements;
-  const introduction = elements?.introduction?.value ?? '';
+  const introduction = elements?.introduction.value ?? '';
 
-  const items: React.ReactNode[] = [];
-  elements?.featured_articles?.value?.forEach((node) => {
-    if (!node || !isArticleNode(node)) {
-      return;
-    }
+  const items = (elements?.featured_articles.value ?? []).map((node) => {
     const article = parseNodeToArticle(node);
-    items.push(
+    return (
       <div className="home-feature-grid__item" key={article.slug}>
         <ArticleSummary article={article} />
       </div>
