@@ -32,7 +32,10 @@ jobs:
       # (Settings > Secrets and variables > Actions > Variables).
       #
       # The Playwright browser install doesn't depend on the build, so it runs
-      # alongside it. `wait` fails the step if the install failed.
+      # alongside it. `wait` fails the step if the install failed. There is no
+      # `--with-deps`: it spent ~30s on apt and the hosted runner image already
+      # has Chromium's libraries. If a runner image change breaks that, the
+      # smoke tests fail on a missing shared library; add `--with-deps` back.
       - name: Build (generates GraphQL types) and install Playwright browser
         run: |
           npx playwright install chromium &
