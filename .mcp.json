@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "kontent-ai-stdio": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["scripts/start-kontent-mcp.js"]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+[mcp_servers.kontent-ai-stdio]
+command = "node"
+args = ["scripts/start-kontent-mcp.js"]
