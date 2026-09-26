@@ -5,6 +5,11 @@ on:
   push:
     branches: [main]
 
+# The job only reads the repo; upload-artifact uses the runtime token, not
+# GITHUB_TOKEN.
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
