@@ -2,7 +2,7 @@
 
 Published robwest.info articles that show Rob's voice, stored as Kontent item IDs so the text is always read live from the CMS. Language ID for all: `00000000-0000-0000-0000-000000000000` (en-GB).
 
-Fetch with `bulk-get-content-item-variants`. Each response is large, so pull only the Body element (id `1f7bb744-a4ce-4c26-8c8f-892fd30a629d`) and strip the HTML. If the Kontent MCP is unavailable, skip this step; the Reference in SKILL.md carries the voice.
+Fetch with `bulk-get-content-item-variants`. Each response is large, so pull only the Body element (id `1f7bb744-a4ce-4c26-8c8f-892fd30a629d`) and strip the HTML.
 
 | Item ID | Article | Shows |
 | --- | --- | --- |
