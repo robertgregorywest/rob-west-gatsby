@@ -2,6 +2,7 @@ import React, { type ComponentType } from 'react';
 import { graphql, Link } from 'gatsby';
 import { RichTextElement } from '@kontent-ai/gatsby-components';
 import { getLinkText, resolveImage, toImageItems } from '../../tools/richText';
+import AttributedQuote from '../AttributedQuote';
 import CodeBlock from '../CodeBlock';
 
 type QuoteItem = {
@@ -14,7 +15,12 @@ type CodeItem = {
   elements: { language: { value: string }; code: { value: string } };
 };
 
-type LinkedItemData = QuoteItem | CodeItem;
+type AttributedQuoteItem = {
+  system: { type: 'attributed_quote' };
+  elements: { text: { value: string }; author: { value: string } };
+};
+
+type LinkedItemData = QuoteItem | CodeItem | AttributedQuoteItem;
 
 const Blockquote = ({ quote }: { quote: string }) => (
   <blockquote>{quote}</blockquote>
@@ -40,6 +46,9 @@ const isQuote = (item: LinkedItemData): item is QuoteItem =>
 const isCode = (item: LinkedItemData): item is CodeItem =>
   item.system.type === 'code_block';
 
+const isAttributedQuote = (item: LinkedItemData): item is AttributedQuoteItem =>
+  item.system.type === 'attributed_quote';
+
 const renderLinkedItem = (linkedItem: LinkedItemData) => {
   if (isQuote(linkedItem)) {
     const QuoteComponent = QUOTE_COMPONENTS[linkedItem.system.type];
@@ -54,6 +63,10 @@ const renderLinkedItem = (linkedItem: LinkedItemData) => {
     } = linkedItem;
     return <CodeBlock language={language} code={code} />;
   }
+  if (isAttributedQuote(linkedItem)) {
+    const { text, author } = linkedItem.elements;
+    return <AttributedQuote text={text.value} author={author.value} />;
+  }
   return null;
 };
 
@@ -66,7 +79,7 @@ type ArticleBodyProps = {
   body: Queries.ArticleBodyInfoFragment | null | undefined;
 };
 
-/** Renders an article's Kontent rich-text body: images, article links, quotes and code. */
+/** Renders an article's Kontent rich-text body: images, article links, quotes (plain, rich and attributed) and code. */
 const ArticleBody = ({ body }: ArticleBodyProps) => (
   <RichTextElement
     value={body?.value ?? ''}
@@ -99,6 +112,21 @@ export const bodyFragment = graphql`
         id
         elements {
           text {
+            value
+          }
+        }
+        system {
+          codename
+          type
+        }
+      }
+      ... on kontent_item_attributed_quote {
+        id
+        elements {
+          text {
+            value
+          }
+          author {
             value
           }
         }

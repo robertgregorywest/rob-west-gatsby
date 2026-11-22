@@ -99,6 +99,38 @@ describe('ArticleBody', () => {
     expect(html).toContain('<blockquote>a <b>rich</b> quote</blockquote>');
   });
 
+  it('renders an attributed quote with its author below', () => {
+    const html = render(
+      body('', [
+        {
+          system: { codename: 'aq', type: 'attributed_quote' },
+          elements: {
+            text: { value: 'Plan to throw <one> away' },
+            author: { value: 'Fred Brooks' },
+          },
+        },
+      ])
+    );
+    expect(html).toContain(
+      '<figure class="attributed-quote">' +
+        '<blockquote class="attributed-quote__text">Plan to throw &lt;one&gt; away</blockquote>' +
+        '<figcaption class="attributed-quote__author">Fred Brooks</figcaption>' +
+        '</figure>'
+    );
+  });
+
+  it('leaves out the caption when an attributed quote has no author', () => {
+    const html = render(
+      body('', [
+        {
+          system: { codename: 'aq', type: 'attributed_quote' },
+          elements: { text: { value: 'Anon' }, author: { value: '' } },
+        },
+      ])
+    );
+    expect(html).not.toContain('figcaption');
+  });
+
   it('renders a code block with highlighting', () => {
     const html = render(
       body('', [

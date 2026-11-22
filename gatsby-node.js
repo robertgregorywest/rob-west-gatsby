@@ -30,6 +30,7 @@ exports.createSchemaCustomization = ({ actions }) => {
         kontent_item_blockquote
       | kontent_item_rich_blockquote
       | kontent_item_code_block
+      | kontent_item_attributed_quote
 
     type kontent_item_article_body_element {
       name: String!
@@ -127,6 +128,16 @@ exports.createSchemaCustomization = ({ actions }) => {
     type kontent_item_rich_blockquote implements Node & kontent_item @dontInfer {
       system: kontent_item_system!
       elements: kontent_item_rich_blockquote_elements!
+      preferred_language: String!
+    }
+
+    type kontent_item_attributed_quote_elements {
+      text: kontent_item_text_element_value!
+      author: kontent_item_text_element_value!
+    }
+    type kontent_item_attributed_quote implements Node & kontent_item @dontInfer {
+      system: kontent_item_system!
+      elements: kontent_item_attributed_quote_elements!
       preferred_language: String!
     }
 

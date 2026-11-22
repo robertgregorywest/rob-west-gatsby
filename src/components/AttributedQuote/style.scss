@@ -1,0 +1,59 @@
+@use '../../assets/scss/variables';
+@use '../../assets/scss/mixins';
+
+.attributed-quote {
+  @include mixins.margin(1, 0);
+  @include mixins.padding(0.5, 1);
+  position: relative;
+  border-left: 5px solid variables.$color-primary;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 0 5px 5px 0;
+
+  .dark-theme & {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  // Decorative opening mark; the quote text itself carries no quote marks.
+  &::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.1em;
+    left: 0.15em;
+    font-size: variables.$typographic-base-font-size * 3.5;
+    line-height: 1;
+    color: variables.$color-primary;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  &__text {
+    // Reset the generic blockquote rule; the figure draws the border.
+    margin: 0;
+    padding: 0;
+    border-left: 0;
+    font-size: variables.$typographic-base-font-size * 1.1;
+    font-style: italic;
+    white-space: pre-line;
+
+    .dark-theme & {
+      border-left: 0;
+    }
+  }
+
+  &__author {
+    @include mixins.margin(0.5, 0, 0, 0);
+    font-size: variables.$typographic-base-font-size * 0.8;
+    font-style: normal;
+    font-weight: 600;
+    text-align: right;
+    color: variables.$color-secondary;
+
+    &::before {
+      content: '\2014\00a0';
+    }
+
+    .dark-theme & {
+      color: variables.$color-base-dark;
+    }
+  }
+}
