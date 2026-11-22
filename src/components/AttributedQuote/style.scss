@@ -15,16 +15,19 @@
   }
 
   &__text {
-    // Reset the generic blockquote rule; the figure draws the border.
+    // Reset the generic blockquote rule; the figure draws the bar and background.
     margin: 0;
     padding: 0;
     border-left: 0;
+    border-radius: 0;
+    background-color: transparent;
     font-size: variables.$typographic-base-font-size * 1.1;
     font-style: italic;
     white-space: pre-line;
 
     .dark-theme & {
       border-left: 0;
+      background-color: transparent;
     }
   }
 
