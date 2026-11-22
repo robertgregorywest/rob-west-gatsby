@@ -4,26 +4,14 @@
 .attributed-quote {
   @include mixins.margin(1, 0);
   @include mixins.padding(0.5, 1);
-  position: relative;
-  border-left: 5px solid variables.$color-primary;
+  // Same left bar as the generic blockquote rule.
+  border-left: 5px solid variables.$color-base;
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 0 5px 5px 0;
 
   .dark-theme & {
+    border-left-color: variables.$color-base-dark;
     background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  // Decorative opening mark; the quote text itself carries no quote marks.
-  &::before {
-    content: '\201C';
-    position: absolute;
-    top: -0.1em;
-    left: 0.15em;
-    font-size: variables.$typographic-base-font-size * 3.5;
-    line-height: 1;
-    color: variables.$color-primary;
-    opacity: 0.25;
-    pointer-events: none;
   }
 
   &__text {
